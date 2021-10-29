@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "477481780267",
+    "project_id": "whatsapp-clone-5d839",
+    "storage_bucket": "whatsapp-clone-5d839.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477481780267:android:8de0eff99702b8819f166e",
+        "android_client_info": {
+          "package_name": "com.fiberchat.fiberchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "477481780267-k68md7p0ktbrosq9sgndcbksk0u3n7e8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fiberchat.fiberchat",
+            "certificate_hash": "d9d73e0cb12cb2a260c857e988689a68bad76153"
+          }
+        },
+        {
+          "client_id": "477481780267-iq7bhbkkjisj3k6au7jha95ried5k89a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjaBmywAb9PV2khbQsVFn3sAHP24D_YGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477481780267-iq7bhbkkjisj3k6au7jha95ried5k89a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
