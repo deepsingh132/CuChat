@@ -1,16 +1,15 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Services/Providers/StatusProvider.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Services/Providers/StatusProvider.dart';
 import 'package:flutter/foundation.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
 import 'package:contacts_service/contacts_service.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:localstorage/localstorage.dart';
@@ -89,7 +88,7 @@ class AvailableContactsProvider with ChangeNotifier {
       this.contacts = this.filtered = c;
     });
 
-    Fiberchat.checkAndRequestPermission(Permission.contacts).then((res) {
+    CuChat.checkAndRequestPermission(Permission.contacts).then((res) {
       if (res) {
         storage.ready.then((ready) async {
           if (ready) {
@@ -124,12 +123,12 @@ class AvailableContactsProvider with ChangeNotifier {
           // }
         });
       } else {
-        Fiberchat.showRationale(getTranslated(context, 'perm_contact'));
+        CuChat.showRationale(getTranslated(context, 'perm_contact'));
         Navigator.pushReplacement(context,
             new MaterialPageRoute(builder: (context) => OpenSettings()));
       }
     }).catchError((onError) {
-      Fiberchat.showRationale('Error occured: $onError');
+      CuChat.showRationale('Error occured: $onError');
     });
     notifyListeners();
     return completer.future;

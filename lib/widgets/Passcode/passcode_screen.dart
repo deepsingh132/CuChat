@@ -1,17 +1,16 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'dart:math' as math;
 import 'dart:ui';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/security_screens/security.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/Passcode/circle.dart';
-import 'package:fiberchat/widgets/Passcode/keyboard.dart';
-import 'package:fiberchat/widgets/Passcode/shake_curve.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/security_screens/security.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/Passcode/circle.dart';
+import 'package:CuChat/widgets/Passcode/keyboard.dart';
+import 'package:CuChat/widgets/Passcode/shake_curve.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -118,7 +117,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(Scaffold(
+    return CuChat.getNTPWrappedWidget(Scaffold(
       appBar: widget.wait
           ? AppBar(
               leading: IconButton(
@@ -135,7 +134,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
               ),
               elevation: 0,
               backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                  ? fiberchatDeepGreen
+                  ? campusChat
                   : fiberchatWhite,
               title: Text(
                 widget.title!,
@@ -165,7 +164,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
             )
           : null,
       backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-          ? fiberchatDeepGreen
+          ? campusChat
           : fiberchatWhite,
       body: Center(
           child: SingleChildScrollView(
@@ -240,7 +239,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                                         if (val!.isEmpty)
                                           return getTranslated(
                                               context, 'ansempty');
-                                        if (Fiberchat.getHashedAnswer(val) !=
+                                        if (CuChat.getHashedAnswer(val) !=
                                             widget.answer) {
                                           setState(() {
                                             answerTries += 1;
@@ -253,7 +252,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                                                     .millisecondsSinceEpoch);
                                             if (answerTries >
                                                 Dbkeys.triesThreshold) {
-                                              Fiberchat.toast(getTranslated(
+                                              CuChat.toast(getTranslated(
                                                       context, 'trylater') +
                                                   ' ${math.pow(Dbkeys.timeBase, answerTries - Dbkeys.triesThreshold)} minutes');
                                               Navigator.maybePop(context);
@@ -305,7 +304,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                               );
                             });
                       } else
-                        Fiberchat.toast(getTranslated(context, 'trylater'));
+                        CuChat.toast(getTranslated(context, 'trylater'));
                     },
                     child: Padding(
                         padding: EdgeInsets.only(top: 20),

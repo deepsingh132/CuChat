@@ -1,21 +1,20 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/AvailableContactsProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/call_history/utils/InfiniteListView.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
-import 'package:fiberchat/Utils/permissions.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/Admob/admob.dart';
+import 'package:CuChat/Services/Providers/AvailableContactsProvider.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/call_history/utils/InfiniteListView.dart';
+import 'package:CuChat/Services/Providers/call_history_provider.dart';
+import 'package:CuChat/Utils/call_utilities.dart';
+import 'package:CuChat/Utils/permissions.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jiffy/jiffy.dart';
@@ -59,7 +58,7 @@ class _CallHistoryState extends State<CallHistory> {
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    CuChat.internetLookUp();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       final observer = Provider.of<Observer>(this.context, listen: false);
       if (IsBannerAdShow == true && observer.isadmobshow == true) {
@@ -125,7 +124,7 @@ class _CallHistoryState extends State<CallHistory> {
                                 child: Text(
                                   getTranslated(context, 'cancel'),
                                   style: TextStyle(
-                                      color: fiberchatgreen, fontSize: 18),
+                                      color: campusChat, fontSize: 18),
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pop();
@@ -140,7 +139,7 @@ class _CallHistoryState extends State<CallHistory> {
                                 ),
                                 onPressed: () async {
                                   Navigator.of(context).pop();
-                                  Fiberchat.toast(
+                                  CuChat.toast(
                                       getTranslated(context, 'plswait'));
                                   FirebaseFirestore.instance
                                       .collection(DbPaths.collectionusers)
@@ -220,7 +219,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                   DbPaths.collectioncallhistory)
                                               .doc(dc['TIME'].toString())
                                               .delete();
-                                          Fiberchat.toast('Deleted!');
+                                          CuChat.toast('Deleted!');
                                           firestoreDataProvider
                                               .deleteSingle(dc);
                                         }));
@@ -249,7 +248,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                 padding: EdgeInsets.fromLTRB(
                                                     6, 2, 6, 2),
                                                 decoration: BoxDecoration(
-                                                    color: fiberchatLightGreen,
+                                                    color: campusChatLight2,
                                                     borderRadius:
                                                         BorderRadius.all(
                                                             Radius.circular(
@@ -309,10 +308,10 @@ class _CallHistoryState extends State<CallHistory> {
                                           color: dc['TYPE'] == 'INCOMING'
                                               ? (dc['STARTED'] == null
                                                   ? Colors.redAccent
-                                                  : fiberchatLightGreen)
+                                                  : campusChatLight2)
                                               : (dc['STARTED'] == null
                                                   ? Colors.redAccent
-                                                  : fiberchatLightGreen),
+                                                  : campusChatLight2),
                                         ),
                                         SizedBox(
                                           width: 7,
@@ -337,12 +336,12 @@ class _CallHistoryState extends State<CallHistory> {
                                           dc['ISVIDEOCALL'] == true
                                               ? Icons.video_call
                                               : Icons.call,
-                                          color: fiberchatgreen,
+                                          color: campusChat,
                                           size: 24),
                                       onPressed: observer.iscallsallowed ==
                                               false
                                           ? () {
-                                              Fiberchat.showRationale(
+                                              CuChat.showRationale(
                                                   getTranslated(this.context,
                                                       'callnotallowed'));
                                             }
@@ -355,7 +354,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                   if (isgranted == true) {
                                                     call(context, true, user);
                                                   } else {
-                                                    Fiberchat.showRationale(
+                                                    CuChat.showRationale(
                                                       getTranslated(
                                                           context, 'pmc'),
                                                     );
@@ -366,7 +365,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                                 OpenSettings()));
                                                   }
                                                 }).catchError((onError) {
-                                                  Fiberchat.showRationale(
+                                                  CuChat.showRationale(
                                                     getTranslated(
                                                         context, 'pmc'),
                                                   );
@@ -385,7 +384,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                   if (isgranted == true) {
                                                     call(context, false, user);
                                                   } else {
-                                                    Fiberchat.showRationale(
+                                                    CuChat.showRationale(
                                                       getTranslated(
                                                           context, 'pmc'),
                                                     );
@@ -396,7 +395,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                                 OpenSettings()));
                                                   }
                                                 }).catchError((onError) {
-                                                  Fiberchat.showRationale(
+                                                  CuChat.showRationale(
                                                     getTranslated(
                                                         context, 'pmc'),
                                                   );
@@ -425,7 +424,7 @@ class _CallHistoryState extends State<CallHistory> {
                                       ),
                                       onTap: () async {
                                         Navigator.of(context).pop();
-                                        Fiberchat.toast(
+                                        CuChat.toast(
                                             getTranslated(context, 'plswait'));
                                         FirebaseFirestore.instance
                                             .collection(DbPaths.collectionusers)
@@ -434,7 +433,7 @@ class _CallHistoryState extends State<CallHistory> {
                                                 DbPaths.collectioncallhistory)
                                             .doc(dc['TIME'].toString())
                                             .delete();
-                                        Fiberchat.toast('Deleted!');
+                                        CuChat.toast('Deleted!');
                                         firestoreDataProvider.deleteSingle(dc);
                                       }));
 
@@ -460,7 +459,7 @@ class _CallHistoryState extends State<CallHistory> {
                                               padding: EdgeInsets.fromLTRB(
                                                   6, 2, 6, 2),
                                               decoration: BoxDecoration(
-                                                  color: fiberchatLightGreen,
+                                                  color: campusChatLight2,
                                                   borderRadius:
                                                       BorderRadius.all(
                                                           Radius.circular(20))),
@@ -530,10 +529,10 @@ class _CallHistoryState extends State<CallHistory> {
                                         color: dc['TYPE'] == 'INCOMING'
                                             ? (dc['STARTED'] == null
                                                 ? Colors.redAccent
-                                                : fiberchatLightGreen)
+                                                : campusChatLight2)
                                             : (dc['STARTED'] == null
                                                 ? Colors.redAccent
-                                                : fiberchatLightGreen),
+                                                : campusChatLight2),
                                       ),
                                       SizedBox(
                                         width: 7,
@@ -558,7 +557,7 @@ class _CallHistoryState extends State<CallHistory> {
                                         dc['ISVIDEOCALL'] == true
                                             ? Icons.video_call
                                             : Icons.call,
-                                        color: fiberchatgreen,
+                                        color: campusChat,
                                         size: 24),
                                     onPressed: null),
                               );

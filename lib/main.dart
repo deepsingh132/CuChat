@@ -1,23 +1,22 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:core';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/splash_screen/splash_screen.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Services/Providers/AvailableContactsProvider.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/Providers/StatusProvider.dart';
-import 'package:fiberchat/Services/Providers/currentchat_peer.dart';
-import 'package:fiberchat/Services/Providers/seen_provider.dart';
-import 'package:fiberchat/Services/localization/demo_localization.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Services/Providers/DownloadInfoProvider.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/splash_screen/splash_screen.dart';
+import 'package:CuChat/Services/Providers/BroadcastProvider.dart';
+import 'package:CuChat/Services/Providers/AvailableContactsProvider.dart';
+import 'package:CuChat/Services/Providers/GroupChatProvider.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/Providers/StatusProvider.dart';
+import 'package:CuChat/Services/Providers/currentchat_peer.dart';
+import 'package:CuChat/Services/Providers/seen_provider.dart';
+import 'package:CuChat/Services/localization/demo_localization.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/homepage/homepage.dart';
+import 'package:CuChat/Services/Providers/DownloadInfoProvider.dart';
+import 'package:CuChat/Services/Providers/call_history_provider.dart';
+import 'package:CuChat/Services/Providers/user_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -157,9 +156,9 @@ class _FiberchatWrapperState extends State<FiberchatWrapper> {
                               },
                               theme: ThemeData(
                                   fontFamily: FONTFAMILY_NAME,
-                                  primaryColor: fiberchatgreen,
-                                  primaryColorLight: fiberchatgreen,
-                                  indicatorColor: fiberchatLightGreen),
+                                  primaryColor: campusChat,
+                                  primaryColorLight: campusChat,
+                                  indicatorColor: campusChatLight),
                               title: Appname,
                               debugShowCheckedModeBanner: false,
 
@@ -218,9 +217,9 @@ class _FiberchatWrapperState extends State<FiberchatWrapper> {
                       child: MaterialApp(
                           theme: ThemeData(
                               fontFamily: FONTFAMILY_NAME,
-                              primaryColor: fiberchatgreen,
-                              primaryColorLight: fiberchatgreen,
-                              indicatorColor: fiberchatLightGreen),
+                              primaryColor: campusChat,
+                              primaryColorLight: campusChat,
+                              indicatorColor: campusChatLight),
                           debugShowCheckedModeBanner: false,
                           home: Splashscreen()),
                     );

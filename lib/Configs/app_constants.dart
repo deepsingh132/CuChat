@@ -1,11 +1,15 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:ui';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Configs/Enum.dart';
 import 'package:flutter/material.dart';
 
 //*--App Colors : Replace with your own colours---
 //-**********---------- WHATSAPP Color Theme: -------------------------
+final campusChat = new Color(0xFFDA0037);
+final campusChatLight = new Color(0xFFDA0037);
+final campusChatLight2 = new Color(0xFF171717);
+final bubbleReply = new Color(0xFFDA0037);
+
 final fiberchatBlack = new Color(0xFF1E1E1E);
 final fiberchatBlue = new Color(0xFF02ac88);
 final fiberchatDeepGreen = new Color(0xFF01826b);
@@ -18,11 +22,11 @@ final fiberchatChatbackground = new Color(0xffe8ded5);
 const DESIGN_TYPE = Themetype.whatsapp;
 const IsSplashOnlySolidColor = false;
 const SplashBackgroundSolidColor = Color(
-    0xFF086c5b); //applies this colors if "IsSplashOnlySolidColor" is set to true. Color Code: 0xFF005f56 for Whatsapp theme & 0xFFFFFFFF for messenger theme.
+    0xFFFFFFFF); ///applies this colors if "IsSplashOnlySolidColor" is set to true. Color Code: 0xFF005f56 for Whatsapp theme & 0xFFFFFFFF for messenger theme.
 
 //-*********---------- MESSENGER Color Theme: ---------------// Remove below comments for Messenger theme //------------
-// final fiberchatBlack = new Color(0xFF353f58);
-// final fiberchatBlue = new Color(0xFF3d9df5);
+ //final fiberchatBlack = new Color(0xFF353f58);
+ //final fiberchatBlue = new Color(0xFF3d9df5);
 // final fiberchatDeepGreen = new Color(0xFF296ac6);
 // final fiberchatLightGreen = new Color(0xFF036eff);
 // final fiberchatgreen = new Color(0xFF06a2ff);
@@ -68,14 +72,14 @@ const GiphyAPIKey =
 
 //*--App Configurations---
 const Appname =
-    'Fiberchat'; //app name shown evrywhere with the app where required
+    'CuChat'; //app name shown evrywhere with the app where required
 const DEFAULT_COUNTTRYCODE_ISO =
-    'US'; //default country ISO 2 letter for login screen
+    'IN'; //default country ISO 2 letter for login screen
 const DEFAULT_COUNTTRYCODE_NUMBER =
-    '+1'; //default country code number for login screen
+    '+91'; //default country code number for login screen
 const FONTFAMILY_NAME =
     null; // make sure you have registered the font in pubspec.yaml
 
 //--WARNING----- PLEASE DONT EDIT THE BELOW LINES UNLESS YOU ARE A DEVELOPER -------
-const SplashPath = 'assets/images/splash.jpeg';
-const AppLogoPath = 'assets/images/applogo.png';
+const SplashPath = 'assets/images/splashscreen.png';
+const AppLogoPath = 'assets/images/splashscreen.png';

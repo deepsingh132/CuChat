@@ -1,12 +1,11 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:core';
 import 'dart:async';
 import 'dart:io';
 import 'package:async/async.dart' show StreamGroup;
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -114,7 +113,7 @@ class DataModel extends Model {
   getChatOrder(List<String> chatsWith, String? currentUserNo) {
     List<Stream<QuerySnapshot>> messages = [];
     chatsWith.forEach((otherNo) {
-      String chatId = Fiberchat.getChatId(currentUserNo, otherNo);
+      String chatId = CuChat.getChatId(currentUserNo, otherNo);
       messages.add(FirebaseFirestore.instance
           .collection(DbPaths.collectionmessages)
           .doc(chatId)

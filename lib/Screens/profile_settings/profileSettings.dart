@@ -1,25 +1,24 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/ImagePicker/image_picker.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/Admob/admob.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/ImagePicker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Configs/Enum.dart';
 
 class ProfileSetting extends StatefulWidget {
   final bool? biometricEnabled;
@@ -56,7 +55,7 @@ class ProfileSettingState extends State<ProfileSetting> {
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    CuChat.internetLookUp();
     readLocal();
     _type = widget.type;
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
@@ -123,14 +122,14 @@ class ProfileSettingState extends State<ProfileSetting> {
       setState(() {
         isLoading = false;
       });
-      Fiberchat.toast(getTranslated(this.context, 'saved'));
+      CuChat.toast(getTranslated(this.context, 'saved'));
       Navigator.of(context).pop();
     }).catchError((err) {
       setState(() {
         isLoading = false;
       });
 
-      Fiberchat.toast(err.toString());
+      CuChat.toast(err.toString());
     });
   }
 
@@ -147,7 +146,7 @@ class ProfileSettingState extends State<ProfileSetting> {
   Widget build(BuildContext context) {
     final observer = Provider.of<Observer>(context, listen: false);
     return PickupLayout(
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: CuChat.getNTPWrappedWidget(Scaffold(
             backgroundColor: fiberchatWhite,
             appBar: new AppBar(
               leading: IconButton(
@@ -164,7 +163,7 @@ class ProfileSettingState extends State<ProfileSetting> {
               ),
               titleSpacing: 0,
               backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                  ? fiberchatDeepGreen
+                  ? campusChat
                   : fiberchatWhite,
               title: new Text(
                 getTranslated(this.context, 'editprofile'),
@@ -185,7 +184,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                       fontSize: 16,
                       color: DESIGN_TYPE == Themetype.whatsapp
                           ? fiberchatWhite
-                          : fiberchatgreen,
+                          : campusChat,
                     ),
                   ),
                 )
@@ -215,7 +214,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                                                           valueColor:
                                                               AlwaysStoppedAnimation<
                                                                       Color>(
-                                                                  fiberchatLightGreen),
+                                                                  campusChatLight),
                                                         )),
                                                     width: 150.0,
                                                     height: 150.0),
@@ -248,7 +247,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                                   bottom: 0,
                                   right: 0,
                                   child: FloatingActionButton(
-                                      backgroundColor: fiberchatLightGreen,
+                                      backgroundColor: campusChat,
                                       child: Icon(Icons.camera_alt,
                                           color: fiberchatWhite),
                                       onPressed: () {
@@ -284,7 +283,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                                                 isLoading = false;
                                               });
 
-                                              Fiberchat.toast(err.toString());
+                                              CuChat.toast(err.toString());
                                             });
                                           }
                                         });
@@ -365,7 +364,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                           child: Center(
                             child: CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation<Color>(
-                                    fiberchatBlue)),
+                                    campusChat)),
                           ),
                           color: DESIGN_TYPE == Themetype.whatsapp
                               ? fiberchatBlack.withOpacity(0.8)

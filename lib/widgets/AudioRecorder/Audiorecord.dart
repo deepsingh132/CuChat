@@ -1,16 +1,15 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/permissions.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/AudioRecorder/playButton.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/permissions.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/AudioRecorder/playButton.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
@@ -80,7 +79,7 @@ class _AudioRecordState extends State<AudioRecord> {
       var status = await Permissions.getMicrophonePermission();
 
       if (status != PermissionStatus.granted) {
-        Fiberchat.showRationale(getTranslated(this.context, 'pm'));
+        CuChat.showRationale(getTranslated(this.context, 'pm'));
         Navigator.push(context,
             new MaterialPageRoute(builder: (context) => OpenSettings()));
       } else {
@@ -195,7 +194,7 @@ class _AudioRecordState extends State<AudioRecord> {
       return Center(
         child: isLoading == true
             ? CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(fiberchatLightGreen))
+                valueColor: AlwaysStoppedAnimation<Color>(campusChatLight))
             : Column(
                 children: [
                   SizedBox(
@@ -296,7 +295,7 @@ class _AudioRecordState extends State<AudioRecord> {
                               elevation: 2.0,
                               fillColor: _mPlayer!.isPlaying
                                   ? Colors.white
-                                  : fiberchatLightGreen,
+                                  : campusChatLight,
                               child: Icon(
                                 _mPlayer!.isPlaying
                                     ? Icons.stop
@@ -324,9 +323,9 @@ class _AudioRecordState extends State<AudioRecord> {
                           : RaisedButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.0),
-                                  side: BorderSide(color: fiberchatLightGreen)),
+                                  side: BorderSide(color: campusChatLight2)),
                               elevation: 0.2,
-                              color: fiberchatLightGreen,
+                              color: campusChatLight,
                               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                               onPressed: () {
                                 final observer = Provider.of<Observer>(
@@ -334,13 +333,13 @@ class _AudioRecordState extends State<AudioRecord> {
                                     listen: false);
                                 if (recordedfile!.lengthSync() / 1000000 >
                                     observer.maxFileSizeAllowedInMB) {
-                                  Fiberchat.toast(
+                                  CuChat.toast(
                                       '${getTranslated(this.context, 'maxfilesize')} ${observer.maxFileSizeAllowedInMB}MB\n\n${getTranslated(this.context, 'selectedfilesize')} ${(recordedfile!.lengthSync() / 1000000).round()}MB');
                                 } else {
                                   setStateIfMounted(() {
                                     isLoading = true;
                                   });
-                                  Fiberchat.toast(getTranslated(
+                                  CuChat.toast(getTranslated(
                                       this.context, 'sendingrecord'));
                                   widget
                                       .callback(recordedfile)
@@ -364,7 +363,7 @@ class _AudioRecordState extends State<AudioRecord> {
         onWillPop: onWillPopNEw,
         child: Scaffold(
           backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-              ? fiberchatDeepGreen
+              ? campusChatLight2
               : fiberchatWhite,
           appBar: AppBar(
             leading: IconButton(
@@ -382,7 +381,7 @@ class _AudioRecordState extends State<AudioRecord> {
             centerTitle: true,
             elevation: 0,
             backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                ? fiberchatDeepGreen
+                ? campusChat
                 : fiberchatWhite,
             title: Text(
               widget.title,

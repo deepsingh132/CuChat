@@ -1,16 +1,15 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class OpenSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(Material(
-        color: fiberchatDeepGreen,
+    return CuChat.getNTPWrappedWidget(Material(
+        color: campusChat,
         child: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +25,7 @@ class OpenSettings extends StatelessWidget {
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: myElevatedButton(
-                    color: fiberchatLightGreen,
+                    color: campusChatLight2,
                     onPressed: () {
                       openAppSettings();
                     },
@@ -40,7 +39,7 @@ class OpenSettings extends StatelessWidget {
                 // ignore: deprecated_member_use
                 child: RaisedButton(
                     elevation: 0.5,
-                    color: Colors.green,
+                    color: Colors.blue,
                     textColor: fiberchatWhite,
                     onPressed: () {
                       Navigator.of(context).pop();

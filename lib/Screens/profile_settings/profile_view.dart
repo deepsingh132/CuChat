@@ -1,23 +1,22 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/permissions.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Screens/chat_screen/chat.dart';
+import 'package:CuChat/Screens/status/components/formatStatusTime.dart';
+import 'package:CuChat/Services/Admob/admob.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/call_utilities.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/permissions.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +88,7 @@ class _ProfileViewState extends State<ProfileView> {
 
     var w = MediaQuery.of(context).size.width;
     return PickupLayout(
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: CuChat.getNTPWrappedWidget(Scaffold(
       bottomSheet: IsBannerAdShow == true &&
               observer.isadmobshow == true &&
               adWidget != null
@@ -201,7 +200,7 @@ class _ProfileViewState extends State<ProfileView> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: fiberchatgreen,
+                          color: campusChat,
                           fontSize: 16),
                     ),
                   ],
@@ -256,7 +255,7 @@ class _ProfileViewState extends State<ProfileView> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: fiberchatgreen,
+                          color: campusChat,
                           fontSize: 16),
                     ),
                   ],
@@ -284,7 +283,7 @@ class _ProfileViewState extends State<ProfileView> {
                               : IconButton(
                                   onPressed: observer.iscallsallowed == false
                                       ? () {
-                                          Fiberchat.showRationale(getTranslated(
+                                          CuChat.showRationale(getTranslated(
                                               context, 'callnotallowed'));
                                         }
                                       : () async {
@@ -294,7 +293,7 @@ class _ProfileViewState extends State<ProfileView> {
                                             if (isgranted == true) {
                                               call(context, false);
                                             } else {
-                                              Fiberchat.showRationale(
+                                              CuChat.showRationale(
                                                   getTranslated(
                                                       context, 'pmc'));
                                               Navigator.push(
@@ -304,7 +303,7 @@ class _ProfileViewState extends State<ProfileView> {
                                                           OpenSettings()));
                                             }
                                           }).catchError((onError) {
-                                            Fiberchat.showRationale(
+                                            CuChat.showRationale(
                                                 getTranslated(context, 'pmc'));
                                             Navigator.push(
                                                 context,
@@ -315,14 +314,14 @@ class _ProfileViewState extends State<ProfileView> {
                                         },
                                   icon: Icon(
                                     Icons.phone,
-                                    color: fiberchatgreen,
+                                    color: campusChat,
                                   )),
                           observer.isCallFeatureTotallyHide == true
                               ? SizedBox()
                               : IconButton(
                                   onPressed: observer.iscallsallowed == false
                                       ? () {
-                                          Fiberchat.showRationale(getTranslated(
+                                          CuChat.showRationale(getTranslated(
                                               context, 'callnotallowed'));
                                         }
                                       : () async {
@@ -332,7 +331,7 @@ class _ProfileViewState extends State<ProfileView> {
                                             if (isgranted == true) {
                                               call(context, true);
                                             } else {
-                                              Fiberchat.showRationale(
+                                              CuChat.showRationale(
                                                   getTranslated(
                                                       context, 'pmc'));
                                               Navigator.push(
@@ -342,7 +341,7 @@ class _ProfileViewState extends State<ProfileView> {
                                                           OpenSettings()));
                                             }
                                           }).catchError((onError) {
-                                            Fiberchat.showRationale(
+                                            CuChat.showRationale(
                                                 getTranslated(context, 'pmc'));
                                             Navigator.push(
                                                 context,
@@ -354,7 +353,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   icon: Icon(
                                     Icons.videocam_rounded,
                                     size: 26,
-                                    color: fiberchatgreen,
+                                    color: campusChat,
                                   )),
                           IconButton(
                               onPressed: () {
@@ -377,7 +376,7 @@ class _ProfileViewState extends State<ProfileView> {
                               },
                               icon: Icon(
                                 Icons.message,
-                                color: fiberchatgreen,
+                                color: campusChat,
                               )),
                         ],
                       ),
@@ -415,7 +414,7 @@ class _ProfileViewState extends State<ProfileView> {
                 padding: const EdgeInsets.only(top: 32),
                 child: Icon(
                   Icons.lock,
-                  color: fiberchatgreen,
+                  color: campusChat,
                 ),
               ),
             ),

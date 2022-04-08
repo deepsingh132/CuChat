@@ -1,10 +1,9 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:flutter/material.dart';
@@ -78,7 +77,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
       setState(() {
         showPlayingLoader = false;
       });
-      Fiberchat.toast('This message is deleted by sender');
+      CuChat.toast('This message is deleted by sender');
     }
   }
 
@@ -141,7 +140,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
       setState(() {
         showPlayingLoader = false;
       });
-      Fiberchat.toast('This message is deleted by sender');
+      CuChat.toast('This message is deleted by sender');
     }
   }
 
@@ -185,7 +184,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                         child: CircularProgressIndicator(
                           strokeWidth: 1.7,
                           valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.green),
+                              AlwaysStoppedAnimation<Color>(campusChat),
                         ),
                       ),
                     ),
@@ -213,7 +212,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                 color: getPauseResumeFn1() == null
                     ? widget.isMe!
                         ? DESIGN_TYPE == Themetype.whatsapp
-                            ? Colors.green[100]
+                            ? Colors.blue[100]
                             : Colors.blueGrey[100]
                         : Colors.blueGrey[100]
                     : Colors.blueGrey[800],
@@ -233,7 +232,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                           },
                           icon: Icon(
                             Icons.mic_rounded,
-                            color: Colors.green[400],
+                            color: Colors.blue[400],
                             size: 30,
                           ),
                         ),
@@ -243,7 +242,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                             child: Icon(
                               Icons.download,
                               size: 16,
-                              color: Colors.green[200],
+                              color: Colors.blue[200],
                             ))
                       ],
                     ),

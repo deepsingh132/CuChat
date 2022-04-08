@@ -1,20 +1,19 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/notifications/AllNotifications.dart';
-import 'package:fiberchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Configs/optional_constants.dart';
+import 'package:CuChat/Screens/call_history/callhistory.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Screens/notifications/AllNotifications.dart';
+import 'package:CuChat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -54,7 +53,7 @@ class _SettingsOptionState extends State<SettingsOption> {
     var w = MediaQuery.of(context).size.width;
     final observer = Provider.of<Observer>(context, listen: false);
     return PickupLayout(
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: CuChat.getNTPWrappedWidget(Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
@@ -70,7 +69,7 @@ class _SettingsOptionState extends State<SettingsOption> {
           },
         ),
         backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-            ? fiberchatDeepGreen
+            ? campusChat
             : fiberchatWhite,
         title: Text(
           getTranslated(context, 'settingsoption'),
@@ -121,7 +120,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                             },
                             icon: Icon(
                               Icons.edit,
-                              color: fiberchatgreen,
+                              color: campusChat,
                             )));
                   }
                   return ListTile(
@@ -149,7 +148,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                           },
                           icon: Icon(
                             Icons.edit,
-                            color: fiberchatgreen,
+                            color: campusChat,
                           )));
                 }),
           ),
@@ -163,7 +162,7 @@ class _SettingsOptionState extends State<SettingsOption> {
               padding: const EdgeInsets.only(top: 6),
               child: Icon(
                 Icons.account_circle_rounded,
-                color: fiberchatgreen.withOpacity(0.75),
+                color: campusChat.withOpacity(0.75),
                 size: 26,
               ),
             ),
@@ -193,7 +192,7 @@ class _SettingsOptionState extends State<SettingsOption> {
               padding: const EdgeInsets.only(top: 6),
               child: Icon(
                 Icons.rate_review_outlined,
-                color: fiberchatgreen.withOpacity(0.75),
+                color: campusChat.withOpacity(0.75),
                 size: 26,
               ),
             ),
@@ -223,7 +222,7 @@ class _SettingsOptionState extends State<SettingsOption> {
               padding: const EdgeInsets.only(top: 3),
               child: Icon(
                 Icons.star_outline_rounded,
-                color: fiberchatgreen.withOpacity(0.75),
+                color: campusChat.withOpacity(0.75),
                 size: 29,
               ),
             ),
@@ -256,7 +255,7 @@ class _SettingsOptionState extends State<SettingsOption> {
               padding: const EdgeInsets.only(top: 3),
               child: Icon(
                 Icons.notifications_none,
-                color: fiberchatgreen.withOpacity(0.75),
+                color: campusChat.withOpacity(0.75),
                 size: 29,
               ),
             ),
@@ -307,7 +306,7 @@ class _SettingsOptionState extends State<SettingsOption> {
               padding: const EdgeInsets.only(top: 6),
               child: Icon(
                 Icons.help_outline,
-                color: fiberchatgreen.withOpacity(0.75),
+                color: campusChat.withOpacity(0.75),
                 size: 26,
               ),
             ),
@@ -358,7 +357,7 @@ class _SettingsOptionState extends State<SettingsOption> {
               padding: const EdgeInsets.only(top: 6),
               child: Icon(
                 Icons.lock_outline_rounded,
-                color: fiberchatgreen.withOpacity(0.75),
+                color: campusChat.withOpacity(0.75),
                 size: 26,
               ),
             ),
@@ -381,12 +380,12 @@ class _SettingsOptionState extends State<SettingsOption> {
           ),
           ListTile(
             onTap: () {
-              Fiberchat.invite(context);
+              CuChat.invite(context);
             },
             contentPadding: EdgeInsets.fromLTRB(30, 3, 10, 3),
             leading: Icon(
               Icons.people_rounded,
-              color: fiberchatgreen.withOpacity(0.75),
+              color: campusChat.withOpacity(0.75),
               size: 26,
             ),
             title: Text(
@@ -489,7 +488,7 @@ class _SettingsOptionState extends State<SettingsOption> {
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
               Center(
                   child: myElevatedButton(
-                      color: fiberchatgreen,
+                      color: campusChat,
                       child: Text(
                         getTranslated(context, 'rate'),
                         style: TextStyle(color: Colors.white),

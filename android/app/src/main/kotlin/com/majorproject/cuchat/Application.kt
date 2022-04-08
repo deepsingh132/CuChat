@@ -1,5 +1,5 @@
 
-package com.fiberchat.fiberchat
+package com.majorproject.cuchat
 
 import io.flutter.app.FlutterApplication
 import io.flutter.plugin.common.PluginRegistry

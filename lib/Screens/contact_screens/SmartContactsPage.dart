@@ -1,18 +1,17 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/contact_screens/contacts.dart';
-import 'package:fiberchat/Services/Providers/AvailableContactsProvider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/chat_screen/pre_chat.dart';
-import 'package:fiberchat/Screens/contact_screens/AddunsavedContact.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/call_history/callhistory.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Screens/contact_screens/contacts.dart';
+import 'package:CuChat/Services/Providers/AvailableContactsProvider.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/chat_screen/chat.dart';
+import 'package:CuChat/Screens/chat_screen/pre_chat.dart';
+import 'package:CuChat/Screens/contact_screens/AddunsavedContact.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Utils/chat_controller.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -92,7 +91,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
   @override
   Widget build(BuildContext context) {
     return PickupLayout(
-        scaffold: Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+        scaffold: CuChat.getNTPWrappedWidget(ScopedModel<DataModel>(
             model: widget.model,
             child: ScopedModelDescendant<DataModel>(
                 builder: (context, child, model) {
@@ -116,7 +115,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                         ),
                       ),
                       backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                          ? fiberchatDeepGreen
+                          ? campusChat
                           : fiberchatWhite,
                       centerTitle: false,
                       title: _appBarTitle,
@@ -196,7 +195,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                             tileColor: Colors.white,
                                             leading: CircleAvatar(
                                                 backgroundColor:
-                                                    fiberchatLightGreen,
+                                                    campusChatLight,
                                                 radius: 22.5,
                                                 child: Icon(
                                                   Icons.share_rounded,
@@ -210,14 +209,14 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                     horizontal: 22.0,
                                                     vertical: 11.0),
                                             onTap: () {
-                                              Fiberchat.invite(context);
+                                              CuChat.invite(context);
                                             },
                                           ),
                                           ListTile(
                                             tileColor: Colors.white,
                                             leading: CircleAvatar(
                                                 backgroundColor:
-                                                    fiberchatLightGreen,
+                                                    campusChatLight,
                                                 radius: 22.5,
                                                 child: Icon(
                                                   Icons.group,
@@ -285,10 +284,10 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                           }
                                                           return CircleAvatar(
                                                               backgroundColor:
-                                                                  fiberchatgreen,
+                                                                  campusChatLight,
                                                               radius: 22.5,
                                                               child: Text(
-                                                                Fiberchat
+                                                                CuChat
                                                                     .getInitials(
                                                                         name),
                                                                 style: TextStyle(
@@ -339,7 +338,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                 state: Navigator
                                                                     .of(
                                                                         context),
-                                                                type: Fiberchat
+                                                                type: CuChat
                                                                     .getAuthenticationType(
                                                                         widget
                                                                             .biometricEnabled,
@@ -443,10 +442,10 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                               Colors.white,
                                                           leading: CircleAvatar(
                                                               backgroundColor:
-                                                                  fiberchatgreen,
+                                                                  campusChatLight,
                                                               radius: 22.5,
                                                               child: Text(
-                                                                Fiberchat
+                                                                CuChat
                                                                     .getInitials(
                                                                         user.value),
                                                                 style: TextStyle(
@@ -472,7 +471,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                           onTap: () {
                                                             hidekeyboard(
                                                                 context);
-                                                            Fiberchat.invite(
+                                                            CuChat.invite(
                                                                 context);
                                                           },
                                                         ),
@@ -483,14 +482,14 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                               onTap: () {
                                                                 hidekeyboard(
                                                                     context);
-                                                                Fiberchat.invite(
+                                                                CuChat.invite(
                                                                     context);
                                                               },
                                                               child: Icon(
                                                                 Icons
                                                                     .person_add_alt,
                                                                 color:
-                                                                    fiberchatgreen,
+                                                                    campusChatLight,
                                                               )),
                                                         )
                                                       ],
@@ -513,7 +512,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                 //     crossAxisAlignment: CrossAxisAlignment.center,
                 //     children: [Icon(Icons.search, size: 30)])
                 CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatBlue),
+          valueColor: AlwaysStoppedAnimation<Color>(campusChat),
         )),
       )
     ]);

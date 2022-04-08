@@ -1,14 +1,13 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:contacts_service/contacts_service.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:localstorage/localstorage.dart';
@@ -55,7 +54,7 @@ class _ContactsSelectState extends State<ContactsSelect>
       Container(
         child: Center(
             child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatBlue),
+          valueColor: AlwaysStoppedAnimation<Color>(campusChat),
         )),
       )
     ]);
@@ -109,7 +108,7 @@ class _ContactsSelectState extends State<ContactsSelect>
       }
     });
 
-    Fiberchat.checkAndRequestPermission(Permission.contacts).then((res) {
+    CuChat.checkAndRequestPermission(Permission.contacts).then((res) {
       if (res) {
         storage.ready.then((ready) async {
           if (ready) {
@@ -147,12 +146,12 @@ class _ContactsSelectState extends State<ContactsSelect>
           // }
         });
       } else {
-        Fiberchat.showRationale(getTranslated(context, 'perm_contact'));
+        CuChat.showRationale(getTranslated(context, 'perm_contact'));
         Navigator.pushReplacement(context,
             new MaterialPageRoute(builder: (context) => OpenSettings()));
       }
     }).catchError((onError) {
-      Fiberchat.showRationale('Error occured: $onError');
+      CuChat.showRationale('Error occured: $onError');
     });
 
     return completer.future;
@@ -165,7 +164,7 @@ class _ContactsSelectState extends State<ContactsSelect>
     super.build(context);
 
     return PickupLayout(
-        scaffold: Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+        scaffold: CuChat.getNTPWrappedWidget(ScopedModel<DataModel>(
             model: widget.model!,
             child: ScopedModelDescendant<DataModel>(
                 builder: (context, child, model) {
@@ -185,7 +184,7 @@ class _ContactsSelectState extends State<ContactsSelect>
                       ),
                     ),
                     backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                        ? fiberchatDeepGreen
+                        ? campusChat
                         : fiberchatWhite,
                     centerTitle: false,
                     title: _appBarTitle,
@@ -230,10 +229,10 @@ class _ContactsSelectState extends State<ContactsSelect>
                                     String phone = user.key;
                                     return ListTile(
                                       leading: CircleAvatar(
-                                          backgroundColor: fiberchatgreen,
+                                          backgroundColor: campusChatLight2,
                                           radius: 22.5,
                                           child: Text(
-                                            Fiberchat.getInitials(user.value),
+                                            CuChat.getInitials(user.value),
                                             style: TextStyle(
                                                 color: fiberchatWhite),
                                           )),

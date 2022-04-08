@@ -1,9 +1,8 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 
@@ -18,7 +17,7 @@ class PDFViewerCachedFromUrl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PickupLayout(
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: CuChat.getNTPWrappedWidget(Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -41,7 +40,7 @@ class PDFViewerCachedFromUrl extends StatelessWidget {
               fontSize: 18),
         ),
         backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-            ? fiberchatDeepGreen
+            ? campusChat
             : fiberchatWhite,
       ),
       body: const PDF().cachedFromUrl(

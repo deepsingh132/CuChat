@@ -1,12 +1,11 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Services/Providers/DownloadInfoProvider.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Services/Providers/DownloadInfoProvider.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -26,7 +25,7 @@ Future<void> downloadFile(
   try {
     final downloadinfo =
         Provider.of<DownloadInfoprovider>(context, listen: false);
-    Fiberchat.checkAndRequestPermission(
+    CuChat.checkAndRequestPermission(
             Platform.isIOS ? Permission.storage : Permission.storage)
         .then((res) async {
       if (res) {
@@ -37,7 +36,7 @@ Future<void> downloadFile(
         File outputFile = File('${knockDir!.path}/$fileName');
         bool fileExists = await outputFile.exists();
         if (fileExists == true) {
-          Fiberchat.toast(
+          CuChat.toast(
             getTranslated(context, 'fileexists') + ' $Appname',
           );
         } else {
@@ -78,7 +77,7 @@ Future<void> downloadFile(
                                               100,
                                           center: new Text(
                                               "${downloadinfo.downloadedpercentage.floor()}%"),
-                                          progressColor: Colors.green[400],
+                                          progressColor: Colors.blue[400],
                                         ),
                                         Container(
                                           width: 180,
@@ -119,24 +118,24 @@ Future<void> downloadFile(
             Navigator.of(keyloader!.currentContext!, rootNavigator: true)
                 .pop(); //
             downloadinfo.calculatedownloaded(0.00, 0);
-            Fiberchat.toast(
+            CuChat.toast(
               getTranslated(context, 'fileexists') + ' $Appname',
             );
           }).onError((err, er) {
             print('ERROR OCCURED WHILE DOWNLOADING MEDIA: ' + err.toString());
             Navigator.of(keyloader!.currentContext!, rootNavigator: true)
                 .pop(); //
-            Fiberchat.toast(getTranslated(context, 'eps'));
+            CuChat.toast(getTranslated(context, 'eps'));
           });
         }
       } else {
-        Fiberchat.showRationale(getTranslated(context, 'ps'));
+        CuChat.showRationale(getTranslated(context, 'ps'));
         Navigator.pushReplacement(context,
             new MaterialPageRoute(builder: (context) => OpenSettings()));
       }
     });
   } catch (e) {
-    Fiberchat.toast(
+    CuChat.toast(
       getTranslated(context, 'alreadydeleted'),
     );
   }

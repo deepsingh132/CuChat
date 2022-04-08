@@ -1,4 +1,3 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'package:agora_rtc_engine/rtc_engine.dart';
@@ -6,15 +5,15 @@ import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
 import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/homepage/homepage.dart';
+import 'package:CuChat/Services/Providers/call_history_provider.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Models/call.dart';
+import 'package:CuChat/Utils/call_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart' as audioPlayers;
 import 'package:provider/provider.dart';
@@ -449,7 +448,7 @@ class _VideoCallState extends State<VideoCall> {
     if (iscallended == true) {
       return Container(
         color:
-            DESIGN_TYPE == Themetype.whatsapp ? fiberchatgreen : fiberchatWhite,
+            DESIGN_TYPE == Themetype.whatsapp ? campusChat : fiberchatWhite,
         height: h,
         width: w,
         child: Center(

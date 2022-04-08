@@ -1,7 +1,6 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/app_constants.dart';
+import 'package:CuChat/Configs/app_constants.dart';
 
 String? getBannerAdUnitId() {
   if (Platform.isIOS) {

@@ -1,9 +1,8 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Services/Providers/call_history_provider.dart';
 import 'package:flutter/material.dart';
 
 class InfiniteListView extends StatefulWidget {
@@ -94,7 +93,7 @@ class _InfiniteListViewState extends State<InfiniteListView> {
                             child: Center(
                               child: CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                      fiberchatLightGreen)),
+                                      campusChatLight)),
                             ),
                           ),
                         ),

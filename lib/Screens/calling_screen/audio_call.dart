@@ -1,20 +1,19 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/widgets/Common/cached_image.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/homepage/homepage.dart';
+import 'package:CuChat/Services/Providers/call_history_provider.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Models/call.dart';
+import 'package:CuChat/widgets/Common/cached_image.dart';
+import 'package:CuChat/Utils/call_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart' as audioPlayers;
 import 'package:provider/provider.dart';
@@ -388,21 +387,25 @@ class _AudioCallState extends State<AudioCall> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Expanded(
+      child:
           Container(
             alignment: Alignment.center,
             margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
             color: DESIGN_TYPE == Themetype.messenger
-                ? fiberchatDeepGreen
-                : fiberchatDeepGreen,
+                ? campusChat
+                : campusChat,
             height: h / 4,
             width: w,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children:
+                [
                 SizedBox(height: 9),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+
                     Icon(
                       Icons.lock_rounded,
                       size: 17,
@@ -456,6 +459,7 @@ class _AudioCallState extends State<AudioCall> {
                           fontSize: 15,
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -466,8 +470,8 @@ class _AudioCallState extends State<AudioCall> {
                         style: TextStyle(
                             fontSize: 20.0,
                             color: DESIGN_TYPE == Themetype.whatsapp
-                                ? Colors.green[300]
-                                : Colors.green[300],
+                                ? Colors.blue[300]
+                                : Colors.blue[300],
                             fontWeight: FontWeight.w600),
                       )
                     : Text(
@@ -497,7 +501,7 @@ class _AudioCallState extends State<AudioCall> {
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: status == 'pickedup'
-                              ? fiberchatLightGreen
+                              ? campusChatLight2
                               : DESIGN_TYPE == Themetype.whatsapp
                                   ? fiberchatWhite.withOpacity(0.5)
                                   : fiberchatWhite,
@@ -505,8 +509,10 @@ class _AudioCallState extends State<AudioCall> {
                         ),
                       ),
                 SizedBox(height: 16),
+
               ],
             ),
+          ),
           ),
           Stack(
             children: [
@@ -526,7 +532,7 @@ class _AudioCallState extends State<AudioCall> {
                                     ? Icons.call_end_rounded
                                     : Icons.person,
                             size: 140,
-                            color: fiberchatDeepGreen,
+                            color: campusChat,
                           ),
                         )
                       : Stack(
@@ -555,7 +561,7 @@ class _AudioCallState extends State<AudioCall> {
                                               ? Icons.call_end_rounded
                                               : Icons.person,
                                       size: 140,
-                                      color: fiberchatDeepGreen,
+                                      color: campusChat,
                                     ),
                                   )),
                                   errorWidget: (context, url, error) =>
@@ -570,7 +576,7 @@ class _AudioCallState extends State<AudioCall> {
                                               ? Icons.call_end_rounded
                                               : Icons.person,
                                       size: 140,
-                                      color: fiberchatDeepGreen,
+                                      color: campusChat,
                                     ),
                                   ),
                                 )),
@@ -596,7 +602,7 @@ class _AudioCallState extends State<AudioCall> {
                                     ? Icons.call_end_rounded
                                     : Icons.person,
                             size: 140,
-                            color: fiberchatDeepGreen,
+                            color: campusChat,
                           ),
                         )
                       : Stack(
@@ -605,7 +611,7 @@ class _AudioCallState extends State<AudioCall> {
                                 height: w + (w / 11),
                                 width: w,
                                 color: DESIGN_TYPE == Themetype.messenger
-                                    ? fiberchatgreen.withOpacity(0.6)
+                                    ? campusChat.withOpacity(0.6)
                                     : Colors.white12,
                                 child: CachedNetworkImage(
                                   imageUrl: widget.call.callerId ==
@@ -627,7 +633,7 @@ class _AudioCallState extends State<AudioCall> {
                                               ? Icons.call_end_rounded
                                               : Icons.person,
                                       size: 140,
-                                      color: fiberchatDeepGreen,
+                                      color: campusChat,
                                     ),
                                   )),
                                   errorWidget: (context, url, error) =>
@@ -642,7 +648,7 @@ class _AudioCallState extends State<AudioCall> {
                                               ? Icons.call_end_rounded
                                               : Icons.person,
                                       size: 140,
-                                      color: fiberchatDeepGreen,
+                                      color: campusChat,
                                     ),
                                   ),
                                 )),
@@ -742,7 +748,7 @@ class _AudioCallState extends State<AudioCall> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: status == 'pickedup'
-                  ? fiberchatLightGreen
+                  ? campusChatLight2
                   : DESIGN_TYPE == Themetype.whatsapp
                       ? fiberchatWhite
                       : fiberchatBlack,
@@ -759,11 +765,11 @@ class _AudioCallState extends State<AudioCall> {
                 fontWeight: FontWeight.normal,
                 color: status == 'pickedup'
                     ? DESIGN_TYPE == Themetype.whatsapp
-                        ? fiberchatLightGreen
+                        ? campusChatLight2
                         : fiberchatBlack
                     : DESIGN_TYPE == Themetype.whatsapp
-                        ? fiberchatLightGreen
-                        : fiberchatgreen,
+                        ? campusChatLight2
+                        : campusChatLight,
                 fontSize: 16,
               ),
             ),
@@ -990,8 +996,8 @@ class _AudioCallState extends State<AudioCall> {
       child: h > w && ((h / w) > 1.5)
           ? Scaffold(
               backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                  ? fiberchatDeepGreen
-                  : fiberchatDeepGreen,
+                  ? campusChat
+                  : campusChat,
               body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                 stream:
                     stream as Stream<DocumentSnapshot<Map<String, dynamic>>>?,
@@ -1067,7 +1073,7 @@ class _AudioCallState extends State<AudioCall> {
               ))
           : Scaffold(
               backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                  ? fiberchatDeepGreen
+                  ? campusChat
                   : fiberchatWhite,
               body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                 stream:

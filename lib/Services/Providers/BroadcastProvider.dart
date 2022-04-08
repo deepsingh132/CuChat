@@ -1,17 +1,16 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/optional_constants.dart';
 import 'dart:async';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Services/Providers/FirebaseAPIProvider.dart';
-import 'package:fiberchat/Utils/crc.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Services/Providers/FirebaseAPIProvider.dart';
+import 'package:CuChat/Utils/crc.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:CuChat/Configs/Enum.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -37,7 +36,7 @@ class FirebaseBroadcastServices {
       int crc = CRC32.compute(input);
       return '$encrypted${Dbkeys.crcSeperator}$crc';
     } catch (e) {
-      Fiberchat.toast('Error occured while encrypting !');
+      CuChat.toast('Error occured while encrypting !');
       return false;
     }
   }
@@ -94,7 +93,7 @@ class FirebaseBroadcastServices {
             if (encrypted is String) {
               int timestamp2 = DateTime.now().millisecondsSinceEpoch;
               if (content.trim() != '') {
-                var chatId = Fiberchat.getChatId(currentUserNo, peer);
+                var chatId = CuChat.getChatId(currentUserNo, peer);
                 await FirebaseFirestore.instance
                     .collection(DbPaths.collectionbroadcasts)
                     .doc(broadcastId)
@@ -143,17 +142,17 @@ class FirebaseBroadcastServices {
                 });
               }
             } else {
-              Fiberchat.toast('Nothing to send');
+              CuChat.toast('Nothing to send');
             }
           } catch (e) {
-            Fiberchat.toast('Failed to Send message. Error:$e');
+            CuChat.toast('Failed to Send message. Error:$e');
           }
         }).catchError(((e) {
-          Fiberchat.toast('Failed to Send message. Error:$e');
+          CuChat.toast('Failed to Send message. Error:$e');
         }));
       });
     } else {
-      Fiberchat.toast('Nothing to Send !');
+      CuChat.toast('Nothing to Send !');
     }
   }
 }

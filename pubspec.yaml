@@ -1,4 +1,4 @@
-name: fiberchat #changing it will force you to change appname in import statement inside every .dart file.
+name: CuChat #changing it will force you to change appname in import statement inside every .dart file.
 description: Chats & Calling app
 
 version: 1.0.32+33
@@ -105,7 +105,7 @@ dev_dependencies:
 flutter_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "assets/appicon/appicon.jpg"
+  image_path: "assets/appicon/appicon.png"
 
 flutter:
   uses-material-design: true
@@ -114,8 +114,8 @@ flutter:
   assets:
     - assets/images/mapview.jpg
     - assets/images/background.png
-    - assets/images/applogo.png
-    - assets/images/splash.jpeg
+    - assets/images/splashscreen.png
+    #- assets/images/splash.jpeg
     - assets/images/img_not_available.jpeg
     - assets/sounds/popsound.mp3
     - assets/sounds/callingtone.mp3

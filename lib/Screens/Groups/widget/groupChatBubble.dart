@@ -1,15 +1,14 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/profile_settings/profile_view.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Services/Providers/AvailableContactsProvider.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Screens/chat_screen/chat.dart';
+import 'package:CuChat/Screens/profile_settings/profile_view.dart';
+import 'package:CuChat/Screens/status/components/formatStatusTime.dart';
+import 'package:CuChat/Services/Providers/AvailableContactsProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Configs/Enum.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,12 +45,12 @@ class GroupChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = isMe ? fiberchatteagreen : fiberchatWhite;
+    final bg = isMe ? campusChatLight2 : fiberchatWhite;
     final align = isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     dynamic icon = Icons.done;
     final color = isMe
         ? fiberchatBlack.withOpacity(0.5)
-        : fiberchatBlack.withOpacity(0.5);
+        : fiberchatWhite.withOpacity(1);
     icon = Icon(icon, size: 14.0, color: color);
     if (delivered is Future) {
       icon = FutureBuilder(

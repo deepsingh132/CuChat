@@ -4,7 +4,7 @@
     "name_hint": "Enter your name",
     "enter_fullname": "Full name",
     "enter_mobilenumber": "Mobile Number",
-    "sendsmscode": "Send an SMS Code to verify your number",
+    "sendsmscode": "Send an OTP to verify your number",
     "sendverf": "Send Verification Code",
     "welcometo": "Welcome to ",
     "enter_verfcode": "Enter SMS Code sent to ",

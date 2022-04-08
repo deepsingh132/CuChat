@@ -1,31 +1,30 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/Groups/AddContactsToGroup.dart';
-import 'package:fiberchat/Screens/Groups/EditGroupDetails.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/profile_settings/profile_view.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/AvailableContactsProvider.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/ImagePicker/image_picker.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Screens/Groups/AddContactsToGroup.dart';
+import 'package:CuChat/Screens/Groups/EditGroupDetails.dart';
+import 'package:CuChat/Screens/call_history/callhistory.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Screens/profile_settings/profile_view.dart';
+import 'package:CuChat/Services/Admob/admob.dart';
+import 'package:CuChat/Services/Providers/AvailableContactsProvider.dart';
+import 'package:CuChat/Services/Providers/GroupChatProvider.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/ImagePicker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Configs/Enum.dart';
 
 class GroupDetails extends StatefulWidget {
   final DataModel model;
@@ -116,7 +115,7 @@ class _GroupDetailsState extends State<GroupDetails> {
               FlatButton(
                   child: Text(
                     getTranslated(context, 'cancel'),
-                    style: TextStyle(color: fiberchatgreen, fontSize: 18),
+                    style: TextStyle(color: campusChat, fontSize: 18),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -165,7 +164,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                     setStateIfMounted(() {
                       isloading = false;
                     });
-                    Fiberchat.toast(
+                    CuChat.toast(
                         'Failed to set as Admin ! \nError occured -$onError');
                   });
                 },
@@ -187,7 +186,7 @@ class _GroupDetailsState extends State<GroupDetails> {
               FlatButton(
                   child: Text(
                     getTranslated(context, 'cancel'),
-                    style: TextStyle(color: fiberchatgreen, fontSize: 18),
+                    style: TextStyle(color: campusChat, fontSize: 18),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -235,7 +234,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                     setStateIfMounted(() {
                       isloading = false;
                     });
-                    Fiberchat.toast(
+                    CuChat.toast(
                         'Failed to set as Admin ! \nError occured -$onError');
                   });
                 },
@@ -257,7 +256,7 @@ class _GroupDetailsState extends State<GroupDetails> {
               FlatButton(
                   child: Text(
                     getTranslated(context, 'cancel'),
-                    style: TextStyle(color: fiberchatgreen, fontSize: 18),
+                    style: TextStyle(color: campusChat, fontSize: 18),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -344,7 +343,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                     setStateIfMounted(() {
                       isloading = false;
                     });
-                    Fiberchat.toast(
+                    CuChat.toast(
                         'Failed to remove ! \nError occured -$onError');
                   });
                 },
@@ -370,7 +369,7 @@ class _GroupDetailsState extends State<GroupDetails> {
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
     final observer = Provider.of<Observer>(context, listen: false);
-    return PickupLayout(scaffold: Fiberchat.getNTPWrappedWidget(
+    return PickupLayout(scaffold: CuChat.getNTPWrappedWidget(
         Consumer<List<GroupModel>>(builder: (context, groupList, _child) {
       Map<dynamic, dynamic> groupDoc = groupList.indexWhere((element) =>
                   element.docmap[Dbkeys.groupID] == widget.groupID) <
@@ -441,7 +440,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                         ))
                   ],
                   backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                      ? fiberchatDeepGreen
+                      ? campusChat
                       : fiberchatWhite,
                   title: InkWell(
                     onTap: () {
@@ -628,7 +627,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                       widget.currentUserno)
                                               ? IconButton(
                                                   onPressed: () async {
-                                                    Fiberchat.toast(
+                                                    CuChat.toast(
                                                         getTranslated(context,
                                                             'plswait'));
                                                     await FirebaseStorage
@@ -740,7 +739,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color: fiberchatgreen,
+                                          color: campusChat,
                                           fontSize: 16),
                                     ),
                                     groupDoc[Dbkeys.groupADMINLIST]
@@ -822,7 +821,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color: fiberchatgreen,
+                                          color: campusChat,
                                           fontSize: 16),
                                     ),
                                     groupDoc[Dbkeys.groupADMINLIST]
@@ -912,7 +911,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                             textAlign: TextAlign.left,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                color: fiberchatgreen,
+                                                color: campusChat,
                                                 fontSize: 16),
                                           ),
                                         ],
@@ -966,7 +965,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                     child: Icon(Icons.add,
                                                         size: 19,
                                                         color:
-                                                            fiberchatLightGreen),
+                                                        campusChatLight2),
                                                   ),
                                                   // Text(
                                                   //   getTranslated(context, 'add'),
@@ -1003,7 +1002,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 getTranslated(
                                                     context, 'cancel'),
                                                 style: TextStyle(
-                                                    color: fiberchatgreen,
+                                                    color: campusChat,
                                                     fontSize: 18),
                                               ),
                                               onPressed: () {
@@ -1088,7 +1087,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 getTranslated(
                                                     context, 'cancel'),
                                                 style: TextStyle(
-                                                    color: fiberchatgreen,
+                                                    color: campusChat,
                                                     fontSize: 18),
                                               ),
                                               onPressed: () {
@@ -1221,7 +1220,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                           .delete();
                                                     } catch (err) {}
                                                   }).catchError((err) {
-                                                    Fiberchat.toast(
+                                                    CuChat.toast(
                                                         getTranslated(context,
                                                             'unabletoleavegrp'));
                                                   });
@@ -1261,7 +1260,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                 child: Center(
                                   child: CircularProgressIndicator(
                                       valueColor: AlwaysStoppedAnimation<Color>(
-                                          fiberchatBlue)),
+                                          campusChat)),
                                 ),
                                 color: DESIGN_TYPE == Themetype.whatsapp
                                     ? fiberchatBlack.withOpacity(0.6)
@@ -1394,7 +1393,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                             Dbkeys
                                                                 .groupCREATEDBY]
                                                     ? Colors.purple[400]!
-                                                    : Colors.green[400] ??
+                                                    : Colors.blue[400] ??
                                                         Colors.grey,
                                                 width: 1.0),
                                             borderRadius:
@@ -1415,7 +1414,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                                       .groupID)
                                                               .docmap[Dbkeys.groupCREATEDBY]
                                                       ? Colors.purple[400]
-                                                      : Colors.green[400]),
+                                                      : Colors.blue[400]),
                                             ),
                                           ),
                                         ),
@@ -1616,8 +1615,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 color: adminlist[i] ==
                                                         groupDoc[Dbkeys
                                                             .groupCREATEDBY]
-                                                    ? Colors.purple[400]!
-                                                    : Colors.green[400]!,
+                                                    ? Colors.red[400]!
+                                                    : Colors.blue[400]!,
                                                 width: 1.0),
                                             borderRadius:
                                                 new BorderRadius.circular(5.0),
@@ -1630,8 +1629,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 color: adminlist[i] ==
                                                         groupDoc[Dbkeys
                                                             .groupCREATEDBY]
-                                                    ? Colors.purple[400]
-                                                    : Colors.green[400],
+                                                    ? Colors.red[400]
+                                                    : Colors.blue[400],
                                               ),
                                             ),
                                           ),
@@ -1734,7 +1733,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                       groupDoc[
                                                           Dbkeys.groupCREATEDBY]
                                                   ? Colors.purple[400]!
-                                                  : Colors.green[400]!,
+                                                  : Colors.blue[400]!,
                                               width: 1.0),
                                           borderRadius:
                                               new BorderRadius.circular(5.0),
@@ -1748,7 +1747,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                       groupDoc[
                                                           Dbkeys.groupCREATEDBY]
                                                   ? Colors.purple[400]
-                                                  : Colors.green[400],
+                                                  : Colors.blue[400],
                                             ),
                                           ),
                                         ),
@@ -1879,7 +1878,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                         decoration: new BoxDecoration(
                                           color: Colors.white,
                                           border: new Border.all(
-                                              color: Colors.green[400] ??
+                                              color: Colors.blue[400] ??
                                                   Colors.grey,
                                               width: 1.0),
                                           borderRadius:
@@ -1890,7 +1889,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                             getTranslated(context, 'admin'),
                                             style: new TextStyle(
                                                 fontSize: 11.0,
-                                                color: Colors.green[400]),
+                                                color: Colors.blue[400]),
                                           ),
                                         ),
                                       ),
@@ -2161,7 +2160,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                       decoration: new BoxDecoration(
                                         color: Colors.white,
                                         border: new Border.all(
-                                            color: Colors.green[400]!,
+                                            color: Colors.blue[400]!,
                                             width: 1.0),
                                         borderRadius:
                                             new BorderRadius.circular(5.0),
@@ -2171,7 +2170,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                           getTranslated(context, 'admin'),
                                           style: new TextStyle(
                                             fontSize: 11.0,
-                                            color: Colors.green[400],
+                                            color: Colors.blue[400],
                                           ),
                                         ),
                                       ),
