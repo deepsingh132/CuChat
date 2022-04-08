@@ -1,10 +1,9 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/optional_constants.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
 import 'package:flutter/material.dart';
 
 //---DON'T EDIT THESE LINES UNLESS YOU ARE SURE ABOUT THE CHANGES:

@@ -1,26 +1,25 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
 import 'package:device_info/device_info.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Utils/phonenumberVariantsGenerator.dart';
-import 'package:fiberchat/widgets/PhoneField/intl_phone_field.dart';
-import 'package:fiberchat/widgets/PhoneField/phone_number.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/optional_constants.dart';
+import 'package:CuChat/Screens/homepage/homepage.dart';
+import 'package:CuChat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Utils/phonenumberVariantsGenerator.dart';
+import 'package:CuChat/widgets/PhoneField/intl_phone_field.dart';
+import 'package:CuChat/widgets/PhoneField/phone_number.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/security_screens/security.dart';
-import 'package:fiberchat/main.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/localization/language.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/security_screens/security.dart';
+import 'package:CuChat/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +27,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:CuChat/Models/E2EE/e2ee.dart' as e2ee;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Configs/Enum.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
+import 'package:CuChat/Utils/unawaited.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen(
@@ -140,7 +139,7 @@ class LoginScreenState extends State<LoginScreen>
       print(
           'Authentication failed -ERROR: ${authException.message}. Try again later.');
 
-      Fiberchat.toast('Authentication failed - ${authException.message}');
+      CuChat.toast('Authentication failed - ${authException.message}');
     };
 
     final PhoneCodeSent codeSent =
@@ -221,7 +220,7 @@ class LoginScreenState extends State<LoginScreen>
         .catchError((err) async {
       if (err.toString().contains('return a value')) {
       } else {
-        Fiberchat.toast(getTranslated(this.context, 'makesureotp'));
+        CuChat.toast(getTranslated(this.context, 'makesureotp'));
         if (mounted)
           setState(() {
             _currentStep = 0;
@@ -359,7 +358,7 @@ class LoginScreenState extends State<LoginScreen>
                             this.context,
                             new MaterialPageRoute(
                                 builder: (context) => FiberchatWrapper())));
-                        Fiberchat.toast(
+                        CuChat.toast(
                             getTranslated(this.context, 'welcometo') +
                                 ' $Appname');
                       },
@@ -449,12 +448,12 @@ class LoginScreenState extends State<LoginScreen>
         } else {
           unawaited(Navigator.pushReplacement(this.context,
               new MaterialPageRoute(builder: (context) => FiberchatWrapper())));
-          Fiberchat.toast(getTranslated(this.context, 'welcomeback'));
+          CuChat.toast(getTranslated(this.context, 'welcomeback'));
         }
         await subscribeToNotification(documents[0][Dbkeys.phone]);
       }
     } else {
-      Fiberchat.toast(getTranslated(this.context, 'failedlogin'));
+      CuChat.toast(getTranslated(this.context, 'failedlogin'));
     }
   }
 
@@ -471,8 +470,8 @@ class LoginScreenState extends State<LoginScreen>
               end: Alignment.bottomCenter,
               colors: DESIGN_TYPE == Themetype.whatsapp
                   ? [
-                      fiberchatgreen,
-                      fiberchatDeepGreen,
+                      campusChatLight2,
+                      campusChat,
                     ]
                   : [
                       fiberchatWhite,
@@ -518,9 +517,9 @@ class LoginScreenState extends State<LoginScreen>
     var w = MediaQuery.of(this.context).size.width;
     var h = MediaQuery.of(this.context).size.height;
     final observer = Provider.of<Observer>(this.context, listen: true);
-    return Fiberchat.getNTPWrappedWidget(Scaffold(
+    return CuChat.getNTPWrappedWidget(Scaffold(
       backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-          ? fiberchatDeepGreen
+          ? campusChat
           : fiberchatWhite,
       body: SingleChildScrollView(
           child: Column(
@@ -538,7 +537,7 @@ class LoginScreenState extends State<LoginScreen>
                               BoxShadow(
                                 blurRadius: 3.0,
                                 color: DESIGN_TYPE == Themetype.whatsapp
-                                    ? fiberchatDeepGreen.withOpacity(0.3)
+                                    ? campusChat.withOpacity(0.3)
                                     : fiberchatBlack.withOpacity(0.1),
                                 spreadRadius: 1.0,
                               ),
@@ -617,21 +616,21 @@ class LoginScreenState extends State<LoginScreen>
                                         child: CircularProgressIndicator(
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
-                                                    fiberchatLightGreen)),
+                                                    campusChatLight)),
                                       )
                                     : MySimpleButton(
                                         spacing: 0.3,
                                         height: 57,
                                         buttoncolor:
                                             DESIGN_TYPE == Themetype.whatsapp
-                                                ? fiberchatLightGreen
-                                                : fiberchatLightGreen,
+                                                ? campusChatLight2
+                                                : campusChatLight2,
                                         buttontext: getTranslated(
                                             this.context, 'sendverf'),
                                         onpressed: widget.isblocknewlogins ==
                                                 true
                                             ? () {
-                                                Fiberchat.toast(
+                                                CuChat.toast(
                                                   getTranslated(this.context,
                                                       'logindisabled'),
                                                 );
@@ -655,14 +654,14 @@ class LoginScreenState extends State<LoginScreen>
                                                       _currentStep = 1;
                                                     });
                                                   } else {
-                                                    Fiberchat.toast(
+                                                    CuChat.toast(
                                                       getTranslated(
                                                           this.context,
                                                           'entervalidmob'),
                                                     );
                                                   }
                                                 } else {
-                                                  Fiberchat.toast(getTranslated(
+                                                  CuChat.toast(getTranslated(
                                                       this.context, 'nameem'));
                                                 }
                                               },
@@ -718,7 +717,7 @@ class LoginScreenState extends State<LoginScreen>
                                               this.context, 'tnc'),
                                           style: TextStyle(
                                               height: 1.7,
-                                              color: fiberchatLightGreen,
+                                              color: campusChatLight2,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 14.8),
                                         ),
@@ -739,7 +738,7 @@ class LoginScreenState extends State<LoginScreen>
                                               getTranslated(this.context, 'pp'),
                                           style: TextStyle(
                                               height: 1.7,
-                                              color: fiberchatLightGreen,
+                                              color: campusChatLight2,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 14.8),
                                         ),
@@ -773,7 +772,7 @@ class LoginScreenState extends State<LoginScreen>
                                               this.context, 'tnc'),
                                           style: TextStyle(
                                               height: 1.7,
-                                              color: fiberchatLightGreen,
+                                              color: campusChatLight2,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 14.8),
                                           recognizer: TapGestureRecognizer()
@@ -825,7 +824,7 @@ class LoginScreenState extends State<LoginScreen>
                                               getTranslated(this.context, 'pp'),
                                           style: TextStyle(
                                               height: 1.7,
-                                              color: fiberchatLightGreen,
+                                              color: campusChatLight2,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 14.8),
                                           recognizer: TapGestureRecognizer()
@@ -874,7 +873,7 @@ class LoginScreenState extends State<LoginScreen>
                           BoxShadow(
                             blurRadius: 3.0,
                             color: DESIGN_TYPE == Themetype.whatsapp
-                                ? fiberchatgreen.withOpacity(0.3)
+                                ? campusChat.withOpacity(0.3)
                                 : fiberchatBlack.withOpacity(0.1),
                             spreadRadius: 1.0,
                           ),
@@ -921,7 +920,7 @@ class LoginScreenState extends State<LoginScreen>
                                     });
                                     handleSignIn();
                                   } else {
-                                    Fiberchat.toast(getTranslated(
+                                    CuChat.toast(getTranslated(
                                         this.context, 'correctotp'));
                                   }
                                 },
@@ -958,7 +957,7 @@ class LoginScreenState extends State<LoginScreen>
                               ? Center(
                                   child: CircularProgressIndicator(
                                       valueColor: AlwaysStoppedAnimation<Color>(
-                                          fiberchatLightGreen)),
+                                          campusChatLight)),
                                 )
                               : Padding(
                                   padding: EdgeInsets.fromLTRB(17, 22, 17, 5),
@@ -966,8 +965,8 @@ class LoginScreenState extends State<LoginScreen>
                                     height: 57,
                                     buttoncolor:
                                         DESIGN_TYPE == Themetype.whatsapp
-                                            ? fiberchatLightGreen
-                                            : fiberchatLightGreen,
+                                            ? campusChatLight2
+                                            : campusChatLight2,
                                     buttontext: getTranslated(
                                         this.context, 'verify_otp'),
                                     onpressed: () {
@@ -977,7 +976,7 @@ class LoginScreenState extends State<LoginScreen>
                                         });
                                         handleSignIn();
                                       } else
-                                        Fiberchat.toast(getTranslated(
+                                        CuChat.toast(getTranslated(
                                             this.context, 'correctotp'));
                                     },
                                   ),
@@ -1078,7 +1077,7 @@ class _MySimpleButtonState extends State<MySimpleButton> {
                     spreadRadius: 2)
               ],
               border: Border.all(
-                color: widget.buttoncolor ?? fiberchatgreen,
+                color: widget.buttoncolor ?? campusChatLight2,
               ),
               borderRadius:
                   BorderRadius.all(Radius.circular(widget.borderradius ?? 5))),
@@ -1125,7 +1124,7 @@ class _MobileInputWithOutlineState extends State<MobileInputWithOutline> {
         boxShadow: showShadow
             ? [
                 BoxShadow(
-                    color: fiberchatgreen, blurRadius: 10, spreadRadius: 2)
+                    color: campusChat, blurRadius: 10, spreadRadius: 2)
               ]
             : [BoxShadow(color: Colors.transparent)],
         border:
@@ -1404,7 +1403,7 @@ class _InpuTextBoxState extends State<InpuTextBox> {
                       // width: 0.0 produces a thin "hairline" border
                       borderRadius:
                           BorderRadius.circular(widget.boxcornerradius ?? 1),
-                      borderSide: BorderSide(color: fiberchatgreen, width: 1.5),
+                      borderSide: BorderSide(color: campusChat, width: 1.5),
                     ),
                     border: OutlineInputBorder(
                         borderRadius:

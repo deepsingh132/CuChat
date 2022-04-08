@@ -1,10 +1,9 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class AliasForm extends StatefulWidget {
@@ -25,7 +24,7 @@ class _AliasFormState extends State<AliasForm> {
   void initState() {
     super.initState();
     _alias =
-        new TextEditingController(text: Fiberchat.getNickname(widget.user));
+        new TextEditingController(text: CuChat.getNickname(widget.user));
   }
 
   Future getImage(File image) {
@@ -37,7 +36,7 @@ class _AliasFormState extends State<AliasForm> {
 
   @override
   Widget build(BuildContext context) {
-    String? name = Fiberchat.getNickname(widget.user);
+    String? name = CuChat.getNickname(widget.user);
     return AlertDialog(
       actions: <Widget>[
         // ignore: deprecated_member_use
@@ -77,7 +76,7 @@ class _AliasFormState extends State<AliasForm> {
               height: 120,
               child: Stack(children: [
                 Center(
-                    child: Fiberchat.avatar(widget.user,
+                    child: CuChat.avatar(widget.user,
                         image: _imageFile, radius: 50)),
               ])),
           TextFormField(

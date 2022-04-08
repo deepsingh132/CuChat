@@ -1,19 +1,18 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:core';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/auth_screens/login.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/auth_screens/login.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Services/Admob/admob.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/chat_screen/chat.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -133,10 +132,10 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
               ? Center(
                   child: CircularProgressIndicator(
                       valueColor:
-                          AlwaysStoppedAnimation<Color>(fiberchatLightGreen)),
+                          AlwaysStoppedAnimation<Color>(campusChatLight)),
                 )
               : MySimpleButton(
-                  buttoncolor: fiberchatLightGreen.withOpacity(0.99),
+                  buttoncolor: campusChatLight2.withOpacity(0.99),
                   buttontext: getTranslated(context, 'searchuser'),
                   onpressed: () {
                     RegExp e164 = new RegExp(r'^\+[1-9]\d{1,14}$');
@@ -151,7 +150,7 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
 
                       getUser(phoneCode! + _phone);
                     } else {
-                      Fiberchat.toast(
+                      CuChat.toast(
                           widget.currentUserNo != phoneCode! + _phone
                               ? getTranslated(context, 'validnum')
                               : getTranslated(context, 'validnum'));
@@ -192,7 +191,7 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
   @override
   Widget build(BuildContext context) {
     return PickupLayout(
-        scaffold: Fiberchat.getNTPWrappedWidget(Scaffold(
+        scaffold: CuChat.getNTPWrappedWidget(Scaffold(
       appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -207,7 +206,7 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
             ),
           ),
           backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-              ? fiberchatDeepGreen
+              ? campusChat
               : fiberchatWhite,
           title: Text(
             getTranslated(
@@ -252,13 +251,13 @@ class _AddunsavedNumberState extends State<AddunsavedNumber> {
                             height: 10.0,
                           ),
                           myElevatedButton(
-                            color: fiberchatBlue,
+                            color: campusChatLight2,
                             child: Text(
                               getTranslated(context, 'invite'),
                               style: TextStyle(color: fiberchatWhite),
                             ),
                             onPressed: () {
-                              Fiberchat.invite(context);
+                              CuChat.invite(context);
                             },
                           ),
                         ])

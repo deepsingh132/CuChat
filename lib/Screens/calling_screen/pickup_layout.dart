@@ -1,13 +1,12 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Screens/splash_screen/splash_screen.dart';
+import 'package:CuChat/Screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
-import 'package:fiberchat/Models/call_methods.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_screen.dart';
+import 'package:CuChat/Models/call.dart';
+import 'package:CuChat/Services/Providers/user_provider.dart';
+import 'package:CuChat/Models/call_methods.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_screen.dart';
 
 class PickupLayout extends StatelessWidget {
   final Widget scaffold;

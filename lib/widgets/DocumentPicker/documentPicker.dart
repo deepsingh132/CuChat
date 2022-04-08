@@ -1,13 +1,12 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/status/components/VideoPicker/VideoPicker.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/status/components/VideoPicker/VideoPicker.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
@@ -63,7 +62,7 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
         } else {}
       }
     } catch (e) {
-      Fiberchat.toast('Cannot Send this Document type');
+      CuChat.toast('Cannot Send this Document type');
       Navigator.of(this.context).pop();
     }
   }
@@ -103,7 +102,7 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(WillPopScope(
+    return CuChat.getNTPWrappedWidget(WillPopScope(
       child: Scaffold(
         backgroundColor:
             DESIGN_TYPE == Themetype.whatsapp ? fiberchatBlack : fiberchatWhite,
@@ -169,7 +168,7 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
                     child: Center(
                       child: CircularProgressIndicator(
                           valueColor:
-                              AlwaysStoppedAnimation<Color>(fiberchatBlue)),
+                              AlwaysStoppedAnimation<Color>(campusChat)),
                     ),
                     color: DESIGN_TYPE == Themetype.whatsapp
                         ? fiberchatBlack.withOpacity(0.8)
@@ -190,14 +189,14 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               _buildActionButton(new Key('retake'), Icons.add, () {
-                Fiberchat.checkAndRequestPermission(Platform.isIOS
+                CuChat.checkAndRequestPermission(Platform.isIOS
                         ? Permission.mediaLibrary
                         : Permission.storage)
                     .then((res) {
                   if (res) {
                     captureFile();
                   } else {
-                    Fiberchat.showRationale(
+                    CuChat.showRationale(
                       getTranslated(this.context, 'psac'),
                     );
                     Navigator.pushReplacement(
@@ -218,8 +217,8 @@ class _HybridDocumentPickerState extends State<HybridDocumentPicker> {
           child: Icon(icon, size: 30.0),
           shape: new RoundedRectangleBorder(),
           color: DESIGN_TYPE == Themetype.whatsapp
-              ? fiberchatDeepGreen
-              : fiberchatgreen,
+              ? campusChat
+              : campusChat,
           textColor: fiberchatWhite,
           onPressed: onPressed as void Function()?),
     );

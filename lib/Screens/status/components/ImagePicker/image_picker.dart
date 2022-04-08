@@ -1,13 +1,12 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/status/components/VideoPicker/VideoPicker.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/status/components/VideoPicker/VideoPicker.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -78,7 +77,7 @@ class _StatusImageEditorState extends State<StatusImageEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(WillPopScope(
+    return CuChat.getNTPWrappedWidget(WillPopScope(
       child: Scaffold(
         backgroundColor:
             DESIGN_TYPE == Themetype.whatsapp ? Colors.black : fiberchatWhite,
@@ -185,7 +184,7 @@ class _StatusImageEditorState extends State<StatusImageEditor> {
                     child: Center(
                       child: CircularProgressIndicator(
                           valueColor:
-                              AlwaysStoppedAnimation<Color>(fiberchatBlue)),
+                              AlwaysStoppedAnimation<Color>(campusChat)),
                     ),
                     color: DESIGN_TYPE == Themetype.whatsapp
                         ? fiberchatBlack.withOpacity(0.8)
@@ -207,12 +206,12 @@ class _StatusImageEditorState extends State<StatusImageEditor> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               _buildActionButton(new Key('retake'), Icons.photo_library, () {
-                Fiberchat.checkAndRequestPermission(Permission.photos)
+                CuChat.checkAndRequestPermission(Permission.photos)
                     .then((res) {
                   if (res) {
                     captureImage(ImageSource.gallery);
                   } else {
-                    Fiberchat.showRationale(getTranslated(context, 'pgi'));
+                    CuChat.showRationale(getTranslated(context, 'pgi'));
                     Navigator.pushReplacement(
                         context,
                         new MaterialPageRoute(
@@ -221,7 +220,7 @@ class _StatusImageEditorState extends State<StatusImageEditor> {
                 });
               }),
               _buildActionButton(new Key('upload'), Icons.photo_camera, () {
-                Fiberchat.checkAndRequestPermission(Permission.camera)
+                CuChat.checkAndRequestPermission(Permission.camera)
                     .then((res) {
                   if (res) {
                     captureImage(ImageSource.camera);
@@ -245,7 +244,7 @@ class _StatusImageEditorState extends State<StatusImageEditor> {
           child: Icon(icon, size: 30.0),
           shape: new RoundedRectangleBorder(),
           color:
-              DESIGN_TYPE == Themetype.whatsapp ? Colors.black : fiberchatgreen,
+              DESIGN_TYPE == Themetype.whatsapp ? Colors.black : campusChat,
           textColor: fiberchatWhite,
           onPressed: onPressed as void Function()?),
     );

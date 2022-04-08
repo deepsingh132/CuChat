@@ -1,12 +1,11 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/status/components/formatStatusTime.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
 import 'package:flutter/material.dart';
 
 showViewers(BuildContext context, DocumentSnapshot myStatusDoc, var filtered) {

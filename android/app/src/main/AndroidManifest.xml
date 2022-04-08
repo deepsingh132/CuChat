@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fiberchat.fiberchat">
+    package="com.majorproject.cuchat">
   <queries>
           <intent>
                <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -7,8 +7,10 @@
     </queries>
     
    <application
-        android:label="Fiberchat"
-            android:name=".Application">
+        android:label="CuChat"
+            android:name=".Application"
+       android:icon="@mipmap/ic_launcher"
+       android:requestLegacyExternalStorage="true">
     
         <activity
             android:name=".MainActivity"

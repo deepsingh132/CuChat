@@ -1,12 +1,11 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_video_info/flutter_video_info.dart';
 import 'package:image_picker/image_picker.dart';
@@ -119,14 +118,14 @@ class _StatusVideoEditorState extends State<StatusVideoEditor> {
             children: <Widget>[
               _buildActionButton(new Key('retake'), Icons.video_library_rounded,
                   () {
-                Fiberchat.checkAndRequestPermission(Platform.isIOS
+                CuChat.checkAndRequestPermission(Platform.isIOS
                         ? Permission.mediaLibrary
                         : Permission.storage)
                     .then((res) {
                   if (res) {
                     _pickVideo();
                   } else {
-                    Fiberchat.showRationale(
+                    CuChat.showRationale(
                       getTranslated(context, 'pgv'),
                     );
                     Navigator.pushReplacement(
@@ -137,12 +136,12 @@ class _StatusVideoEditorState extends State<StatusVideoEditor> {
                 });
               }),
               _buildActionButton(new Key('upload'), Icons.photo_camera, () {
-                Fiberchat.checkAndRequestPermission(Permission.camera)
+                CuChat.checkAndRequestPermission(Permission.camera)
                     .then((res) {
                   if (res) {
                     _pickVideoFromCamera();
                   } else {
-                    Fiberchat.showRationale(
+                    CuChat.showRationale(
                       getTranslated(context, 'pcv'),
                     );
                     Navigator.pushReplacement(
@@ -266,7 +265,7 @@ class _StatusVideoEditorState extends State<StatusVideoEditor> {
                   child: Center(
                     child: CircularProgressIndicator(
                         valueColor:
-                            AlwaysStoppedAnimation<Color>(fiberchatBlue)),
+                            AlwaysStoppedAnimation<Color>(campusChat)),
                   ),
                   color: DESIGN_TYPE == Themetype.whatsapp
                       ? fiberchatBlack.withOpacity(0.6)
@@ -286,7 +285,7 @@ class _StatusVideoEditorState extends State<StatusVideoEditor> {
           child: Icon(icon, size: 30.0),
           shape: new RoundedRectangleBorder(),
           color:
-              DESIGN_TYPE == Themetype.whatsapp ? Colors.black : fiberchatgreen,
+              DESIGN_TYPE == Themetype.whatsapp ? Colors.black : campusChat,
           textColor: fiberchatWhite,
           onPressed: onPressed as void Function()?),
     );

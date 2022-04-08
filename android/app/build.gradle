@@ -10,7 +10,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    //throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -53,7 +53,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.fiberchat.fiberchat"
+        applicationId "com.majorproject.cuchat"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -61,11 +61,38 @@ android {
         multiDexEnabled true
     }
 
+    signingConfigs {
+        release {
+            keyAlias "upload"
+            keyPassword "testkey"
+            //storeFile keystoreProperties['storeFile']
+            storeFile file("key.jks")
+            storePassword "testkey"
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources true
+        }
+    }
+
+    /*signingConfigs {
+        release {
+            keyAlias keystoreProperties['upload']
+            keyPassword keystoreProperties['testkey']
+            storeFile file(keystoreProperties['key.jks'])
+            storePassword keystoreProperties['testkey']
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled false
             // useProguard true 
             useProguard true
@@ -73,19 +100,12 @@ shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
           // Add this
         }
-    }
+    }*/
 
     
 
 
-    signingConfigs {
-        release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
-        }
-    }
+
     packagingOptions {
     pickFirst 'lib/x86/libc++_shared.so'
     pickFirst 'lib/x86_64/libc++_shared.so'
@@ -93,11 +113,11 @@ shrinkResources false
     pickFirst 'lib/arm64-v8a/libc++_shared.so'
 }
     
-    buildTypes {
+    /*buildTypes {
         release {
             signingConfig signingConfigs.release
         }
-    }
+    }*/
 
 
 

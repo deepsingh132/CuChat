@@ -1,13 +1,12 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/status/components/VideoPicker/VideoPicker.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/status/components/VideoPicker/VideoPicker.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -102,7 +101,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
         }
       }
     } catch (e) {
-      Fiberchat.toast('Cannot Send this Document type');
+      CuChat.toast('Cannot Send this Document type');
       Navigator.of(this.context).pop();
     }
   }
@@ -159,7 +158,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
             style: TextStyle(
                 fontWeight: FontWeight.w800,
                 fontSize: 26,
-                color: fiberchatLightGreen),
+                color: campusChatLight2),
           ),
           SizedBox(
             height: 20,
@@ -295,7 +294,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
   @override
   Widget build(BuildContext context) {
     final observer = Provider.of<Observer>(this.context, listen: false);
-    return Fiberchat.getNTPWrappedWidget(WillPopScope(
+    return CuChat.getNTPWrappedWidget(WillPopScope(
       child: Scaffold(
         backgroundColor:
             DESIGN_TYPE == Themetype.whatsapp ? fiberchatBlack : fiberchatWhite,
@@ -350,12 +349,12 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                                     final observer = Provider.of<Observer>(
                                         this.context,
                                         listen: false);
-                                    Fiberchat.toast(getTranslated(
+                                    CuChat.toast(getTranslated(
                                             context, 'filesizeexceeded') +
                                         ': ${observer.maxFileSizeAllowedInMB}MB');
                                   })
                             : () {
-                                Fiberchat.toast(
+                                CuChat.toast(
                                     '${getTranslated(this.context, 'maxnooffiles')}: ${observer.maxNoOfFilesInMultiSharing}');
                               }),
                     SizedBox(
@@ -385,7 +384,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                         child: Center(
                           child: CircularProgressIndicator(
                               valueColor:
-                                  AlwaysStoppedAnimation<Color>(fiberchatBlue)),
+                                  AlwaysStoppedAnimation<Color>(campusChat)),
                         ),
                         color: DESIGN_TYPE == Themetype.whatsapp
                             ? fiberchatBlack.withOpacity(0.8)
@@ -435,12 +434,12 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                   Icons.add,
                   checkTotalNoOfFilesIfExceeded() == false
                       ? () {
-                          Fiberchat.checkAndRequestPermission(Permission.photos)
+                          CuChat.checkAndRequestPermission(Permission.photos)
                               .then((res) {
                             if (res == true) {
                               captureMultiPageDoc(false);
                             } else if (res == false) {
-                              Fiberchat.showRationale(
+                              CuChat.showRationale(
                                   getTranslated(this.context, 'pgi'));
                               Navigator.pushReplacement(
                                   this.context,
@@ -450,7 +449,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                           });
                         }
                       : () {
-                          Fiberchat.toast(
+                          CuChat.toast(
                               '${getTranslated(this.context, 'maxnooffiles')}: ${observer.maxNoOfFilesInMultiSharing}');
                         }),
             ]));
@@ -464,8 +463,8 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
           child: Icon(icon, size: 30.0),
           shape: new RoundedRectangleBorder(),
           color: DESIGN_TYPE == Themetype.whatsapp
-              ? fiberchatDeepGreen
-              : fiberchatgreen,
+              ? campusChat
+              : campusChat,
           textColor: fiberchatWhite,
           onPressed: onPressed as void Function()?),
     );

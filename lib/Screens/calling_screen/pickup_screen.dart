@@ -1,23 +1,22 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/homepage/homepage.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/calling_screen/audio_call.dart';
-import 'package:fiberchat/Screens/calling_screen/video_call.dart';
-import 'package:fiberchat/widgets/Common/cached_image.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/homepage/homepage.dart';
+import 'package:CuChat/Services/Providers/call_history_provider.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/calling_screen/audio_call.dart';
+import 'package:CuChat/Screens/calling_screen/video_call.dart';
+import 'package:CuChat/widgets/Common/cached_image.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/Models/call_methods.dart';
-import 'package:fiberchat/Utils/permissions.dart';
+import 'package:CuChat/Models/call.dart';
+import 'package:CuChat/Models/call_methods.dart';
+import 'package:CuChat/Utils/permissions.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -40,10 +39,11 @@ class PickupScreen extends StatelessWidget {
         builder: (context, firestoreDataProviderCALLHISTORY, _child) => h > w &&
                 ((h / w) > 1.5)
             ? Scaffold(
-                backgroundColor: fiberchatDeepGreen,
+                backgroundColor: campusChat,
                 body: Container(
                   alignment: Alignment.center,
-                  child: Column(
+                  child: Expanded(child:
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -52,8 +52,8 @@ class PickupScreen extends StatelessWidget {
                         margin: EdgeInsets.only(
                             top: MediaQuery.of(context).padding.top),
                         color: DESIGN_TYPE == Themetype.messenger
-                            ? fiberchatDeepGreen
-                            : fiberchatDeepGreen,
+                            ? campusChat
+                            : campusChat,
                         height: h / 4,
                         width: w,
                         child: Column(
@@ -72,7 +72,7 @@ class PickupScreen extends StatelessWidget {
                                       : Icons.mic_rounded,
                                   size: 40,
                                   color: DESIGN_TYPE == Themetype.whatsapp
-                                      ? fiberchatLightGreen
+                                      ? campusChatLight2
                                       : Colors.white.withOpacity(0.5),
                                 ),
                                 SizedBox(
@@ -85,7 +85,7 @@ class PickupScreen extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: 18.0,
                                       color: DESIGN_TYPE == Themetype.whatsapp
-                                          ? fiberchatLightGreen
+                                          ? campusChatLight2
                                           : Colors.white.withOpacity(0.5),
                                       fontWeight: FontWeight.w400),
                                 ),
@@ -144,7 +144,7 @@ class PickupScreen extends StatelessWidget {
                               child: Icon(
                                 Icons.person,
                                 size: 140,
-                                color: fiberchatDeepGreen,
+                                color: campusChat,
                               ),
                             )
                           : Stack(
@@ -166,7 +166,7 @@ class PickupScreen extends StatelessWidget {
                                         child: Icon(
                                           Icons.person,
                                           size: 140,
-                                          color: fiberchatDeepGreen,
+                                          color: campusChat,
                                         ),
                                       )),
                                       errorWidget: (context, url, error) =>
@@ -177,7 +177,7 @@ class PickupScreen extends StatelessWidget {
                                         child: Icon(
                                           Icons.person,
                                           size: 140,
-                                          color: fiberchatDeepGreen,
+                                          color: campusChat,
                                         ),
                                       ),
                                     )),
@@ -276,7 +276,7 @@ class PickupScreen extends StatelessWidget {
                                       ),
                                     );
                                   } else {
-                                    Fiberchat.showRationale(
+                                    CuChat.showRationale(
                                         getTranslated(context, 'pmc'));
                                     Navigator.push(
                                         context,
@@ -285,7 +285,7 @@ class PickupScreen extends StatelessWidget {
                                                 OpenSettings()));
                                   }
                                 }).catchError((onError) {
-                                  Fiberchat.showRationale(
+                                  CuChat.showRationale(
                                       getTranslated(context, 'pmc'));
                                   Navigator.push(
                                       context,
@@ -301,7 +301,7 @@ class PickupScreen extends StatelessWidget {
                               ),
                               shape: CircleBorder(),
                               elevation: 2.0,
-                              fillColor: Colors.green[400],
+                              fillColor: Colors.blue[400],
                               padding: const EdgeInsets.all(15.0),
                             )
                           ],
@@ -309,10 +309,11 @@ class PickupScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  )
                 ))
             : Scaffold(
                 backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                    ? fiberchatgreen
+                    ? campusChat
                     : fiberchatWhite,
                 body: SingleChildScrollView(
                   child: Container(
@@ -458,7 +459,7 @@ class PickupScreen extends StatelessWidget {
                                       ),
                                     );
                                   } else {
-                                    Fiberchat.showRationale(
+                                    CuChat.showRationale(
                                         getTranslated(context, 'pmc'));
                                     Navigator.push(
                                         context,
@@ -467,7 +468,7 @@ class PickupScreen extends StatelessWidget {
                                                 OpenSettings()));
                                   }
                                 }).catchError((onError) {
-                                  Fiberchat.showRationale(
+                                  CuChat.showRationale(
                                       getTranslated(context, 'pmc'));
                                   Navigator.push(
                                       context,
@@ -483,7 +484,7 @@ class PickupScreen extends StatelessWidget {
                               ),
                               shape: CircleBorder(),
                               elevation: 2.0,
-                              fillColor: fiberchatLightGreen,
+                              fillColor: campusChatLight2,
                               padding: const EdgeInsets.all(15.0),
                             )
                           ],

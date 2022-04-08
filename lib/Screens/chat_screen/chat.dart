@@ -1,4 +1,3 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'dart:convert';
@@ -6,47 +5,47 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:collection/collection.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
-import 'package:fiberchat/Screens/contact_screens/SelectContactsToForward.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/widgets/CountryPicker/CountryCode.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/deleteChatMedia.dart';
-import 'package:fiberchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/widgets/MultiDocumentPicker/multiDocumentPicker.dart';
-import 'package:fiberchat/widgets/MultiImagePicker/multiImagePicker.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
-import 'package:fiberchat/widgets/SoundPlayer/SoundPlayerPro.dart';
+import 'package:CuChat/Configs/optional_constants.dart';
+import 'package:CuChat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
+import 'package:CuChat/Screens/contact_screens/SelectContactsToForward.dart';
+import 'package:CuChat/Services/Admob/admob.dart';
+import 'package:CuChat/widgets/CountryPicker/CountryCode.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Screens/chat_screen/utils/deleteChatMedia.dart';
+import 'package:CuChat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/widgets/MultiDocumentPicker/multiDocumentPicker.dart';
+import 'package:CuChat/widgets/MultiImagePicker/multiImagePicker.dart';
+import 'package:CuChat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:CuChat/widgets/SoundPlayer/SoundPlayerPro.dart';
 import 'package:flutter/foundation.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Providers/currentchat_peer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/audioPlayback.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/downloadMedia.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/message.dart';
-import 'package:fiberchat/Screens/contact_screens/ContactsSelect.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/photo_view.dart';
-import 'package:fiberchat/Screens/profile_settings/profile_view.dart';
-import 'package:fiberchat/Services/Providers/seen_provider.dart';
-import 'package:fiberchat/Services/Providers/seen_state.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/call_utilities.dart';
-import 'package:fiberchat/Utils/permissions.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/crc.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/save.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/AudioRecorder/Audiorecord.dart';
-import 'package:fiberchat/widgets/ImagePicker/image_picker.dart';
-import 'package:fiberchat/widgets/VideoPicker/VideoPicker.dart';
-import 'package:fiberchat/widgets/VideoPicker/VideoPreview.dart';
-import 'package:fiberchat/Screens/chat_screen/Widget/bubble.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/Providers/currentchat_peer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/call_history/callhistory.dart';
+import 'package:CuChat/Screens/chat_screen/utils/audioPlayback.dart';
+import 'package:CuChat/Screens/chat_screen/utils/downloadMedia.dart';
+import 'package:CuChat/Screens/chat_screen/utils/message.dart';
+import 'package:CuChat/Screens/contact_screens/ContactsSelect.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Screens/chat_screen/utils/photo_view.dart';
+import 'package:CuChat/Screens/profile_settings/profile_view.dart';
+import 'package:CuChat/Services/Providers/seen_provider.dart';
+import 'package:CuChat/Services/Providers/seen_state.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Utils/call_utilities.dart';
+import 'package:CuChat/Utils/permissions.dart';
+import 'package:CuChat/Utils/chat_controller.dart';
+import 'package:CuChat/Utils/crc.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/save.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/AudioRecorder/Audiorecord.dart';
+import 'package:CuChat/widgets/ImagePicker/image_picker.dart';
+import 'package:CuChat/widgets/VideoPicker/VideoPicker.dart';
+import 'package:CuChat/widgets/VideoPicker/VideoPreview.dart';
+import 'package:CuChat/Screens/chat_screen/Widget/bubble.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -65,8 +64,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
-import 'package:fiberchat/Utils/unawaited.dart';
+import 'package:CuChat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:CuChat/Utils/unawaited.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/services.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
@@ -74,7 +73,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart' as emojipic;
 import 'package:video_thumbnail/video_thumbnail.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Configs/Enum.dart';
 
 hidekeyboard(BuildContext context) {
   FocusScope.of(context).requestFocus(FocusNode());
@@ -178,7 +177,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     unread = widget.unread;
     // initAudioPlayer();
     // _load();
-    Fiberchat.internetLookUp();
+    CuChat.internetLookUp();
 
     updateLocalUserData(_cachedModel);
 
@@ -353,7 +352,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
       int crc = CRC32.compute(input);
       return '$encrypted${Dbkeys.crcSeperator}$crc';
     } catch (e) {
-      Fiberchat.toast(
+      CuChat.toast(
         getTranslated(this.context, 'waitingpeer'),
       );
       return false;
@@ -374,10 +373,10 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         }
       }
     } on FormatException {
-      Fiberchat.toast(getTranslated(this.context, 'msgnotload'));
+      CuChat.toast(getTranslated(this.context, 'msgnotload'));
       return '';
     }
-    Fiberchat.toast(getTranslated(this.context, 'msgnotload'));
+    CuChat.toast(getTranslated(this.context, 'msgnotload'));
     return '';
   }
 
@@ -421,7 +420,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     } catch (e) {
       seenState!.value = false;
     }
-    chatId = Fiberchat.getChatId(currentUserNo, peerNo);
+    chatId = CuChat.getChatId(currentUserNo, peerNo);
     textEditingController.addListener(() {
       if (textEditingController.text.isNotEmpty && typing == false) {
         lastSeen = peerNo;
@@ -558,7 +557,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast('Sending failed !');
+        CuChat.toast('Sending failed !');
         print('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -671,7 +670,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast('Sending failed !');
+        CuChat.toast('Sending failed !');
         print('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -702,7 +701,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
-      Fiberchat.toast(
+      CuChat.toast(
           'Location permissions are pdenied. Please go to settings & allow location tracking permission.');
       return Future.error('Location services are disabled.');
     }
@@ -712,7 +711,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.deniedForever) {
         // Permissions are denied forever, handle appropriately.
-        Fiberchat.toast(
+        CuChat.toast(
             'Location permissions are pdenied. Please go to settings & allow location tracking permission.');
         return Future.error(
             'Location permissions are permanently denied, we cannot request permissions.');
@@ -724,14 +723,14 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         // Android's shouldShowRequestPermissionRationale
         // returned true. According to Android guidelines
         // your App should show an explanatory UI now.
-        Fiberchat.toast(
+        CuChat.toast(
             'Location permissions are pdenied. Please go to settings & allow location tracking permission.');
         return Future.error('Location permissions are denied');
       }
     }
     if (permission == LocationPermission.always ||
         permission == LocationPermission.whileInUse) {
-      Fiberchat.toast(
+      CuChat.toast(
         getTranslated(this.context, 'detectingloc'),
       );
     }
@@ -871,7 +870,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           }
           // _playPopSound();
         } else {
-          Fiberchat.toast('Nothing to encrypt');
+          CuChat.toast('Nothing to encrypt');
         }
       } on Exception catch (_) {
         print('Exception caught!');
@@ -962,7 +961,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           onTap: () async {
-            Fiberchat.toast(getTranslated(contextForDialog, 'deleting'));
+            CuChat.toast(getTranslated(contextForDialog, 'deleting'));
             await FirebaseFirestore.instance
                 .collection(DbPaths.collectionmessages)
                 .doc(chatId)
@@ -971,7 +970,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 .get()
                 .then((chatDoc) async {
               if (!chatDoc.exists) {
-                Fiberchat.toast('Please reload this screen !');
+                CuChat.toast('Please reload this screen !');
               } else if (chatDoc.exists) {
                 Map<String, dynamic> realtimeDoc = chatDoc.data()!;
                 if (realtimeDoc[Dbkeys.hasRecipientDeleted] == true) {
@@ -997,7 +996,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                       Navigator.maybePop(
                         contextForDialog,
                       );
-                      Fiberchat.toast(
+                      CuChat.toast(
                         getTranslated(contextForDialog, 'deleted'),
                       );
                       hidekeyboard(
@@ -1009,7 +1008,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     await deleteMsgMedia(realtimeDoc, chatId!)
                         .then((isDeleted) async {
                       if (isDeleted == false || isDeleted == null) {
-                        Fiberchat.toast('Could not delete. Please try again!');
+                        CuChat.toast('Could not delete. Please try again!');
                       } else {
                         await FirebaseFirestore.instance
                             .collection(DbPaths.collectionmessages)
@@ -1028,7 +1027,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           Navigator.maybePop(
                             contextForDialog,
                           );
-                          Fiberchat.toast(
+                          CuChat.toast(
                             getTranslated(contextForDialog, 'deleted'),
                           );
                           hidekeyboard(contextForDialog);
@@ -1062,7 +1061,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
                   Future.delayed(const Duration(milliseconds: 300), () {
                     Navigator.maybePop(contextForDialog);
-                    Fiberchat.toast(
+                    CuChat.toast(
                       getTranslated(contextForDialog, 'deleted'),
                     );
                     hidekeyboard(contextForDialog);
@@ -1100,19 +1099,19 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               });
               Future.delayed(const Duration(milliseconds: 300), () {
                 Navigator.maybePop(contextForDialog);
-                Fiberchat.toast(
+                CuChat.toast(
                   getTranslated(contextForDialog, 'deleted'),
                 );
                 hidekeyboard(contextForDialog);
               });
             } else {
               // -------Delete message completely for everyone
-              Fiberchat.toast(
+              CuChat.toast(
                 getTranslated(contextForDialog, 'deleting'),
               );
               await deleteMsgMedia(mssgDoc, chatId!).then((isDeleted) async {
                 if (isDeleted == false || isDeleted == null) {
-                  Fiberchat.toast('Could not delete. Please try again!');
+                  CuChat.toast('Could not delete. Please try again!');
                 } else {
                   await FirebaseFirestore.instance
                       .collection(DbPaths.collectionmessages)
@@ -1129,7 +1128,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   });
                   Future.delayed(const Duration(milliseconds: 300), () {
                     Navigator.maybePop(contextForDialog);
-                    Fiberchat.toast(
+                    CuChat.toast(
                       getTranslated(contextForDialog, 'deleted'),
                     );
                     hidekeyboard(contextForDialog);
@@ -1151,7 +1150,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           onTap: () async {
-            Fiberchat.toast(
+            CuChat.toast(
               getTranslated(contextForDialog, 'deleting'),
             );
             await FirebaseFirestore.instance
@@ -1162,7 +1161,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 .get()
                 .then((chatDoc) async {
               if (!chatDoc.exists) {
-                Fiberchat.toast('Please reload this screen !');
+                CuChat.toast('Please reload this screen !');
               } else if (chatDoc.exists) {
                 Map<String, dynamic> realtimeDoc = chatDoc.data()!;
                 if (realtimeDoc[Dbkeys.hasSenderDeleted] == true) {
@@ -1186,7 +1185,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     });
                     Future.delayed(const Duration(milliseconds: 300), () {
                       Navigator.maybePop(contextForDialog);
-                      Fiberchat.toast(
+                      CuChat.toast(
                         getTranslated(contextForDialog, 'deleted'),
                       );
                       hidekeyboard(contextForDialog);
@@ -1196,7 +1195,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     await deleteMsgMedia(realtimeDoc, chatId!)
                         .then((isDeleted) async {
                       if (isDeleted == false || isDeleted == null) {
-                        Fiberchat.toast('Could not delete. Please try again!');
+                        CuChat.toast('Could not delete. Please try again!');
                       } else {
                         await FirebaseFirestore.instance
                             .collection(DbPaths.collectionmessages)
@@ -1213,7 +1212,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                         });
                         Future.delayed(const Duration(milliseconds: 300), () {
                           Navigator.maybePop(contextForDialog);
-                          Fiberchat.toast(
+                          CuChat.toast(
                             getTranslated(contextForDialog, 'deleted'),
                           );
                           hidekeyboard(contextForDialog);
@@ -1247,7 +1246,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   }
                   Future.delayed(const Duration(milliseconds: 300), () {
                     Navigator.maybePop(contextForDialog);
-                    Fiberchat.toast(
+                    CuChat.toast(
                       getTranslated(contextForDialog, 'deleted'),
                     );
                     hidekeyboard(contextForDialog);
@@ -1267,7 +1266,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           onTap: () {
-            Fiberchat.toast(
+            CuChat.toast(
               getTranslated(contextForDialog, 'plswait'),
             );
             Future.delayed(const Duration(milliseconds: 200), () {
@@ -1282,7 +1281,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               }).then((value) {
                 Navigator.pop(contextForDialog);
                 hidekeyboard(contextForDialog);
-                Fiberchat.toast(
+                CuChat.toast(
                   getTranslated(contextForDialog, 'blockedbroadcast'),
                 );
               }).catchError((error) {
@@ -1326,7 +1325,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             Clipboard.setData(ClipboardData(text: mssgDoc[Dbkeys.content]));
             Navigator.pop(contextForDialog);
             hidekeyboard(contextForDialog);
-            Fiberchat.toast(
+            CuChat.toast(
               getTranslated(contextForDialog, 'copied'),
             );
           }));
@@ -1426,7 +1425,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           }).then((value) {
             if (list.last[Dbkeys.groupID] ==
                 list[tempSendIndex][Dbkeys.groupID]) {
-              Fiberchat.toast(
+              CuChat.toast(
                 getTranslated(this.context, 'sent'),
               );
               setStateIfMounted(() {
@@ -1442,7 +1441,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           setStateIfMounted(() {
             isgeneratingSomethingLoader = false;
           });
-          Fiberchat.toast('Failed to send');
+          CuChat.toast('Failed to send');
         }
       } else {
         try {
@@ -1457,7 +1456,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           final encrypted = encryptWithCRC(content);
           if (encrypted is String) {
             int timestamp2 = DateTime.now().millisecondsSinceEpoch;
-            var chatId = Fiberchat.getChatId(
+            var chatId = CuChat.getChatId(
                 widget.currentUserNo, list[tempSendIndex][Dbkeys.phone]);
             if (content.trim() != '') {
               Map<String, dynamic>? targetPeer =
@@ -1466,7 +1465,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 await ChatController.request(
                     currentUserNo,
                     list[tempSendIndex][Dbkeys.phone],
-                    Fiberchat.getChatId(widget.currentUserNo,
+                    CuChat.getChatId(widget.currentUserNo,
                         list[tempSendIndex][Dbkeys.phone]));
               }
 
@@ -1511,7 +1510,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               }).then((value) {
                 if (list.last[Dbkeys.phone] ==
                     list[tempSendIndex][Dbkeys.phone]) {
-                  Fiberchat.toast(
+                  CuChat.toast(
                     getTranslated(this.context, 'sent'),
                   );
                   setStateIfMounted(() {
@@ -1528,13 +1527,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             setStateIfMounted(() {
               isgeneratingSomethingLoader = false;
             });
-            Fiberchat.toast('Nothing to send');
+            CuChat.toast('Nothing to send');
           }
         } catch (e) {
           setStateIfMounted(() {
             isgeneratingSomethingLoader = false;
           });
-          Fiberchat.toast('Failed to Forward message. Error:$e');
+          CuChat.toast('Failed to Forward message. Error:$e');
         }
       }
     }
@@ -1581,7 +1580,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
             Future.delayed(const Duration(milliseconds: 300), () {
               Navigator.maybePop(context);
-              Fiberchat.toast(
+              CuChat.toast(
                 getTranslated(this.context, 'deleted'),
               );
             });
@@ -1599,7 +1598,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           onTap: () {
             Clipboard.setData(ClipboardData(text: doc[Dbkeys.content]));
             Navigator.pop(context);
-            Fiberchat.toast(
+            CuChat.toast(
               getTranslated(this.context, 'copied'),
             );
           }));
@@ -1614,7 +1613,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           onTap: () {
-            Fiberchat.toast(
+            CuChat.toast(
               getTranslated(this.context, 'plswait'),
             );
             Future.delayed(const Duration(milliseconds: 500), () {
@@ -1627,13 +1626,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 Dbkeys.broadcastBLACKLISTED:
                     FieldValue.arrayUnion([widget.currentUserNo]),
               }).then((value) {
-                Fiberchat.toast(
+                CuChat.toast(
                   getTranslated(this.context, 'blockedbroadcast'),
                 );
                 hidekeyboard(context);
                 Navigator.pop(context);
               }).catchError((error) {
-                Fiberchat.toast(
+                CuChat.toast(
                   getTranslated(this.context, 'blockedbroadcast'),
                 );
                 Navigator.pop(context);
@@ -1650,7 +1649,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   }
 
   save(Map<String, dynamic> doc) async {
-    Fiberchat.toast(
+    CuChat.toast(
       getTranslated(this.context, 'saved'),
     );
     if (!_savedMessageDocs
@@ -1677,7 +1676,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
   Widget selectablelinkify(String? text, double? fontsize) {
     return SelectableLinkify(
-      style: TextStyle(fontSize: fontsize, color: Colors.black87),
+      style: TextStyle(fontSize: fontsize, color: Colors.white),
       text: text ?? "",
       onOpen: (link) async {
         if (await canLaunch(link.url)) {
@@ -2466,7 +2465,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
                 // ignore: unnecessary_null_comparison
                 if (isUser == null || isUser == false) {
-                  Fiberchat.toast(getTranslated(this.context, 'usernotjoined') +
+                  CuChat.toast(getTranslated(this.context, 'usernotjoined') +
                       ' $Appname');
                 }
               },
@@ -2601,7 +2600,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     Container(
                       decoration: BoxDecoration(
                         color: doc[Dbkeys.from] == currentUserNo
-                            ? fiberchatgreen
+                            ? campusChat
                             : Colors.purple,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(0),
@@ -2626,12 +2625,12 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             child: Text(
                               doc[Dbkeys.from] == currentUserNo
                                   ? getTranslated(this.context, 'you')
-                                  : Fiberchat.getNickname(peer!)!,
+                                  : CuChat.getNickname(peer!)!,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: doc[Dbkeys.from] == currentUserNo
-                                      ? fiberchatgreen
+                                      ? campusChat
                                       : Colors.purple),
                             ),
                           ),
@@ -2712,7 +2711,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 placeholder: (context, url) => Container(
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                        fiberchatBlue),
+                                        campusChat),
                                   ),
                                   width: doc[Dbkeys.content].contains('giphy')
                                       ? 60
@@ -2778,7 +2777,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                     CircularProgressIndicator(
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
-                                                          Color>(fiberchatBlue),
+                                                          Color>(campusChat),
                                                 ),
                                                 width: 74,
                                                 height: 74,
@@ -2846,7 +2845,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               ? Colors.yellow[800]
                                               : doc[Dbkeys.messageType] ==
                                                       MessageType.audio.index
-                                                  ? Colors.green[400]
+                                                  ? Colors.blue[400]
                                                   : doc[Dbkeys.messageType] ==
                                                           MessageType
                                                               .location.index
@@ -2906,7 +2905,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     Container(
                       decoration: BoxDecoration(
                         color: replyDoc![Dbkeys.from] == currentUserNo
-                            ? fiberchatgreen
+                            ? campusChat
                             : Colors.purple,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(0),
@@ -2931,12 +2930,12 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             child: Text(
                               replyDoc![Dbkeys.from] == currentUserNo
                                   ? getTranslated(this.context, 'you')
-                                  : Fiberchat.getNickname(peer!)!,
+                                  : CuChat.getNickname(peer!)!,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: replyDoc![Dbkeys.from] == currentUserNo
-                                      ? fiberchatgreen
+                                      ? campusChat
                                       : Colors.purple),
                             ),
                           ),
@@ -3025,7 +3024,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 placeholder: (context, url) => Container(
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                        fiberchatBlue),
+                                        campusChat),
                                   ),
                                   width: replyDoc![Dbkeys.content]
                                           .contains('giphy')
@@ -3093,7 +3092,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                     CircularProgressIndicator(
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
-                                                          Color>(fiberchatBlue),
+                                                          Color>(campusChat),
                                                 ),
                                                 width: 84,
                                                 height: 84,
@@ -3163,7 +3162,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               ? Colors.yellow[800]
                                               : replyDoc![Dbkeys.messageType] ==
                                                       MessageType.audio.index
-                                                  ? Colors.green[400]
+                                                  ? Colors.blue[400]
                                                   : replyDoc![Dbkeys
                                                               .messageType] ==
                                                           MessageType
@@ -3286,7 +3285,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           ? Container(
               child: Center(
                 child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(fiberchatBlue)),
+                    valueColor: AlwaysStoppedAnimation<Color>(campusChat)),
               ),
               color: DESIGN_TYPE == Themetype.whatsapp
                   ? fiberchatBlack.withOpacity(0.6)
@@ -3302,7 +3301,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           ? Container(
               child: Center(
                 child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(fiberchatBlue)),
+                    valueColor: AlwaysStoppedAnimation<Color>(campusChat)),
               ),
               color: DESIGN_TYPE == Themetype.whatsapp
                   ? fiberchatBlack.withOpacity(0.6)
@@ -3409,7 +3408,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                           callback: getFileData,
                                         ))).then((url) async {
                               if (url != null) {
-                                Fiberchat.toast(
+                                CuChat.toast(
                                   getTranslated(this.context, 'plswait'),
                                 );
                                 String thumbnailurl = await getThumbnail(url);
@@ -3422,7 +3421,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         videometadata,
                                     MessageType.video,
                                     thumnailtimestamp);
-                                Fiberchat.toast(
+                                CuChat.toast(
                                     getTranslated(this.context, 'sent'));
                               } else {}
                             });
@@ -3586,7 +3585,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                     MessageType.location,
                                     DateTime.now().millisecondsSinceEpoch);
                                 setStateIfMounted(() {});
-                                Fiberchat.toast(
+                                CuChat.toast(
                                   getTranslated(this.context, 'sent'),
                                 );
                               },
@@ -3698,7 +3697,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           // ignore: deprecated_member_use
           FlatButton(
               child: Text(getTranslated(this.context, 'acpt'),
-                  style: TextStyle(color: fiberchatgreen)),
+                  style: TextStyle(color: campusChat)),
               onPressed: () {
                 ChatController.accept(currentUserNo, peerNo);
                 setStateIfMounted(() {
@@ -3804,7 +3803,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                       .ismediamessagingallowed ==
                                                   false
                                               ? () {
-                                                  Fiberchat.showRationale(
+                                                  CuChat.showRationale(
                                                       getTranslated(
                                                           this.context,
                                                           'mediamssgnotallowed'));
@@ -3812,7 +3811,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               : chatStatus ==
                                                       ChatStatus.blocked.index
                                                   ? () {
-                                                      Fiberchat.toast(
+                                                      CuChat.toast(
                                                           getTranslated(
                                                               this.context,
                                                               'unlck'));
@@ -3845,7 +3844,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                         .ismediamessagingallowed ==
                                                     false
                                                 ? () {
-                                                    Fiberchat.showRationale(
+                                                    CuChat.showRationale(
                                                         getTranslated(
                                                             this.context,
                                                             'mediamssgnotallowed'));
@@ -3853,7 +3852,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                 : () async {
                                                     GiphyGif? gif =
                                                         await GiphyGet.getGif(
-                                                      tabColor: fiberchatgreen,
+                                                      tabColor: campusChat,
                                                       context: context,
                                                       apiKey:
                                                           GiphyAPIKey, //YOUR API KEY HERE
@@ -3888,8 +3887,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   margin: EdgeInsets.only(left: 6, right: 10),
                   decoration: BoxDecoration(
                       color: DESIGN_TYPE == Themetype.whatsapp
-                          ? fiberchatgreen
-                          : fiberchatLightGreen,
+                          ? campusChat
+                          : campusChatLight2,
                       // border: Border.all(
                       //   color: Colors.red[500],
                       // ),
@@ -3931,7 +3930,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 }
                               : observer.istextmessagingallowed == false
                                   ? () {
-                                      Fiberchat.showRationale(getTranslated(
+                                      CuChat.showRationale(getTranslated(
                                           this.context, 'textmssgnotallowed'));
                                     }
                                   : chatStatus == ChatStatus.blocked.index
@@ -3942,7 +3941,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                           MessageType.text,
                                           DateTime.now().millisecondsSinceEpoch)
                           : () {
-                              Fiberchat.showRationale(getTranslated(
+                              CuChat.showRationale(getTranslated(
                                   this.context, 'mediamssgnotallowed'));
                             },
                       color: fiberchatWhite,
@@ -3976,11 +3975,11 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             horizontalSpacing: 0,
                             initCategory: emojipic.Category.RECENT,
                             bgColor: Color(0xFFF2F2F2),
-                            indicatorColor: fiberchatgreen,
+                            indicatorColor: campusChat,
                             iconColor: Colors.grey,
-                            iconColorSelected: fiberchatgreen,
+                            iconColorSelected: campusChat,
                             progressIndicatorColor: Colors.blue,
-                            backspaceColor: fiberchatgreen,
+                            backspaceColor: campusChat,
                             showRecentsTab: true,
                             recentsLimit: 28,
                             noRecentsText: 'No Recents',
@@ -4019,7 +4018,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           // ignore: deprecated_member_use
           FlatButton(
               child: Text(getTranslated(this.context, 'acpt'),
-                  style: TextStyle(color: fiberchatgreen)),
+                  style: TextStyle(color: campusChat)),
               onPressed: () {
                 ChatController.accept(currentUserNo, peerNo);
                 setStateIfMounted(() {
@@ -4060,12 +4059,12 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             ),
                             onPressed: observer.ismediamessagingallowed == false
                                 ? () {
-                                    Fiberchat.showRationale(getTranslated(
+                                    CuChat.showRationale(getTranslated(
                                         this.context, 'mediamssgnotallowed'));
                                   }
                                 : () async {
                                     GiphyGif? gif = await GiphyGet.getGif(
-                                      tabColor: fiberchatgreen,
+                                      tabColor: campusChat,
                                       context: context,
                                       apiKey: GiphyAPIKey, //YOUR API KEY HERE
                                       lang: GiphyLanguage.english,
@@ -4089,12 +4088,12 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           padding: EdgeInsets.all(0.0),
                           onPressed: observer.ismediamessagingallowed == false
                               ? () {
-                                  Fiberchat.showRationale(getTranslated(
+                                  CuChat.showRationale(getTranslated(
                                       this.context, 'mediamssgnotallowed'));
                                 }
                               : chatStatus == ChatStatus.blocked.index
                                   ? () {
-                                      Fiberchat.toast(
+                                      CuChat.toast(
                                           getTranslated(this.context, 'unlck'));
                                     }
                                   : () {
@@ -4147,8 +4146,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             margin: EdgeInsets.only(left: 6, right: 10),
             decoration: BoxDecoration(
                 color: DESIGN_TYPE == Themetype.whatsapp
-                    ? fiberchatgreen
-                    : fiberchatLightGreen,
+                    ? campusChat
+                    : campusChatLight2,
                 // border: Border.all(
                 //   color: Colors.red[500],
                 // ),
@@ -4190,7 +4189,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           }
                         : observer.istextmessagingallowed == false
                             ? () {
-                                Fiberchat.showRationale(getTranslated(
+                                CuChat.showRationale(getTranslated(
                                     this.context, 'textmssgnotallowed'));
                               }
                             : chatStatus == ChatStatus.blocked.index
@@ -4201,7 +4200,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                     MessageType.text,
                                     DateTime.now().millisecondsSinceEpoch)
                     : () {
-                        Fiberchat.showRationale(
+                        CuChat.showRationale(
                             getTranslated(this.context, 'mediamssgnotallowed'));
                       },
                 color: fiberchatWhite,
@@ -4503,7 +4502,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               timestamp: messagetime, totalFiles: widget.sharedFiles!.length)
           .then((imageUrl) async {
         if (imageUrl != null) {
-          MessageType type = fileName.contains('.png') ||
+          MessageType type = fileName.contains('appicon.png') ||
                   fileName.contains('.gif') ||
                   fileName.contains('.jpg') ||
                   fileName.contains('.jpeg') ||
@@ -4521,7 +4520,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             setStateIfMounted(() {});
           }
 
-          String finalUrl = fileName.contains('.png') ||
+          String finalUrl = fileName.contains('appicon.png') ||
                   fileName.contains('.gif') ||
                   fileName.contains('.jpg') ||
                   fileName.contains('.jpeg') ||
@@ -4731,7 +4730,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 Navigator.pop(context);
               }),
           myElevatedButton(
-              color: fiberchatLightGreen,
+              color: campusChatLight2,
               child: Text(
                 getTranslated(this.context, 'unblock'),
                 style: TextStyle(color: fiberchatWhite),
@@ -4756,7 +4755,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           ? Center(
                               child: CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                      fiberchatLightGreen)),
+                                      campusChatLight)),
                             )
                           : Text(getTranslated(this.context, 'sayhi'),
                               textAlign: TextAlign.center,
@@ -4847,7 +4846,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     var _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return PickupLayout(
-      scaffold: Fiberchat.getNTPWrappedWidget(WillPopScope(
+      scaffold: CuChat.getNTPWrappedWidget(WillPopScope(
           onWillPop: isgeneratingSomethingLoader == true
               ? () async {
                   return Future.value(false);
@@ -4910,7 +4909,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 ),
                                 backgroundColor:
                                     DESIGN_TYPE == Themetype.whatsapp
-                                        ? fiberchatDeepGreen
+                                        ? campusChat
                                         : fiberchatWhite,
                                 title: InkWell(
                                   onTap: () {
@@ -4932,7 +4931,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 7, 0, 7),
                                         child:
-                                            Fiberchat.avatar(peer, radius: 20),
+                                            CuChat.avatar(peer, radius: 20),
                                       ),
                                       SizedBox(
                                         width: 7,
@@ -4947,7 +4946,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                     .width /
                                                 2.3,
                                             child: Text(
-                                              Fiberchat.getNickname(peer!)!,
+                                              CuChat.getNickname(peer!)!,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   color: DESIGN_TYPE ==
@@ -5001,13 +5000,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                 color: DESIGN_TYPE ==
                                                         Themetype.whatsapp
                                                     ? fiberchatWhite
-                                                    : fiberchatgreen,
+                                                    : campusChat,
                                               ),
                                               onPressed: observer
                                                           .iscallsallowed ==
                                                       false
                                                   ? () {
-                                                      Fiberchat.showRationale(
+                                                      CuChat.showRationale(
                                                           getTranslated(
                                                               this.context,
                                                               'callnotallowed'));
@@ -5028,7 +5027,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                         if (isgranted == true) {
                                                           call(context, true);
                                                         } else {
-                                                          Fiberchat.showRationale(
+                                                          CuChat.showRationale(
                                                               getTranslated(
                                                                   this.context,
                                                                   'pmc'));
@@ -5040,7 +5039,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                           OpenSettings()));
                                                         }
                                                       }).catchError((onError) {
-                                                        Fiberchat.showRationale(
+                                                        CuChat.showRationale(
                                                             getTranslated(
                                                                 this.context,
                                                                 'pmc'));
@@ -5063,13 +5062,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                 color: DESIGN_TYPE ==
                                                         Themetype.whatsapp
                                                     ? fiberchatWhite
-                                                    : fiberchatgreen,
+                                                    : campusChat,
                                               ),
                                               onPressed: observer
                                                           .iscallsallowed ==
                                                       false
                                                   ? () {
-                                                      Fiberchat.showRationale(
+                                                      CuChat.showRationale(
                                                           getTranslated(
                                                               this.context,
                                                               'callnotallowed'));
@@ -5090,7 +5089,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                         if (isgranted == true) {
                                                           call(context, false);
                                                         } else {
-                                                          Fiberchat.showRationale(
+                                                          CuChat.showRationale(
                                                               getTranslated(
                                                                   this.context,
                                                                   'pmc'));
@@ -5102,7 +5101,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                           OpenSettings()));
                                                         }
                                                       }).catchError((onError) {
-                                                        Fiberchat.showRationale(
+                                                        CuChat.showRationale(
                                                             getTranslated(
                                                                 this.context,
                                                                 'pmc'));
@@ -5159,11 +5158,11 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                             case 'unblock':
                                               ChatController.accept(
                                                   currentUserNo, peerNo);
-                                              Fiberchat.toast(getTranslated(
+                                              CuChat.toast(getTranslated(
                                                   this.context, 'unblocked'));
                                               break;
                                             case 'tutorial':
-                                              Fiberchat.toast(getTranslated(
+                                              CuChat.toast(getTranslated(
                                                   this.context, 'vsmsg'));
 
                                               break;
@@ -5235,6 +5234,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                   new Container(
                                     decoration: new BoxDecoration(
                                       color: DESIGN_TYPE == Themetype.whatsapp
+
                                           ? fiberchatChatbackground
                                           : fiberchatWhite,
                                       image: new DecorationImage(

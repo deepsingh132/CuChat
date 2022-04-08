@@ -1,26 +1,25 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/Groups/GroupDetails.dart';
-import 'package:fiberchat/Screens/Groups/widget/groupChatBubble.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
-import 'package:fiberchat/Screens/contact_screens/SelectContactsToForward.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/AvailableContactsProvider.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/crc.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/InfiniteList/InfiniteCOLLECTIONListViewWidget.dart';
-import 'package:fiberchat/widgets/MultiDocumentPicker/multiDocumentPicker.dart';
-import 'package:fiberchat/widgets/MultiImagePicker/multiImagePicker.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Configs/optional_constants.dart';
+import 'package:CuChat/Screens/Groups/GroupDetails.dart';
+import 'package:CuChat/Screens/Groups/widget/groupChatBubble.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Screens/chat_screen/chat.dart';
+import 'package:CuChat/Screens/chat_screen/utils/uploadMediaWithProgress.dart';
+import 'package:CuChat/Screens/contact_screens/SelectContactsToForward.dart';
+import 'package:CuChat/Services/Admob/admob.dart';
+import 'package:CuChat/Services/Providers/AvailableContactsProvider.dart';
+import 'package:CuChat/Services/Providers/GroupChatProvider.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/chat_controller.dart';
+import 'package:CuChat/Utils/crc.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/InfiniteList/InfiniteCOLLECTIONListViewWidget.dart';
+import 'package:CuChat/widgets/MultiDocumentPicker/multiDocumentPicker.dart';
+import 'package:CuChat/widgets/MultiImagePicker/multiImagePicker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,21 +35,21 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart' as emojipic;
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
-import 'package:fiberchat/widgets/SoundPlayer/SoundPlayerPro.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Screens/privacypolicy&TnC/PdfViewFromCachedUrl.dart';
+import 'package:CuChat/widgets/SoundPlayer/SoundPlayerPro.dart';
 import 'package:flutter/foundation.dart';
-import 'package:fiberchat/Services/Providers/currentchat_peer.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/downloadMedia.dart';
-import 'package:fiberchat/Screens/contact_screens/ContactsSelect.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/photo_view.dart';
-import 'package:fiberchat/Utils/save.dart';
-import 'package:fiberchat/widgets/AudioRecorder/Audiorecord.dart';
-import 'package:fiberchat/widgets/VideoPicker/VideoPicker.dart';
-import 'package:fiberchat/widgets/VideoPicker/VideoPreview.dart';
+import 'package:CuChat/Services/Providers/currentchat_peer.dart';
+import 'package:CuChat/Screens/call_history/callhistory.dart';
+import 'package:CuChat/Screens/chat_screen/utils/downloadMedia.dart';
+import 'package:CuChat/Screens/contact_screens/ContactsSelect.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Screens/chat_screen/utils/photo_view.dart';
+import 'package:CuChat/Utils/save.dart';
+import 'package:CuChat/widgets/AudioRecorder/Audiorecord.dart';
+import 'package:CuChat/widgets/VideoPicker/VideoPicker.dart';
+import 'package:CuChat/widgets/VideoPicker/VideoPreview.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:giphy_get/giphy_get.dart';
@@ -59,9 +58,9 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
-import 'package:fiberchat/Models/E2EE/e2ee.dart' as e2ee;
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Utils/unawaited.dart';
+import 'package:CuChat/Models/E2EE/e2ee.dart' as e2ee;
 import 'package:encrypt/encrypt.dart' as encrypt;
 
 class GroupChatPage extends StatefulWidget {
@@ -245,7 +244,7 @@ class _GroupChatPageState extends State<GroupChatPage>
               timestamp: messagetime, totalFiles: widget.sharedFiles!.length)
           .then((imageUrl) async {
         if (imageUrl != null) {
-          MessageType type = fileName.contains('.png') ||
+          MessageType type = fileName.contains('appicon.png') ||
                   fileName.contains('.gif') ||
                   fileName.contains('.jpg') ||
                   fileName.contains('.jpeg') ||
@@ -263,7 +262,7 @@ class _GroupChatPageState extends State<GroupChatPage>
             setStateIfMounted(() {});
           }
 
-          String finalUrl = fileName.contains('.png') ||
+          String finalUrl = fileName.contains('appicon.png') ||
                   fileName.contains('.gif') ||
                   fileName.contains('.jpg') ||
                   fileName.contains('.jpeg') ||
@@ -418,7 +417,7 @@ class _GroupChatPageState extends State<GroupChatPage>
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast('Sending failed !');
+        CuChat.toast('Sending failed !');
         print('ERROR SENDING MEDIA: $onError');
       });
     } else {
@@ -530,7 +529,7 @@ class _GroupChatPageState extends State<GroupChatPage>
           }).toString();
         });
       }).catchError((onError) {
-        Fiberchat.toast('Sending failed !');
+        CuChat.toast('Sending failed !');
         print('ERROR SENDING FILE: $onError');
       });
     } else {
@@ -877,7 +876,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                               observer.ismediamessagingallowed ==
                                                       false
                                                   ? () {
-                                                      Fiberchat.showRationale(
+                                                      CuChat.showRationale(
                                                           getTranslated(
                                                               this.context,
                                                               'mediamssgnotallowed'));
@@ -910,7 +909,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                         .ismediamessagingallowed ==
                                                     false
                                                 ? () {
-                                                    Fiberchat.showRationale(
+                                                    CuChat.showRationale(
                                                         getTranslated(
                                                             this.context,
                                                             'mediamssgnotallowed'));
@@ -918,7 +917,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                 : () async {
                                                     GiphyGif? gif =
                                                         await GiphyGet.getGif(
-                                                      tabColor: fiberchatgreen,
+                                                      tabColor: campusChat,
                                                       context: context,
                                                       apiKey:
                                                           GiphyAPIKey, //YOUR API KEY HERE
@@ -951,8 +950,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                   margin: EdgeInsets.only(left: 6, right: 10),
                   decoration: BoxDecoration(
                       color: DESIGN_TYPE == Themetype.whatsapp
-                          ? fiberchatgreen
-                          : fiberchatLightGreen,
+                          ? campusChat
+                          : campusChatLight2,
                       // border: Border.all(
                       //   color: Colors.red[500],
                       // ),
@@ -992,7 +991,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 }
                               : observer.istextmessagingallowed == false
                                   ? () {
-                                      Fiberchat.showRationale(getTranslated(
+                                      CuChat.showRationale(getTranslated(
                                           this.context, 'textmssgnotallowed'));
                                     }
                                   : () => onSendMessage(
@@ -1003,7 +1002,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                         type: MessageType.text,
                                       )
                           : () {
-                              Fiberchat.showRationale(getTranslated(
+                              CuChat.showRationale(getTranslated(
                                   this.context, 'mediamssgnotallowed'));
                             },
                       color: fiberchatWhite,
@@ -1037,11 +1036,11 @@ class _GroupChatPageState extends State<GroupChatPage>
                             horizontalSpacing: 0,
                             initCategory: emojipic.Category.RECENT,
                             bgColor: Color(0xFFF2F2F2),
-                            indicatorColor: fiberchatgreen,
+                            indicatorColor: campusChat,
                             iconColor: Colors.grey,
-                            iconColorSelected: fiberchatgreen,
+                            iconColorSelected: campusChat,
                             progressIndicatorColor: Colors.blue,
-                            backspaceColor: fiberchatgreen,
+                            backspaceColor: campusChat,
                             showRecentsTab: true,
                             recentsLimit: 28,
                             noRecentsText: 'No Recents',
@@ -1136,7 +1135,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                                               : () async {
   //                                                   GiphyGif? gif =
   //                                                       await GiphyGet.getGif(
-  //                                                     tabColor: fiberchatgreen,
+  //                                                     tabColor: campusChat,
   //                                                     context: context,
   //                                                     apiKey:
   //                                                         GiphyAPIKey, //YOUR API KEY HERE
@@ -1244,7 +1243,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   //             margin: EdgeInsets.only(left: 6, right: 10),
   //             decoration: BoxDecoration(
   //                 color: DESIGN_TYPE == Themetype.whatsapp
-  //                     ? fiberchatgreen
+  //                     ? campusChat
   //                     : fiberchatLightGreen,
   //                 // border: Border.all(
   //                 //   color: Colors.red[500],
@@ -1329,11 +1328,11 @@ class _GroupChatPageState extends State<GroupChatPage>
   //                       horizontalSpacing: 0,
   //                       initCategory: emojipic.Category.RECENT,
   //                       bgColor: Color(0xFFF2F2F2),
-  //                       indicatorColor: fiberchatgreen,
+  //                       indicatorColor: campusChat,
   //                       iconColor: Colors.grey,
-  //                       iconColorSelected: fiberchatgreen,
+  //                       iconColorSelected: campusChat,
   //                       progressIndicatorColor: Colors.blue,
-  //                       backspaceColor: fiberchatgreen,
+  //                       backspaceColor: campusChat,
   //                       showRecentsTab: true,
   //                       recentsLimit: 28,
   //                       noRecentsText: 'No Recents',
@@ -1379,14 +1378,14 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                 .ismediamessagingallowed ==
                                             false
                                         ? () {
-                                            Fiberchat.showRationale(
+                                            CuChat.showRationale(
                                                 getTranslated(this.context,
                                                     'mediamssgnotallowed'));
                                           }
                                         : () async {
                                             GiphyGif? gif =
                                                 await GiphyGet.getGif(
-                                              tabColor: fiberchatgreen,
+                                              tabColor: campusChat,
                                               context: context,
                                               apiKey:
                                                   GiphyAPIKey, //YOUR API KEY HERE
@@ -1412,7 +1411,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                   onPressed: observer.ismediamessagingallowed ==
                                           false
                                       ? () {
-                                          Fiberchat.showRationale(getTranslated(
+                                          CuChat.showRationale(getTranslated(
                                               this.context,
                                               'mediamssgnotallowed'));
                                         }
@@ -1470,8 +1469,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                     margin: EdgeInsets.only(left: 6, right: 10),
                     decoration: BoxDecoration(
                         color: DESIGN_TYPE == Themetype.whatsapp
-                            ? fiberchatgreen
-                            : fiberchatLightGreen,
+                            ? campusChat
+                            : campusChatLight2,
                         // border: Border.all(
                         //   color: Colors.red[500],
                         // ),
@@ -1485,7 +1484,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                         ),
                         onPressed: observer.istextmessagingallowed == false
                             ? () {
-                                Fiberchat.showRationale(getTranslated(
+                                CuChat.showRationale(getTranslated(
                                     this.context, 'textmssgnotallowed'));
                               }
                             : () {
@@ -1533,7 +1532,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                       decoration: BoxDecoration(
                         color: replyDoc![Dbkeys.groupmsgSENDBY] ==
                                 widget.currentUserno
-                            ? fiberchatgreen
+                            ? campusChat
                             : Colors.purple,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(0),
@@ -1565,7 +1564,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                   fontWeight: FontWeight.bold,
                                   color: replyDoc![Dbkeys.groupmsgSENDBY] ==
                                           widget.currentUserno
-                                      ? fiberchatgreen
+                                      ? campusChat
                                       : Colors.purple),
                             ),
                           ),
@@ -1653,7 +1652,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 placeholder: (context, url) => Container(
                                   child: CircularProgressIndicator(
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                        fiberchatBlue),
+                                        campusChat),
                                   ),
                                   width: replyDoc![Dbkeys.content]
                                           .contains('giphy')
@@ -1721,7 +1720,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                     CircularProgressIndicator(
                                                   valueColor:
                                                       AlwaysStoppedAnimation<
-                                                          Color>(fiberchatBlue),
+                                                          Color>(campusChat),
                                                 ),
                                                 width: 84,
                                                 height: 84,
@@ -1791,7 +1790,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                               ? Colors.yellow[00]
                                               : replyDoc![Dbkeys.messageType] ==
                                                       MessageType.audio.index
-                                                  ? Colors.green[400]
+                                                  ? Colors.blue[400]
                                                   : replyDoc![Dbkeys
                                                               .messageType] ==
                                                           MessageType
@@ -2060,7 +2059,7 @@ class _GroupChatPageState extends State<GroupChatPage>
       int crc = CRC32.compute(input);
       return '$encrypted${Dbkeys.crcSeperator}$crc';
     } catch (e) {
-      Fiberchat.toast('Error occured while encrypting !');
+      CuChat.toast('Error occured while encrypting !');
       return false;
     }
   }
@@ -2208,7 +2207,7 @@ class _GroupChatPageState extends State<GroupChatPage>
           }).then((value) {
             if (list.last[Dbkeys.groupID] ==
                 list[tempSendIndex][Dbkeys.groupID]) {
-              Fiberchat.toast(
+              CuChat.toast(
                 getTranslated(this.context, 'sent'),
               );
               setStateIfMounted(() {
@@ -2224,7 +2223,7 @@ class _GroupChatPageState extends State<GroupChatPage>
           setStateIfMounted(() {
             isgeneratingSomethingLoader = false;
           });
-          Fiberchat.toast('Failed to send');
+          CuChat.toast('Failed to send');
         }
       } else {
         try {
@@ -2246,10 +2245,10 @@ class _GroupChatPageState extends State<GroupChatPage>
                 await ChatController.request(
                     widget.currentUserno,
                     list[tempSendIndex][Dbkeys.phone],
-                    Fiberchat.getChatId(widget.currentUserno,
+                    CuChat.getChatId(widget.currentUserno,
                         list[tempSendIndex][Dbkeys.phone]));
               }
-              var chatId = Fiberchat.getChatId(
+              var chatId = CuChat.getChatId(
                   widget.currentUserno, list[tempSendIndex][Dbkeys.phone]);
               await FirebaseFirestore.instance
                   .collection(DbPaths.collectionmessages)
@@ -2293,7 +2292,7 @@ class _GroupChatPageState extends State<GroupChatPage>
               }).then((value) {
                 if (list.last[Dbkeys.phone] ==
                     list[tempSendIndex][Dbkeys.phone]) {
-                  Fiberchat.toast(
+                  CuChat.toast(
                     getTranslated(this.context, 'sent'),
                   );
                   setStateIfMounted(() {
@@ -2310,13 +2309,13 @@ class _GroupChatPageState extends State<GroupChatPage>
             setStateIfMounted(() {
               isgeneratingSomethingLoader = false;
             });
-            Fiberchat.toast('Nothing to send');
+            CuChat.toast('Nothing to send');
           }
         } catch (e) {
           setStateIfMounted(() {
             isgeneratingSomethingLoader = false;
           });
-          Fiberchat.toast('Failed to Forward message. Error:$e');
+          CuChat.toast('Failed to Forward message. Error:$e');
         }
       }
     }
@@ -3068,7 +3067,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                               decoration: BoxDecoration(
                                 color: doc[Dbkeys.groupmsgSENDBY] ==
                                         widget.currentUserno
-                                    ? fiberchatgreen
+                                    ? campusChat
                                     : Colors.purple,
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(0),
@@ -3120,7 +3119,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                           fontWeight: FontWeight.bold,
                                           color: doc[Dbkeys.groupmsgSENDBY] ==
                                                   widget.currentUserno
-                                              ? fiberchatgreen
+                                              ? campusChat
                                               : Colors.purple),
                                     ),
                                   ),
@@ -3209,7 +3208,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                           child: CircularProgressIndicator(
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
-                                                    fiberchatBlue),
+                                                    campusChat),
                                           ),
                                           width: doc[Dbkeys.content]
                                                   .contains('giphy')
@@ -3283,7 +3282,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                           valueColor:
                                                               AlwaysStoppedAnimation<
                                                                       Color>(
-                                                                  fiberchatBlue),
+                                                                  campusChat),
                                                         ),
                                                         width: 74,
                                                         height: 74,
@@ -3362,7 +3361,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                       : doc[Dbkeys.messageType] ==
                                                               MessageType
                                                                   .audio.index
-                                                          ? Colors.green[400]
+                                                          ? Colors.blue[400]
                                                           : doc[Dbkeys.messageType] ==
                                                                   MessageType
                                                                       .location
@@ -3420,7 +3419,7 @@ class _GroupChatPageState extends State<GroupChatPage>
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
-      Fiberchat.toast(
+      CuChat.toast(
           'Location permissions are denied. Please go to settings & allow location tracking permission.');
       return Future.error('Location services are disabled.');
     }
@@ -3430,21 +3429,21 @@ class _GroupChatPageState extends State<GroupChatPage>
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.deniedForever) {
         // Permissions are denied forever, handle appropriately.
-        Fiberchat.toast(
+        CuChat.toast(
             'Location permissions are denied. Please go to settings & allow location tracking permission.');
         return Future.error(
             'Location permissions are permanently denied, we cannot request permissions.');
       }
 
       if (permission == LocationPermission.denied) {
-        Fiberchat.toast(
+        CuChat.toast(
             'Location permissions are pdenied. Please go to settings & allow location tracking permission.');
         return Future.error('Location permissions are denied');
       }
     }
     if (permission == LocationPermission.always ||
         permission == LocationPermission.whileInUse) {
-      Fiberchat.toast(
+      CuChat.toast(
         getTranslated(this.context, 'detectingloc'),
       );
     }
@@ -3489,7 +3488,7 @@ class _GroupChatPageState extends State<GroupChatPage>
           ? Container(
               child: Center(
                 child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(fiberchatBlue)),
+                    valueColor: AlwaysStoppedAnimation<Color>(campusChat)),
               ),
               color: DESIGN_TYPE == Themetype.whatsapp
                   ? fiberchatBlack.withOpacity(0.6)
@@ -3596,7 +3595,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                           callback: getFileData,
                                         ))).then((url) async {
                               if (url != null) {
-                                Fiberchat.toast(
+                                CuChat.toast(
                                   getTranslated(this.context, 'plswait'),
                                 );
                                 String thumbnailurl = await getThumbnail(url);
@@ -3609,7 +3608,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                       videometadata,
                                   type: MessageType.video,
                                 );
-                                Fiberchat.toast(
+                                CuChat.toast(
                                     getTranslated(this.context, 'sent'));
                               } else {}
                             });
@@ -3776,7 +3775,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                   type: MessageType.location,
                                 );
                                 setStateIfMounted(() {});
-                                Fiberchat.toast(
+                                CuChat.toast(
                                   getTranslated(this.context, 'sent'),
                                 );
                               },
@@ -3893,7 +3892,7 @@ class _GroupChatPageState extends State<GroupChatPage>
     var _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return PickupLayout(
-        scaffold: Fiberchat.getNTPWrappedWidget(Consumer<List<GroupModel>>(
+        scaffold: CuChat.getNTPWrappedWidget(Consumer<List<GroupModel>>(
             builder: (context, groupList, _child) => WillPopScope(
                   onWillPop: isgeneratingSomethingLoader == true
                       ? () async {
@@ -3940,7 +3939,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                               ),
                             ),
                             backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                                ? fiberchatDeepGreen
+                                ? campusChat
                                 : fiberchatWhite,
                             title: InkWell(
                               onTap: () {
@@ -4083,7 +4082,7 @@ class _GroupChatPageState extends State<GroupChatPage>
     return SelectableLinkify(
       style: TextStyle(
           fontSize: fontsize,
-          color: Colors.black87,
+          color: Colors.white,
           height: 1.3,
           fontStyle: FontStyle.normal),
       text: text ?? "",

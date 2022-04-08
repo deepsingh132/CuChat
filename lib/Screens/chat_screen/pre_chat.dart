@@ -1,16 +1,15 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:core';
-import 'package:fiberchat/widgets/CountryPicker/CountryCode.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:CuChat/widgets/CountryPicker/CountryCode.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/chat_screen/chat.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -155,7 +154,7 @@ class _PreChatState extends State<PreChat> {
           ? Container(
               child: Center(
                 child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(fiberchatBlue)),
+                    valueColor: AlwaysStoppedAnimation<Color>(campusChat)),
               ),
               color: fiberchatBlack.withOpacity(0.8),
             )
@@ -165,7 +164,7 @@ class _PreChatState extends State<PreChat> {
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(Scaffold(
+    return CuChat.getNTPWrappedWidget(Scaffold(
       appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -180,7 +179,7 @@ class _PreChatState extends State<PreChat> {
             ),
           ),
           backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-              ? fiberchatDeepGreen
+              ? campusChat
               : fiberchatWhite,
           title: Text(
             widget.name!,
@@ -193,7 +192,7 @@ class _PreChatState extends State<PreChat> {
       body: isLoading == true
           ? Center(
               child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(fiberchatBlue),
+              valueColor: AlwaysStoppedAnimation<Color>(campusChat),
             ))
           : Stack(children: <Widget>[
               Container(
@@ -219,14 +218,14 @@ class _PreChatState extends State<PreChat> {
                               height: 20.0,
                             ),
                             myElevatedButton(
-                              color: fiberchatBlue,
+                              color: campusChat,
                               child: Text(
                                 getTranslated(context, 'invite') +
                                     ' ${widget.name}',
                                 style: TextStyle(color: fiberchatWhite),
                               ),
                               onPressed: () {
-                                Fiberchat.invite(context);
+                                CuChat.invite(context);
                               },
                             )
                           ])

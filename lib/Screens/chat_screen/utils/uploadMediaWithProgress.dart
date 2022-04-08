@@ -1,6 +1,5 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/app_constants.dart';
+import 'package:CuChat/Configs/app_constants.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -29,7 +28,7 @@ openUploadDialog(
           percent == null ? '0%' : "${(percent * 100).roundToDouble()}%",
           style: TextStyle(fontSize: 11),
         ),
-        progressColor: Colors.green[400],
+        progressColor: Colors.blue[400],
       ),
       Container(
         width: 195,

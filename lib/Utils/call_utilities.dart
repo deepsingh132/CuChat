@@ -1,12 +1,11 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:math';
 import 'package:agora_rtc_engine/rtc_engine.dart';
-import 'package:fiberchat/Screens/calling_screen/audio_call.dart';
-import 'package:fiberchat/Screens/calling_screen/video_call.dart';
+import 'package:CuChat/Screens/calling_screen/audio_call.dart';
+import 'package:CuChat/Screens/calling_screen/video_call.dart';
 import 'package:flutter/material.dart';
-import 'package:fiberchat/Models/call.dart';
-import 'package:fiberchat/Models/call_methods.dart';
+import 'package:CuChat/Models/call.dart';
+import 'package:CuChat/Models/call_methods.dart';
 
 class CallUtils {
   static final CallMethods callMethods = CallMethods();

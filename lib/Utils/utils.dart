@@ -1,13 +1,12 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Models/DataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,10 +14,10 @@ import 'package:ntp/ntp.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Configs/Enum.dart';
 import 'package:share/share.dart';
 
-class Fiberchat {
+class CuChat {
   static String? getNickname(Map<String, dynamic> user) =>
       user[Dbkeys.aliasName] ?? user[Dbkeys.nickname];
 
@@ -32,10 +31,10 @@ class Fiberchat {
   static void internetLookUp() async {
     try {
       await InternetAddress.lookup('google.com').catchError((e) {
-        Fiberchat.toast('No internet connection ${e.toString()}');
+        CuChat.toast('No internet connection ${e.toString()}');
       });
     } catch (err) {
-      Fiberchat.toast('No internet connection. ${err.toString()}');
+      CuChat.toast('No internet connection. ${err.toString()}');
     }
   }
 
@@ -68,9 +67,9 @@ class Fiberchat {
                     CachedNetworkImageProvider(user[Dbkeys.photoUrl]),
                 radius: radius)
             : CircleAvatar(
-                backgroundColor: fiberchatgreen,
+                backgroundColor: campusChatLight2,
                 foregroundColor: Colors.white,
-                child: Text(getInitials(Fiberchat.getNickname(user)!)),
+                child: Text(getInitials(CuChat.getNickname(user)!)),
                 radius: radius,
               );
       return CircleAvatar(
@@ -110,7 +109,7 @@ class Fiberchat {
   }
 
   static void showRationale(rationale) async {
-    Fiberchat.toast(rationale);
+    CuChat.toast(rationale);
     // await Future.delayed(Duration(seconds: 2));
     // Fiberchat.toast(
     //     'If you change your mind, you can grant the permission through App Settings > Permissions');

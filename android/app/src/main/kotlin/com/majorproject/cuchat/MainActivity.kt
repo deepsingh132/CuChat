@@ -1,4 +1,4 @@
-package com.fiberchat.fiberchat
+package com.majorproject.cuchat
 
 import android.os.Bundle
 import io.flutter.embedding.android.FlutterActivity

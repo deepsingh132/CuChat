@@ -1,12 +1,11 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/downloadMedia.dart';
-import 'package:fiberchat/Utils/open_settings.dart';
-import 'package:fiberchat/Utils/save.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/chat_screen/utils/downloadMedia.dart';
+import 'package:CuChat/Utils/open_settings.dart';
+import 'package:CuChat/Utils/save.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -36,7 +35,7 @@ class PhotoViewWrapper extends StatelessWidget {
       new GlobalKey<State>(debugLabel: 'qqgfggqesqeqsseaadqeqe');
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(Scaffold(
+    return CuChat.getNTPWrappedWidget(Scaffold(
         backgroundColor: Colors.black,
         key: _scaffoldd,
         appBar: AppBar(
@@ -53,26 +52,26 @@ class PhotoViewWrapper extends StatelessWidget {
           backgroundColor: Colors.transparent,
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: fiberchatLightGreen,
+          backgroundColor: campusChatLight2,
           onPressed: Platform.isIOS
               ? () {
                   launch(message!);
                 }
               : () async {
-                  Fiberchat.checkAndRequestPermission(Permission.storage)
+                  CuChat.checkAndRequestPermission(Permission.storage)
                       .then((res) async {
                     if (res) {
                       Save.saveToDisk(imageProvider, tag);
                       await downloadFile(
                         context: _scaffoldd.currentContext!,
                         fileName:
-                            '${DateTime.now().millisecondsSinceEpoch}.png',
+                            '${DateTime.now().millisecondsSinceEpoch}appicon.png',
                         isonlyview: false,
                         keyloader: _keyLoaderr,
                         uri: message,
                       );
                     } else {
-                      Fiberchat.showRationale(getTranslated(context, 'pms'));
+                      CuChat.showRationale(getTranslated(context, 'pms'));
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
@@ -97,7 +96,7 @@ class PhotoViewWrapper extends StatelessWidget {
                         alignment: Alignment.center,
                         child: CircularProgressIndicator(
                           valueColor:
-                              AlwaysStoppedAnimation<Color>(fiberchatBlue),
+                              AlwaysStoppedAnimation<Color>(campusChat),
                         ),
                       ),
                     );

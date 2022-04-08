@@ -1,27 +1,26 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/status/StatusView.dart';
-import 'package:fiberchat/Screens/status/components/ImagePicker/image_picker.dart';
-import 'package:fiberchat/Screens/status/components/TextStatus/textStatus.dart';
-import 'package:fiberchat/Screens/status/components/VideoPicker/VideoPicker.dart';
-import 'package:fiberchat/Screens/status/components/circleBorder.dart';
-import 'package:fiberchat/Screens/status/components/formatStatusTime.dart';
-import 'package:fiberchat/Screens/status/components/showViewers.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/AvailableContactsProvider.dart';
-import 'package:fiberchat/Services/Providers/StatusProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Configs/optional_constants.dart';
+import 'package:CuChat/Screens/call_history/callhistory.dart';
+import 'package:CuChat/Screens/status/StatusView.dart';
+import 'package:CuChat/Screens/status/components/ImagePicker/image_picker.dart';
+import 'package:CuChat/Screens/status/components/TextStatus/textStatus.dart';
+import 'package:CuChat/Screens/status/components/VideoPicker/VideoPicker.dart';
+import 'package:CuChat/Screens/status/components/circleBorder.dart';
+import 'package:CuChat/Screens/status/components/formatStatusTime.dart';
+import 'package:CuChat/Screens/status/components/showViewers.dart';
+import 'package:CuChat/Services/Admob/admob.dart';
+import 'package:CuChat/Services/Providers/AvailableContactsProvider.dart';
+import 'package:CuChat/Services/Providers/StatusProvider.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -29,7 +28,7 @@ import 'dart:async';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Configs/Enum.dart';
 
 class Status extends StatefulWidget {
   const Status({
@@ -62,7 +61,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
       Container(
         child: Center(
             child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatBlue),
+          valueColor: AlwaysStoppedAnimation<Color>(campusChat),
         )),
       )
     ]);
@@ -219,7 +218,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
     final observer = Provider.of<Observer>(context, listen: true);
     final contactsProvider =
         Provider.of<AvailableContactsProvider>(context, listen: true);
-    return Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+    return CuChat.getNTPWrappedWidget(ScopedModel<DataModel>(
         model: widget.model!,
         child:
             ScopedModelDescendant<DataModel>(builder: (context, child, model) {
@@ -297,7 +296,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                             decoration:
                                                                 BoxDecoration(
                                                               color:
-                                                                  Colors.green,
+                                                                  Colors.blue,
                                                               shape: BoxShape
                                                                   .circle,
                                                             ),
@@ -491,7 +490,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                             observer.isAllowCreatingStatus ==
                                                                     false
                                                                 ? () {
-                                                                    Fiberchat.showRationale(getTranslated(
+                                                                    CuChat.showRationale(getTranslated(
                                                                         this.context,
                                                                         'disabled'));
                                                                   }
@@ -539,7 +538,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Colors.green,
+                                                            color: Colors.blue,
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -675,7 +674,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                       observer.isAllowCreatingStatus ==
                                                               false
                                                           ? () {
-                                                              Fiberchat.showRationale(
+                                                              CuChat.showRationale(
                                                                   getTranslated(
                                                                       this.context,
                                                                       'disabled'));
@@ -734,7 +733,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                             decoration:
                                                                 BoxDecoration(
                                                               color:
-                                                                  Colors.green,
+                                                                  Colors.redAccent,
                                                               shape: BoxShape
                                                                   .circle,
                                                             ),
@@ -786,7 +785,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Colors.green,
+                                                            color: Colors.blue,
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -842,7 +841,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                         valueColor:
                                                             AlwaysStoppedAnimation<
                                                                     Color>(
-                                                                fiberchatBlue)),
+                                                                campusChat)),
                                                   ),
                                                 ),
                                                 color: Colors.transparent)
@@ -1203,7 +1202,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                         child: CircularProgressIndicator(
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
-                                                    fiberchatBlue)),
+                                                    campusChat)),
                                       ),
                                       color: DESIGN_TYPE == Themetype.whatsapp
                                           ? fiberchatBlack.withOpacity(0.6)
@@ -1257,7 +1256,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                 Icon(
                                   Icons.text_fields,
                                   size: 39,
-                                  color: fiberchatLightGreen,
+                                  color: campusChatLight2,
                                 ),
                                 SizedBox(height: 3),
                                 Text(
@@ -1285,7 +1284,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                 Icon(
                                   Icons.image,
                                   size: 39,
-                                  color: fiberchatLightGreen,
+                                  color: campusChatLight2,
                                 ),
                                 SizedBox(height: 3),
                                 Text(
@@ -1313,7 +1312,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                   Icon(
                                     Icons.video_camera_back,
                                     size: 39,
-                                    color: fiberchatLightGreen,
+                                    color: campusChatLight2,
                                   ),
                                   SizedBox(height: 3),
                                   Text(
@@ -1455,7 +1454,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                       getTranslated(
                                                           context, 'cancel'),
                                                       style: TextStyle(
-                                                          color: fiberchatgreen,
+                                                          color: campusChat,
                                                           fontSize: 18),
                                                     ),
                                                     onPressed: () {
@@ -1475,7 +1474,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                     onPressed: () async {
                                                       Navigator.of(context)
                                                           .pop();
-                                                      Fiberchat.toast(
+                                                      CuChat.toast(
                                                           getTranslated(context,
                                                               'plswait'));
                                                       statusProvider
@@ -1518,7 +1517,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                         statusProvider
                                                             .setIsLoading(
                                                                 false);
-                                                        Fiberchat.toast(
+                                                        CuChat.toast(
                                                             getTranslated(
                                                                 this.context,
                                                                 'dltscs'));
@@ -1562,7 +1561,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           statusProvider
                                                               .setIsLoading(
                                                                   false);
-                                                          Fiberchat.toast(
+                                                          CuChat.toast(
                                                               getTranslated(
                                                                   this.context,
                                                                   'dltscs'));

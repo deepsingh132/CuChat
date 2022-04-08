@@ -1,9 +1,8 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
-import 'package:fiberchat/widgets/Audioplayer/audioplayer.dart';
+import 'package:CuChat/widgets/Audioplayer/audioplayer.dart';
 import 'package:flutter/material.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
+import 'package:CuChat/Configs/app_constants.dart';
 
 typedef void OnError(Exception exception);
 
@@ -166,7 +165,7 @@ class _AudioPlaybackState extends State<AudioPlayback> {
                         TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                   ),
                   Slider(
-                      activeColor: fiberchatDeepGreen,
+                      activeColor: campusChat,
                       value: position?.inMilliseconds.toDouble() ?? 0.0,
                       onChanged: (double value) {
                         audioPlayer.seek((value / 1000).roundToDouble());

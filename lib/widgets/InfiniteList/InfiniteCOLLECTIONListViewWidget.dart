@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/Providers/BroadcastProvider.dart';
+import 'package:CuChat/Services/Providers/GroupChatProvider.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
 import 'package:flutter/material.dart';
 
 class InfiniteCOLLECTIONListViewWidget extends StatefulWidget {
@@ -115,7 +115,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                             child: CircularProgressIndicator(
                               strokeWidth: 1.8,
                               valueColor:
-                                  AlwaysStoppedAnimation<Color>(fiberchatBlue),
+                                  AlwaysStoppedAnimation<Color>(campusChat),
                             ),
                           ),
                         ),
@@ -134,7 +134,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                               Icon(
                                 Icons.message_rounded,
                                 size: 60,
-                                color: fiberchatLightGreen,
+                                color: campusChatLight2,
                               ),
                               SizedBox(
                                 height: 10,
@@ -178,7 +178,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                             child: CircularProgressIndicator(
                               strokeWidth: 1.8,
                               valueColor:
-                                  AlwaysStoppedAnimation<Color>(fiberchatBlue),
+                                  AlwaysStoppedAnimation<Color>(campusChat),
                             ),
                           ),
                         ),
@@ -197,7 +197,7 @@ class _InfiniteCOLLECTIONListViewWidgetState
                               Icon(
                                 Icons.message_rounded,
                                 size: 60,
-                                color: fiberchatLightGreen,
+                                color: campusChatLight2,
                               ),
                               SizedBox(
                                 height: 10,

@@ -1,19 +1,18 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/auth_screens/login.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Services/Providers/AvailableContactsProvider.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/auth_screens/login.dart';
+import 'package:CuChat/Screens/call_history/callhistory.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Services/Providers/AvailableContactsProvider.dart';
+import 'package:CuChat/Services/Providers/GroupChatProvider.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -66,7 +65,7 @@ class _AddContactsToGroupState extends State<AddContactsToGroup>
       Container(
         child: Center(
             child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(fiberchatBlue),
+          valueColor: AlwaysStoppedAnimation<Color>(campusChat),
         )),
       )
     ]);
@@ -78,7 +77,7 @@ class _AddContactsToGroupState extends State<AddContactsToGroup>
     super.build(context);
 
     return PickupLayout(
-        scaffold: Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+        scaffold: CuChat.getNTPWrappedWidget(ScopedModel<DataModel>(
             model: widget.model!,
             child: ScopedModelDescendant<DataModel>(
                 builder: (context, child, model) {
@@ -102,7 +101,7 @@ class _AddContactsToGroupState extends State<AddContactsToGroup>
                               ),
                             ),
                             backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                                ? fiberchatDeepGreen
+                                ? campusChat
                                 : fiberchatWhite,
                             centerTitle: false,
                             // leadingWidth: 40,
@@ -326,7 +325,7 @@ class _AddContactsToGroupState extends State<AddContactsToGroup>
                                                                     ),
                                                                     myElevatedButton(
                                                                         color:
-                                                                            fiberchatLightGreen,
+                                                                            campusChatLight2,
                                                                         child:
                                                                             Padding(
                                                                           padding: const EdgeInsets.fromLTRB(
@@ -460,7 +459,7 @@ class _AddContactsToGroupState extends State<AddContactsToGroup>
                                                                                   iscreatinggroup = false;
                                                                                 });
 
-                                                                                Fiberchat.toast('Error Creating group. $err');
+                                                                                CuChat.toast('Error Creating group. $err');
                                                                                 print('Error Creating group: $err');
                                                                               });
                                                                             });
@@ -575,7 +574,7 @@ class _AddContactsToGroupState extends State<AddContactsToGroup>
                                                         iscreatinggroup = false;
                                                       });
 
-                                                      Fiberchat.toast(getTranslated(
+                                                      CuChat.toast(getTranslated(
                                                           this.context,
                                                           'errorcreatinggroup'));
                                                     });
@@ -770,7 +769,7 @@ class _AddContactsToGroupState extends State<AddContactsToGroup>
                                                                           size:
                                                                               19.0,
                                                                           color:
-                                                                              fiberchatLightGreen,
+                                                                              campusChatLight,
                                                                         )
                                                                       : Icon(
                                                                           null,

@@ -1,35 +1,34 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'dart:core';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/Groups/AddContactsToGroup.dart';
-import 'package:fiberchat/Screens/Groups/GroupChatPage.dart';
-import 'package:fiberchat/Screens/contact_screens/SmartContactsPage.dart';
-import 'package:fiberchat/Services/Admob/admob.dart';
-import 'package:fiberchat/Services/Providers/BroadcastProvider.dart';
-import 'package:fiberchat/Services/Providers/GroupChatProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/chat_screen/utils/messagedata.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Screens/chat_screen/chat.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
-import 'package:fiberchat/Utils/alias.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/Groups/AddContactsToGroup.dart';
+import 'package:CuChat/Screens/Groups/GroupChatPage.dart';
+import 'package:CuChat/Screens/contact_screens/SmartContactsPage.dart';
+import 'package:CuChat/Services/Admob/admob.dart';
+import 'package:CuChat/Services/Providers/BroadcastProvider.dart';
+import 'package:CuChat/Services/Providers/GroupChatProvider.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/chat_screen/utils/messagedata.dart';
+import 'package:CuChat/Screens/call_history/callhistory.dart';
+import 'package:CuChat/Screens/chat_screen/chat.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Services/Providers/user_provider.dart';
+import 'package:CuChat/Utils/alias.dart';
+import 'package:CuChat/Utils/chat_controller.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
+import 'package:CuChat/Utils/unawaited.dart';
 
 class RecentChats extends StatefulWidget {
   RecentChats(
@@ -69,7 +68,7 @@ class RecentChatsState extends State<RecentChats> {
   @override
   void initState() {
     super.initState();
-    Fiberchat.internetLookUp();
+    CuChat.internetLookUp();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       final observer = Provider.of<Observer>(this.context, listen: false);
       if (IsBannerAdShow == true && observer.isadmobshow == true) {
@@ -100,6 +99,7 @@ class RecentChatsState extends State<RecentChats> {
   bool isLoading = false;
 
   Widget buildItem(BuildContext context, Map<String, dynamic> user) {
+
     if (user[Dbkeys.phone] == currentUserNo) {
       return Container(width: 0, height: 0);
     } else {
@@ -113,8 +113,10 @@ class RecentChatsState extends State<RecentChats> {
                   .length
               : 0;
           return Theme(
+
               data: ThemeData(
-                  splashColor: fiberchatBlue,
+
+                  splashColor: campusChat,
                   highlightColor: Colors.transparent),
               child: Column(
                 children: [
@@ -130,7 +132,7 @@ class RecentChatsState extends State<RecentChats> {
                       leading:
                           customCircleAvatar(url: user['photoUrl'], radius: 22),
                       title: Text(
-                        Fiberchat.getNickname(user)!,
+                        CuChat.getNickname(user)!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -147,7 +149,7 @@ class RecentChatsState extends State<RecentChats> {
                               getTranslated(context, 'auth_neededchat'),
                               state: state,
                               shouldPop: false,
-                              type: Fiberchat.getAuthenticationType(
+                              type: CuChat.getAuthenticationType(
                                   biometricEnabled, _cachedModel),
                               prefs: widget.prefs, onSuccess: () {
                             state.pushReplacement(new MaterialPageRoute(
@@ -183,7 +185,7 @@ class RecentChatsState extends State<RecentChats> {
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: user[Dbkeys.lastSeen] == true
-                                    ? Colors.green[400]
+                                    ? Colors.blue[400]
                                     : Colors.blue[400],
                               ),
                             )
@@ -193,7 +195,7 @@ class RecentChatsState extends State<RecentChats> {
                                   padding: const EdgeInsets.all(7.0),
                                   decoration: new BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Colors.green[400]),
+                                      color: Colors.blue[400]),
                                 )
                               : SizedBox(
                                   height: 0,
@@ -210,7 +212,7 @@ class RecentChatsState extends State<RecentChats> {
   }
 
   Stream<MessageData> getUnread(Map<String, dynamic> user) {
-    String chatId = Fiberchat.getChatId(currentUserNo, user[Dbkeys.phone]);
+    String chatId = CuChat.getChatId(currentUserNo, user[Dbkeys.phone]);
     var controller = StreamController<MessageData>.broadcast();
     unreadSubscriptions.add(FirebaseFirestore.instance
         .collection(DbPaths.collectionmessages)
@@ -290,6 +292,10 @@ class RecentChatsState extends State<RecentChats> {
                 shrinkWrap: true,
                 children: [
                   Container(
+
+                      decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30))),
                       child: _streamDocSnap.isNotEmpty
                           ? StreamBuilder(
                               stream: _userQuery.stream.asBroadcastStream(),
@@ -348,7 +354,7 @@ class RecentChatsState extends State<RecentChats> {
                                       ///----- Build Group Chat Tile ----
                                       return Theme(
                                           data: ThemeData(
-                                              splashColor: fiberchatBlue,
+                                              splashColor: campusChat,
                                               highlightColor:
                                                   Colors.transparent),
                                           child: Column(
@@ -541,7 +547,7 @@ class RecentChatsState extends State<RecentChats> {
   @override
   Widget build(BuildContext context) {
     final observer = Provider.of<Observer>(this.context, listen: false);
-    return Fiberchat.getNTPWrappedWidget(ScopedModel<DataModel>(
+    return CuChat.getNTPWrappedWidget(ScopedModel<DataModel>(
       model: getModel()!,
       child:
           ScopedModelDescendant<DataModel>(builder: (context, child, _model) {
@@ -566,7 +572,7 @@ class RecentChatsState extends State<RecentChats> {
                     ? 60
                     : 0),
             child: FloatingActionButton(
-                backgroundColor: fiberchatLightGreen,
+                backgroundColor: campusChat,
                 child: Icon(
                   Icons.chat,
                   size: 30.0,
@@ -578,7 +584,7 @@ class RecentChatsState extends State<RecentChats> {
                           builder: (context) => new SmartContactsPage(
                               onTapCreateGroup: () {
                                 if (observer.isAllowCreatingGroups == false) {
-                                  Fiberchat.showRationale(
+                                  CuChat.showRationale(
                                       getTranslated(this.context, 'disabled'));
                                 } else {
                                   Navigator.pushReplacement(

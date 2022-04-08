@@ -1,16 +1,16 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
+
 
 import 'dart:async';
 import 'dart:core';
 import 'dart:io';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Utils/utils.dart';
-import 'package:fiberchat/widgets/MyElevatedButton/MyElevatedButton.dart';
-import 'package:fiberchat/widgets/Passcode/passcode_screen.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Utils/utils.dart';
+import 'package:CuChat/widgets/MyElevatedButton/MyElevatedButton.dart';
+import 'package:CuChat/widgets/Passcode/passcode_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,7 +45,7 @@ class _SecurityState extends State<Security> {
 
   @override
   Widget build(BuildContext context) {
-    return Fiberchat.getNTPWrappedWidget(WillPopScope(
+    return CuChat.getNTPWrappedWidget(WillPopScope(
         onWillPop: () {
           return Future.value(widget.shouldPop);
         },
@@ -53,7 +53,7 @@ class _SecurityState extends State<Security> {
           Scaffold(
               appBar: AppBar(
                 backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                    ? fiberchatDeepGreen
+                    ? campusChat
                     : fiberchatWhite,
                 title: Text(
                   widget.title!,
@@ -71,7 +71,7 @@ class _SecurityState extends State<Security> {
                 child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: myElevatedButton(
-                      color: fiberchatLightGreen,
+                      color: campusChat,
                       child: Text(
                         getTranslated(this.context, 'done'),
                         style: TextStyle(color: Colors.white),
@@ -79,7 +79,7 @@ class _SecurityState extends State<Security> {
                       onPressed: () {
                         if (widget.setPasscode) {
                           if (_passCode == null)
-                            Fiberchat.toast(
+                            CuChat.toast(
                                 getTranslated(this.context, 'setpasscode'));
                           if (
                               // ignore: todo
@@ -94,7 +94,7 @@ class _SecurityState extends State<Security> {
                               // ANSWER:
                               //     Fiberchat.getHashedAnswer(_answer.text),
                               Dbkeys.passcode:
-                                  Fiberchat.getHashedString(_passCode!)
+                                  CuChat.getHashedString(_passCode!)
                             };
                             setState(() {
                               isLoading = true;
@@ -106,7 +106,7 @@ class _SecurityState extends State<Security> {
                                 .doc(widget.phoneNo)
                                 .update(data)
                                 .then((_) {
-                              Fiberchat.toast(
+                              CuChat.toast(
                                   getTranslated(this.context, 'welcometo') +
                                       ' $Appname!');
                               widget.onSuccess(this.context);
@@ -155,10 +155,10 @@ class _SecurityState extends State<Security> {
                               trailing: Icon(Icons.check_circle,
                                   color: _passCode == null
                                       ? fiberchatGrey
-                                      : fiberchatLightGreen,
+                                      : campusChatLight2,
                                   size: 35),
                               title: myElevatedButton(
-                                color: fiberchatgreen,
+                                color: campusChat,
                                 child: Text(
                                   getTranslated(this.context, 'setpass'),
                                   style: TextStyle(
@@ -222,7 +222,7 @@ class _SecurityState extends State<Security> {
                     child: Center(
                       child: CircularProgressIndicator(
                           valueColor:
-                              AlwaysStoppedAnimation<Color>(fiberchatBlue)),
+                              AlwaysStoppedAnimation<Color>(campusChat)),
                     ),
                     color: DESIGN_TYPE == Themetype.whatsapp
                         ? fiberchatBlack.withOpacity(0.8)

@@ -1,12 +1,11 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Services/Providers/seen_provider.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Services/Providers/seen_provider.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:fiberchat/Configs/Enum.dart';
+import 'package:CuChat/Configs/Enum.dart';
 
 class Bubble extends StatelessWidget {
   const Bubble({
@@ -43,15 +42,15 @@ class Bubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool seen = getSeenStatus(SeenProvider.of(context).value);
-    final bg = isMe ? fiberchatteagreen : fiberchatWhite;
+    final bg = isMe ? campusChatLight2 : bubbleReply;
     final align = isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     dynamic icon = delivered is bool && delivered
         ? (seen ? Icons.done_all : Icons.done)
         : Icons.access_time;
     final color = isMe
-        ? fiberchatBlack.withOpacity(0.5)
-        : fiberchatBlack.withOpacity(0.5);
-    icon = Icon(icon, size: 14.0, color: seen ? Colors.lightBlue : color);
+        ? fiberchatBlack.withOpacity(1)
+        : fiberchatBlack.withOpacity(1);
+    icon = Icon(icon, size: 14.0, color: seen ? Colors.white : color);
     if (delivered is Future) {
       icon = FutureBuilder(
           future: delivered,
@@ -59,13 +58,13 @@ class Bubble extends StatelessWidget {
             switch (res.connectionState) {
               case ConnectionState.done:
                 return Icon((seen ? Icons.done_all : Icons.done),
-                    size: 13.0, color: seen ? Colors.lightBlue : color);
+                    size: 13.0, color: seen ? Colors.white : color);
               case ConnectionState.none:
               case ConnectionState.active:
               case ConnectionState.waiting:
               default:
                 return Icon(Icons.access_time,
-                    size: 13.0, color: seen ? Colors.lightBlue : color);
+                    size: 13.0, color: seen ? Colors.white : color);
             }
           });
     }

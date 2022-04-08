@@ -1,44 +1,44 @@
-//*************   © Copyrighted by Thinkcreative_Technologies. An Exclusive item of Envato market. Make sure you have purchased a Regular License OR Extended license for the Source Code from Envato to use this product. See the License Defination attached with source code. *********************
 
 import 'dart:async';
 import 'dart:core';
 import 'dart:io';
+import 'package:CuChat/Screens/homepage/tab_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info/device_info.dart';
 import 'package:devicelocale/devicelocale.dart';
-import 'package:fiberchat/Configs/Dbkeys.dart';
-import 'package:fiberchat/Configs/Dbpaths.dart';
-import 'package:fiberchat/Configs/optional_constants.dart';
-import 'package:fiberchat/Screens/Groups/AddContactsToGroup.dart';
-import 'package:fiberchat/Screens/SettingsOption/settingsOption.dart';
-import 'package:fiberchat/Screens/homepage/Setupdata.dart';
-import 'package:fiberchat/Screens/notifications/AllNotifications.dart';
-import 'package:fiberchat/Screens/sharing_intent/SelectContactToShare.dart';
-import 'package:fiberchat/Screens/splash_screen/splash_screen.dart';
-import 'package:fiberchat/Screens/status/status.dart';
-import 'package:fiberchat/Services/Providers/AvailableContactsProvider.dart';
-import 'package:fiberchat/Services/Providers/Observer.dart';
-import 'package:fiberchat/Services/Providers/StatusProvider.dart';
-import 'package:fiberchat/Services/Providers/call_history_provider.dart';
-import 'package:fiberchat/Utils/phonenumberVariantsGenerator.dart';
+import 'package:CuChat/Configs/Dbkeys.dart';
+import 'package:CuChat/Configs/Dbpaths.dart';
+import 'package:CuChat/Configs/optional_constants.dart';
+import 'package:CuChat/Screens/Groups/AddContactsToGroup.dart';
+import 'package:CuChat/Screens/SettingsOption/settingsOption.dart';
+import 'package:CuChat/Screens/homepage/Setupdata.dart';
+import 'package:CuChat/Screens/notifications/AllNotifications.dart';
+import 'package:CuChat/Screens/sharing_intent/SelectContactToShare.dart';
+import 'package:CuChat/Screens/splash_screen/splash_screen.dart';
+import 'package:CuChat/Screens/status/status.dart';
+import 'package:CuChat/Services/Providers/AvailableContactsProvider.dart';
+import 'package:CuChat/Services/Providers/Observer.dart';
+import 'package:CuChat/Services/Providers/StatusProvider.dart';
+import 'package:CuChat/Services/Providers/call_history_provider.dart';
+import 'package:CuChat/Utils/phonenumberVariantsGenerator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as local;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:fiberchat/Configs/app_constants.dart';
-import 'package:fiberchat/Screens/auth_screens/login.dart';
-import 'package:fiberchat/Services/Providers/currentchat_peer.dart';
-import 'package:fiberchat/Services/localization/language_constants.dart';
-import 'package:fiberchat/Screens/profile_settings/profileSettings.dart';
-import 'package:fiberchat/main.dart';
-import 'package:fiberchat/Screens/recent_chats/RecentsChats.dart';
-import 'package:fiberchat/Screens/search_chats/SearchRecentChat.dart';
-import 'package:fiberchat/Screens/call_history/callhistory.dart';
-import 'package:fiberchat/Models/DataModel.dart';
-import 'package:fiberchat/Services/Providers/user_provider.dart';
-import 'package:fiberchat/Screens/calling_screen/pickup_layout.dart';
-import 'package:fiberchat/Utils/chat_controller.dart';
-import 'package:fiberchat/Utils/utils.dart';
+import 'package:CuChat/Configs/app_constants.dart';
+import 'package:CuChat/Screens/auth_screens/login.dart';
+import 'package:CuChat/Services/Providers/currentchat_peer.dart';
+import 'package:CuChat/Services/localization/language_constants.dart';
+import 'package:CuChat/Screens/profile_settings/profileSettings.dart';
+import 'package:CuChat/main.dart';
+import 'package:CuChat/Screens/recent_chats/RecentsChats.dart';
+import 'package:CuChat/Screens/search_chats/SearchRecentChat.dart';
+import 'package:CuChat/Screens/call_history/callhistory.dart';
+import 'package:CuChat/Models/DataModel.dart';
+import 'package:CuChat/Services/Providers/user_provider.dart';
+import 'package:CuChat/Screens/calling_screen/pickup_layout.dart';
+import 'package:CuChat/Utils/chat_controller.dart';
+import 'package:CuChat/Utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +52,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:fiberchat/Configs/Enum.dart';
-import 'package:fiberchat/Utils/unawaited.dart';
+import 'package:CuChat/Configs/Enum.dart';
+import 'package:CuChat/Utils/unawaited.dart';
 
 class Homepage extends StatefulWidget {
   Homepage(
@@ -148,12 +148,12 @@ class HomepageState extends State<Homepage>
     registerNotification();
 
     setdeviceinfo();
-    controllerIfcallallowed = TabController(length: 4, vsync: this);
+    controllerIfcallallowed = TabController(length: 3, vsync: this,initialIndex: 1);
     controllerIfcallallowed!.index = 1;
-    controllerIfcallNotallowed = TabController(length: 3, vsync: this);
+    controllerIfcallNotallowed = TabController(length: 3, vsync: this, initialIndex: 1);
     controllerIfcallNotallowed!.index = 1;
 
-    Fiberchat.internetLookUp();
+    CuChat.internetLookUp();
     WidgetsBinding.instance!.addObserver(this);
 
     LocalAuthentication().canCheckBiometrics.then((res) {
@@ -194,7 +194,7 @@ class HomepageState extends State<Homepage>
         setState(() {});
       }
     }).catchError((onError) {
-      Fiberchat.toast(
+      CuChat.toast(
         'Error occured while fetching Locale :$onError',
       );
     });
@@ -272,7 +272,7 @@ class HomepageState extends State<Homepage>
                   sharedText: _sharedText)));
     } else if (_sharedFiles != null) {
       if (_sharedFiles!.length > observer.maxNoOfFilesInMultiSharing) {
-        Fiberchat.toast(getTranslated(context, 'maxnooffiles') +
+        CuChat.toast(getTranslated(context, 'maxnooffiles') +
             ' ' +
             '${observer.maxNoOfFilesInMultiSharing}');
       } else {
@@ -468,7 +468,7 @@ class HomepageState extends State<Homepage>
           message.data['title'] != 'Incoming Audio Call...' &&
           message.data['title'] != 'Incoming Call ended' &&
           message.data['title'] != 'New message in Group') {
-        Fiberchat.toast(getTranslated(this.context, 'newnotifications'));
+        CuChat.toast(getTranslated(this.context, 'newnotifications'));
       } else {
         // if (message.data['title'] == 'New message in Group') {
         //   var currentpeer =
@@ -643,16 +643,16 @@ class HomepageState extends State<Homepage>
                 .doc(Dbkeys.userapp)
                 .update({Dbkeys.usersidesetupdone: true});
 
-            Fiberchat.showRationale(
+            CuChat.showRationale(
                 getTranslated(this.context, 'loadingfailed'));
           } else {
-            Fiberchat.showRationale(
+            CuChat.showRationale(
                 getTranslated(this.context, 'failedtoconfigure'));
           }
         });
         // ignore: unnecessary_null_comparison
       } else if (value == false || value == null) {
-        Fiberchat.showRationale(
+        CuChat.showRationale(
             getTranslated(this.context, 'failedtoconfigure'));
       }
     });
@@ -676,7 +676,7 @@ class HomepageState extends State<Homepage>
               Dbkeys.isCustomAppShareLink: false,
               Dbkeys.updateV7done: true,
             });
-            Fiberchat.toast(getTranslated(this.context, 'erroroccured'));
+            CuChat.toast(getTranslated(this.context, 'erroroccured'));
           } else {
             setState(() {
               isblockNewlogins = doc[Dbkeys.isblocknewlogins];
@@ -727,7 +727,7 @@ class HomepageState extends State<Homepage>
                           child: AlertDialog(
                             title: Text(
                               title,
-                              style: TextStyle(color: fiberchatDeepGreen),
+                              style: TextStyle(color: campusChat),
                             ),
                             content: Text(message),
                             actions: <Widget>[
@@ -735,7 +735,7 @@ class HomepageState extends State<Homepage>
                                   child: Text(
                                     btnLabel,
                                     style:
-                                        TextStyle(color: fiberchatLightGreen),
+                                        TextStyle(color: campusChatLight2),
                                   ),
                                   onPressed: () => launch(doc[Platform.isAndroid
                                       ? Dbkeys.newapplinkandroid
@@ -877,16 +877,16 @@ class HomepageState extends State<Homepage>
         } else {
           await setupAdminAppCompatibleDataForFirstTime().then((result) {
             if (result == true) {
-              Fiberchat.toast(getTranslated(this.context, 'erroroccured'));
+              CuChat.toast(getTranslated(this.context, 'erroroccured'));
             } else if (result == false) {
-              Fiberchat.toast(
+              CuChat.toast(
                 'Error occured while writing setupAdminAppCompatibleDataForFirstTime().Please restart the app.',
               );
             }
           });
         }
       }).catchError((err) {
-        Fiberchat.toast(
+        CuChat.toast(
           'Error occured while fetching appsettings/userapp. ERROR: $err',
         );
       });
@@ -945,7 +945,7 @@ class HomepageState extends State<Homepage>
                     child: AlertDialog(
                       title: Text(
                         title,
-                        style: TextStyle(color: fiberchatDeepGreen),
+                        style: TextStyle(color: campusChat),
                       ),
                       content: Text(message),
                       actions: <Widget>[
@@ -953,7 +953,7 @@ class HomepageState extends State<Homepage>
                         FlatButton(
                           child: Text(
                             btnLabel,
-                            style: TextStyle(color: fiberchatLightGreen),
+                            style: TextStyle(color: campusChatLight2),
                           ),
                           onPressed: () => Platform.isAndroid
                               ? launch(doc['url'])
@@ -1019,13 +1019,13 @@ class HomepageState extends State<Homepage>
               .doc('userapp')
               .set({'version': '1.0.0', 'url': 'https://www.google.com/'},
                   SetOptions(merge: true));
-          Fiberchat.toast(
+          CuChat.toast(
             getTranslated(context, 'setup'),
           );
         }
       }).catchError((err) {
         print('FETCHING ERROR AT INITIAL STARTUP: $err');
-        Fiberchat.toast(
+        CuChat.toast(
           getTranslated(context, 'loadingfailed') + err.toString(),
         );
       });
@@ -1042,7 +1042,7 @@ class HomepageState extends State<Homepage>
     DateTime now = DateTime.now();
     if (now.difference(currentBackPressTime!) > Duration(seconds: 3)) {
       currentBackPressTime = now;
-      Fiberchat.toast('Double Tap To Go Back');
+      CuChat.toast('Double Tap To Go Back');
       return Future.value(false);
     } else {
       if (!isAuthenticating) setLastSeen();
@@ -1064,15 +1064,16 @@ class HomepageState extends State<Homepage>
                 : ConnectWithAdminApp == true && isFetching == true
                     ? Splashscreen()
                     : PickupLayout(
-                        scaffold: Fiberchat.getNTPWrappedWidget(WillPopScope(
+                        scaffold: CuChat.getNTPWrappedWidget(WillPopScope(
                         onWillPop: onWillPop,
                         child: Scaffold(
-                            backgroundColor: Colors.white,
+                            //Colors.white,
                             appBar: AppBar(
                                 backgroundColor:
                                     DESIGN_TYPE == Themetype.whatsapp
-                                        ? fiberchatDeepGreen
+                                        ? campusChat
                                         : fiberchatWhite,
+                                centerTitle: true,
                                 title: Text(
                                   Appname,
                                   style: TextStyle(
@@ -1083,6 +1084,7 @@ class HomepageState extends State<Homepage>
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
+                                elevation: 0,
                                 actions: <Widget>[
                                   PopupMenuButton(
                                       padding: EdgeInsets.all(0),
@@ -1177,7 +1179,7 @@ class HomepageState extends State<Homepage>
                                                                         context),
                                                                     shouldPop:
                                                                         false,
-                                                                    type: Fiberchat.getAuthenticationType(
+                                                                    type: CuChat.getAuthenticationType(
                                                                         biometricEnabled,
                                                                         _cachedModel),
                                                                     prefs: widget
@@ -1190,7 +1192,7 @@ class HomepageState extends State<Homepage>
                                                                           builder: (context) => ProfileSetting(
                                                                                 prefs: widget.prefs,
                                                                                 biometricEnabled: biometricEnabled,
-                                                                                type: Fiberchat.getAuthenticationType(biometricEnabled, _cachedModel),
+                                                                                type: CuChat.getAuthenticationType(biometricEnabled, _cachedModel),
                                                                               )));
                                                                 });
                                                               },
@@ -1198,7 +1200,7 @@ class HomepageState extends State<Homepage>
                                                                   currentUserNo!,
                                                               biometricEnabled:
                                                                   biometricEnabled,
-                                                              type: Fiberchat
+                                                              type: CuChat
                                                                   .getAuthenticationType(
                                                                       biometricEnabled,
                                                                       _cachedModel),
@@ -1209,7 +1211,7 @@ class HomepageState extends State<Homepage>
                                             if (observer
                                                     .isAllowCreatingGroups ==
                                                 false) {
-                                              Fiberchat.showRationale(
+                                              CuChat.showRationale(
                                                   getTranslated(this.context,
                                                       'disabled'));
                                             } else {
@@ -1249,13 +1251,13 @@ class HomepageState extends State<Homepage>
                                                   getTranslated(
                                                       context, 'newgroup'),
                                                 )),
-                                            PopupMenuItem<String>(
+                                            /*PopupMenuItem<String>(
                                               value: 'tutorials',
                                               child: Text(
                                                 getTranslated(
                                                     context, 'tutorials'),
                                               ),
-                                            ),
+                                            ),*/
                                             PopupMenuItem<String>(
                                                 value: 'settings',
                                                 child: Text(
@@ -1264,7 +1266,7 @@ class HomepageState extends State<Homepage>
                                                 )),
                                           ]),
                                 ],
-                                bottom: TabBar(
+                                /*bottom: TabBar(
                                   labelStyle: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -1279,10 +1281,11 @@ class HomepageState extends State<Homepage>
                                           ? fiberchatWhite.withOpacity(0.6)
                                           : fiberchatBlack.withOpacity(0.6),
                                   indicatorWeight: 3,
+                                  indicatorSize: TabBarIndicatorSize.tab,
                                   indicatorColor:
                                       DESIGN_TYPE == Themetype.whatsapp
-                                          ? fiberchatWhite
-                                          : fiberchatgreen,
+                                          ? Colors.black
+                                          : campusChat,
                                   controller:
                                       observer.isCallFeatureTotallyHide == false
                                           ? controllerIfcallallowed
@@ -1290,24 +1293,25 @@ class HomepageState extends State<Homepage>
                                   tabs: observer.isCallFeatureTotallyHide ==
                                           false
                                       ? <Widget>[
-                                          Tab(
-                                            icon: Icon(
-                                              Icons.search,
-                                              size: 22,
-                                            ),
-                                          ),
+                                    /*Tab(
+                                      icon: Icon(
+                                        Icons.search,
+                                        size: 22,
+                                      ),
+                                    ),*/
+                                    Tab(
+                                      child: Text(
+                                        getTranslated(context, 'status'),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
                                           Tab(
                                             child: Text(
                                               getTranslated(context, 'chats'),
                                               textAlign: TextAlign.center,
                                             ),
                                           ),
-                                          Tab(
-                                            child: Text(
-                                              getTranslated(context, 'status'),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
+
                                           Tab(
                                             child: Text(
                                               getTranslated(context, 'calls'),
@@ -1316,83 +1320,111 @@ class HomepageState extends State<Homepage>
                                           ),
                                         ]
                                       : <Widget>[
-                                          Tab(
+                                          /*Tab(
                                             icon: Icon(
                                               Icons.search,
                                               size: 22,
                                             ),
-                                          ),
+                                          ),*/
+                                    Tab(
+                                      child: Text(
+                                        getTranslated(context, 'status'),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
                                           Tab(
                                             child: Text(
                                               getTranslated(context, 'chats'),
                                               textAlign: TextAlign.center,
                                             ),
                                           ),
-                                          Tab(
-                                            child: Text(
-                                              getTranslated(context, 'status'),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
+
                                         ],
-                                )),
-                            body: TabBarView(
-                              controller:
-                                  observer.isCallFeatureTotallyHide == false
-                                      ? controllerIfcallallowed
-                                      : controllerIfcallNotallowed,
-                              children: observer.isCallFeatureTotallyHide ==
-                                      false
-                                  ? <Widget>[
-                                      SearchChats(
-                                          prefs: widget.prefs,
-                                          currentUserNo: widget.currentUserNo,
-                                          isSecuritySetupDone:
-                                              widget.isSecuritySetupDone),
-                                      RecentChats(
-                                          prefs: widget.prefs,
-                                          currentUserNo: widget.currentUserNo,
-                                          isSecuritySetupDone:
-                                              widget.isSecuritySetupDone),
-                                      Status(
-                                          currentUserFullname: userFullname,
-                                          currentUserPhotourl: userPhotourl,
-                                          phoneNumberVariants:
-                                              this.phoneNumberVariants,
-                                          currentUserNo: currentUserNo,
-                                          model: _cachedModel,
-                                          biometricEnabled: biometricEnabled,
-                                          prefs: widget.prefs),
-                                      CallHistory(
-                                        userphone: widget.currentUserNo,
-                                        prefs: widget.prefs,
-                                      ),
-                                    ]
-                                  : <Widget>[
-                                      SearchChats(
-                                          prefs: widget.prefs,
-                                          currentUserNo: widget.currentUserNo,
-                                          isSecuritySetupDone:
-                                              widget.isSecuritySetupDone),
-                                      RecentChats(
-                                          prefs: widget.prefs,
-                                          currentUserNo: widget.currentUserNo,
-                                          isSecuritySetupDone:
-                                              widget.isSecuritySetupDone),
-                                      Status(
-                                          currentUserFullname: userFullname,
-                                          currentUserPhotourl: userPhotourl,
-                                          phoneNumberVariants:
-                                              this.phoneNumberVariants,
-                                          currentUserNo: currentUserNo,
-                                          model: _cachedModel,
-                                          biometricEnabled: biometricEnabled,
-                                          prefs: widget.prefs),
-                                    ],
+                                )*/),
+                            backgroundColor: campusChat,
+                            body: Column(
+                              children: [
+                                tab_bar(observer: observer, controllerIfcallallowed: controllerIfcallallowed, controllerIfcallNotallowed: controllerIfcallNotallowed),
+                                /*Container(
+                                  */
+                                  //color: campusChat,
+
+                                  Expanded(
+                                    child: Container(
+
+                                      height: 100,
+                                      color: campusChat,
+                                      //decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.only(
+                                          //topLeft: Radius.circular(30),
+                                          //topRight: Radius.circular(30))),
+                                      child: TabBarView(
+
+                                          controller:
+                                              observer.isCallFeatureTotallyHide == false
+                                                  ? controllerIfcallallowed
+                                                  : controllerIfcallNotallowed,
+                                          children: observer.isCallFeatureTotallyHide ==
+                                                  false
+                                              ? <Widget>[
+                                                  /*SearchChats(
+                                                      prefs: widget.prefs,
+                                                      currentUserNo: widget.currentUserNo,
+                                                      isSecuritySetupDone:
+                                                          widget.isSecuritySetupDone),*/
+
+                                            Status(
+                                                currentUserFullname: userFullname,
+                                                currentUserPhotourl: userPhotourl,
+                                                phoneNumberVariants:
+                                                this.phoneNumberVariants,
+                                                currentUserNo: currentUserNo,
+                                                model: _cachedModel,
+                                                biometricEnabled: biometricEnabled,
+                                                prefs: widget.prefs),
+
+                                                  RecentChats(
+                                                      prefs: widget.prefs,
+                                                      currentUserNo: widget.currentUserNo,
+                                                      isSecuritySetupDone:
+                                                          widget.isSecuritySetupDone),
+
+                                                  CallHistory(
+                                                    userphone: widget.currentUserNo,
+                                                    prefs: widget.prefs,
+                                                  ),
+                                                ]
+                                              : <Widget>[
+                                                  /*SearchChats(
+                                                      prefs: widget.prefs,
+                                                      currentUserNo: widget.currentUserNo,
+                                                      isSecuritySetupDone:
+                                                          widget.isSecuritySetupDone),*/
+                                                  RecentChats(
+                                                      prefs: widget.prefs,
+                                                      currentUserNo: widget.currentUserNo,
+                                                      isSecuritySetupDone:
+                                                          widget.isSecuritySetupDone),
+                                                  Status(
+                                                      currentUserFullname: userFullname,
+                                                      currentUserPhotourl: userPhotourl,
+                                                      phoneNumberVariants:
+                                                          this.phoneNumberVariants,
+                                                      currentUserNo: currentUserNo,
+                                                      model: _cachedModel,
+                                                      biometricEnabled: biometricEnabled,
+                                                      prefs: widget.prefs),
+                                                ],
+                                        ),
+                                    ),
+                                  ),
+
+                              ],
                             )),
                       )));
   }
 }
+
+
 
 Future<dynamic> myBackgroundMessageHandlerAndroid(RemoteMessage message) async {
   if (message.data['title'] == 'Call Ended' ||
@@ -1512,7 +1544,7 @@ Future _showNotificationWithDefaultSound(String? title, String? message,
 
 Widget errorScreen(String? title, String? subtitle) {
   return Scaffold(
-    backgroundColor: fiberchatDeepGreen,
+    backgroundColor: campusChat,
     body: Center(
       child: Padding(
         padding: const EdgeInsets.all(30.0),
