@@ -89,7 +89,7 @@ class _FiberchatWrapperState extends State<FiberchatWrapper> {
       return Container(
         child: Center(
           child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color?>(Colors.blue[800])),
+              valueColor: AlwaysStoppedAnimation<Color?>(Colors.red[800])),
         ),
       );
     } else {
@@ -155,7 +155,7 @@ class _FiberchatWrapperState extends State<FiberchatWrapper> {
                                 return widget!;
                               },
                               theme: ThemeData(
-                                  fontFamily: FONTFAMILY_NAME,
+                                  fontFamily: 'ubuntu',
                                   primaryColor: campusChat,
                                   primaryColorLight: campusChat,
                                   indicatorColor: campusChatLight),
@@ -226,6 +226,7 @@ class _FiberchatWrapperState extends State<FiberchatWrapper> {
                   });
             }
             return MaterialApp(
+              theme: ThemeData(fontFamily: 'ubuntu'),
               debugShowCheckedModeBanner: false,
               home: Splashscreen(),
             );
