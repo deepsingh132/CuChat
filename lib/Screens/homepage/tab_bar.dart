@@ -23,6 +23,8 @@ class tab_bar extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 4),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
       height: 80,
+      //decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50) , bottomRight: Radius.circular(40))),
+
       child: TabBar(
         indicator: ShapeDecoration(
             color: Colors.black, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
@@ -59,12 +61,16 @@ class tab_bar extends StatelessWidget {
               size: 22,
             ),
           ),*/
+
+
+
           Tab(
             child: Text(
               getTranslated(context, 'status'),
               textAlign: TextAlign.center,
             ),
           ),
+
           Tab(
             child: Text(
               getTranslated(context, 'chats'),
@@ -86,18 +92,21 @@ class tab_bar extends StatelessWidget {
                     size: 22,
                   ),
                 ),*/
+
           Tab(
             child: Text(
               getTranslated(context, 'status'),
               textAlign: TextAlign.center,
             ),
           ),
+
           Tab(
             child: Text(
               getTranslated(context, 'chats'),
               textAlign: TextAlign.center,
             ),
           ),
+
 
         ],
       ),

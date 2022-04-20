@@ -32,7 +32,6 @@ import 'package:CuChat/Services/localization/language_constants.dart';
 import 'package:CuChat/Screens/profile_settings/profileSettings.dart';
 import 'package:CuChat/main.dart';
 import 'package:CuChat/Screens/recent_chats/RecentsChats.dart';
-import 'package:CuChat/Screens/search_chats/SearchRecentChat.dart';
 import 'package:CuChat/Screens/call_history/callhistory.dart';
 import 'package:CuChat/Models/DataModel.dart';
 import 'package:CuChat/Services/Providers/user_provider.dart';
@@ -56,6 +55,7 @@ import 'package:CuChat/Configs/Enum.dart';
 import 'package:CuChat/Utils/unawaited.dart';
 
 class Homepage extends StatefulWidget {
+
   Homepage(
       {required this.currentUserNo,
       required this.isSecuritySetupDone,
@@ -74,11 +74,14 @@ class HomepageState extends State<Homepage>
         WidgetsBindingObserver,
         AutomaticKeepAliveClientMixin,
         TickerProviderStateMixin {
+
   HomepageState({Key? key, this.currentUserNo}) {
+
     _filter.addListener(() {
       _userQuery.add(_filter.text.isEmpty ? '' : _filter.text);
     });
   }
+  ScrollController controller=ScrollController();
   TabController? controllerIfcallallowed;
   TabController? controllerIfcallNotallowed;
   late StreamSubscription _intentDataStreamSubscription;
@@ -191,7 +194,10 @@ class HomepageState extends State<Homepage>
               widget.prefs.getBool('islanguageselected') == null)) {
         Locale _locale = await setLocale('ja');
         FiberchatWrapper.setLocale(context, _locale);
-        setState(() {});
+        //setState(() {});
+        if (mounted) {
+          setState(() => {});
+        }
       }
     }).catchError((onError) {
       CuChat.toast(
@@ -293,15 +299,18 @@ class HomepageState extends State<Homepage>
     // For sharing images coming from outside the app while the app is in the memory
     _intentDataStreamSubscription = ReceiveSharingIntent.getMediaStream()
         .listen((List<SharedMediaFile> value) {
+          if(mounted){
       setState(() {
+
         _sharedFiles = value;
-      });
+      });}
     }, onError: (err) {
       print("getIntentDataStream error: $err");
     });
 
     // For sharing images coming from outside the app while the app is closed
     ReceiveSharingIntent.getInitialMedia().then((List<SharedMediaFile> value) {
+      if(mounted)
       setState(() {
         _sharedFiles = value;
       });
@@ -310,6 +319,7 @@ class HomepageState extends State<Homepage>
     // For sharing or opening urls/text coming from outside the app while the app is in the memory
     _intentDataStreamSubscription =
         ReceiveSharingIntent.getTextStream().listen((String value) {
+          if(mounted)
       setState(() {
         _sharedText = value;
       });
@@ -319,6 +329,7 @@ class HomepageState extends State<Homepage>
 
     // For sharing or opening urls/text coming from outside the app while the app is closed
     ReceiveSharingIntent.getInitialText().then((String? value) {
+      if(mounted)
       setState(() {
         _sharedText = value;
       });
@@ -359,6 +370,7 @@ class HomepageState extends State<Homepage>
   setdeviceinfo() async {
     if (Platform.isAndroid == true) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      if(mounted)
       setState(() {
         deviceid = androidInfo.id + androidInfo.androidId;
         mapDeviceInfo = {
@@ -374,6 +386,7 @@ class HomepageState extends State<Homepage>
       });
     } else if (Platform.isIOS == true) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      if(mounted)
       setState(() {
         deviceid = iosInfo.systemName + iosInfo.model + iosInfo.systemVersion;
         mapDeviceInfo = {
@@ -678,6 +691,7 @@ class HomepageState extends State<Homepage>
             });
             CuChat.toast(getTranslated(this.context, 'erroroccured'));
           } else {
+            if(mounted)
             setState(() {
               isblockNewlogins = doc[Dbkeys.isblocknewlogins];
               isApprovalNeededbyAdminForNewUser =
@@ -686,6 +700,7 @@ class HomepageState extends State<Homepage>
             });
             if (doc[Dbkeys.isemulatorallowed] == false &&
                 mapDeviceInfo[Dbkeys.deviceInfoISPHYSICAL] == false) {
+              if(mounted)
               setState(() {
                 isNotAllowEmulator = true;
               });
@@ -698,6 +713,7 @@ class HomepageState extends State<Homepage>
                   true) {
                 await unsubscribeToNotification(widget.currentUserNo);
                 maintainanceMessage = doc[Dbkeys.maintainancemessage];
+                if(mounted)
                 setState(() {});
               } else {
                 final PackageInfo info = await PackageInfo.fromPlatform();
@@ -831,6 +847,7 @@ class HomepageState extends State<Homepage>
                           await logout(context);
                         } else if (userDoc[Dbkeys.accountstatus] !=
                             Dbkeys.sTATUSallowed) {
+                          if(mounted)
                           setState(() {
                             accountstatus = userDoc[Dbkeys.accountstatus];
                             accountactionmessage =
@@ -855,6 +872,7 @@ class HomepageState extends State<Homepage>
                           }, SetOptions(merge: true));
                           unawaited(widget.prefs
                               .setBool(Dbkeys.isTokenGenerated, true));
+                          if(mounted)
 
                           setState(() {
                             userFullname = userDoc[Dbkeys.nickname];
@@ -1037,6 +1055,7 @@ class HomepageState extends State<Homepage>
   StreamController<String> _userQuery =
       new StreamController<String>.broadcast();
 
+
   DateTime? currentBackPressTime = DateTime.now();
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
@@ -1054,6 +1073,8 @@ class HomepageState extends State<Homepage>
   Widget build(BuildContext context) {
     super.build(context);
     final observer = Provider.of<Observer>(context, listen: true);
+    //final ScrollController controller;
+
     return isNotAllowEmulator == true
         ? errorScreen(
             'Emulator Not Allowed.', ' Please use any real device & Try again.')
@@ -1342,9 +1363,16 @@ class HomepageState extends State<Homepage>
                                         ],
                                 )*/),
                             backgroundColor: campusChat,
-                            body: Column(
+
+                            body:
+
+
+                            Column(
                               children: [
                                 tab_bar(observer: observer, controllerIfcallallowed: controllerIfcallallowed, controllerIfcallNotallowed: controllerIfcallNotallowed),
+
+
+
                                 /*Container(
                                   */
                                   //color: campusChat,
@@ -1352,12 +1380,8 @@ class HomepageState extends State<Homepage>
                                   Expanded(
                                     child: Container(
 
-                                      height: 100,
-                                      color: campusChat,
-                                      //decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.only(
-                                          //topLeft: Radius.circular(30),
-                                          //topRight: Radius.circular(30))),
                                       child: TabBarView(
+                                        physics: NeverScrollableScrollPhysics(),
 
                                           controller:
                                               observer.isCallFeatureTotallyHide == false
@@ -1372,6 +1396,7 @@ class HomepageState extends State<Homepage>
                                                       isSecuritySetupDone:
                                                           widget.isSecuritySetupDone),*/
 
+
                                             Status(
                                                 currentUserFullname: userFullname,
                                                 currentUserPhotourl: userPhotourl,
@@ -1382,28 +1407,26 @@ class HomepageState extends State<Homepage>
                                                 biometricEnabled: biometricEnabled,
                                                 prefs: widget.prefs),
 
-                                                  RecentChats(
-                                                      prefs: widget.prefs,
-                                                      currentUserNo: widget.currentUserNo,
-                                                      isSecuritySetupDone:
-                                                          widget.isSecuritySetupDone),
+                                            RecentChats(
+                                                prefs: widget.prefs,
+                                                currentUserNo: widget.currentUserNo,
+                                                isSecuritySetupDone:
+                                                widget.isSecuritySetupDone, controller: controller,),
 
                                                   CallHistory(
                                                     userphone: widget.currentUserNo,
                                                     prefs: widget.prefs,
                                                   ),
                                                 ]
+
                                               : <Widget>[
                                                   /*SearchChats(
                                                       prefs: widget.prefs,
                                                       currentUserNo: widget.currentUserNo,
                                                       isSecuritySetupDone:
                                                           widget.isSecuritySetupDone),*/
-                                                  RecentChats(
-                                                      prefs: widget.prefs,
-                                                      currentUserNo: widget.currentUserNo,
-                                                      isSecuritySetupDone:
-                                                          widget.isSecuritySetupDone),
+
+
                                                   Status(
                                                       currentUserFullname: userFullname,
                                                       currentUserPhotourl: userPhotourl,
@@ -1413,13 +1436,22 @@ class HomepageState extends State<Homepage>
                                                       model: _cachedModel,
                                                       biometricEnabled: biometricEnabled,
                                                       prefs: widget.prefs),
+                                                 /* RecentChats(
+                                                      prefs: widget.prefs,
+                                                      currentUserNo: widget.currentUserNo,
+                                                      isSecuritySetupDone:
+                                                      widget.isSecuritySetupDone),*/
                                                 ],
                                         ),
                                     ),
                                   ),
 
                               ],
-                            )),
+                            ),
+
+
+
+                        ),
                       )));
   }
 }
