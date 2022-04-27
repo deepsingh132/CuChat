@@ -1,7 +1,7 @@
 # Privacy Policy & Terms and Conditions for CuChat 
 
 
-<h2>Privacy Policy for AppSide</h1>
+<h2>Privacy Policy for AppSide</h2>
 
 <p>At CuChat, accessible from https://github.com/deepsingh132/cuchat, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by CuChat and how we use it.</p>
 
