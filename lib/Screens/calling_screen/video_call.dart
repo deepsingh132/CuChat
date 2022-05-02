@@ -344,12 +344,12 @@ class _VideoCallState extends State<VideoCall> {
                       isspeaker
                           ? Icons.volume_mute_rounded
                           : Icons.volume_off_sharp,
-                      color: isspeaker ? Colors.white : Colors.blueAccent,
+                      color: isspeaker ? Colors.white :Colors.black,
                       size: 22.0,
                     ),
                     shape: CircleBorder(),
                     elevation: 2.0,
-                    fillColor: isspeaker ? Colors.blueAccent : Colors.white,
+                    fillColor: isspeaker ? campusChat : campusChat,
                     padding: const EdgeInsets.all(12.0),
                   ))
               : SizedBox(height: 0, width: 65.67),
@@ -360,12 +360,12 @@ class _VideoCallState extends State<VideoCall> {
                     onPressed: _onToggleMute,
                     child: Icon(
                       muted ? Icons.mic_off : Icons.mic,
-                      color: muted ? Colors.white : Colors.blueAccent,
+                      color: muted ? Colors.black : Colors.white,
                       size: 22.0,
                     ),
                     shape: CircleBorder(),
                     elevation: 2.0,
-                    fillColor: muted ? Colors.blueAccent : Colors.white,
+                    fillColor: muted ? campusChat : campusChat,
                     padding: const EdgeInsets.all(12.0),
                   ))
               : SizedBox(height: 42, width: 65.67),
@@ -391,7 +391,7 @@ class _VideoCallState extends State<VideoCall> {
               elevation: 2.0,
               fillColor: status == 'ended' || status == 'rejected'
                   ? Colors.black
-                  : Colors.redAccent,
+                  : campusChat,
               padding: const EdgeInsets.all(15.0),
             ),
           ),
@@ -405,12 +405,12 @@ class _VideoCallState extends State<VideoCall> {
                     onPressed: _onSwitchCamera,
                     child: Icon(
                       Icons.switch_camera,
-                      color: Colors.blueAccent,
+                      color: Colors.white,
                       size: 20.0,
                     ),
                     shape: CircleBorder(),
                     elevation: 2.0,
-                    fillColor: Colors.white,
+                    fillColor: campusChat,
                     padding: const EdgeInsets.all(12.0),
                   ),
                 ),
@@ -424,12 +424,12 @@ class _VideoCallState extends State<VideoCall> {
                     },
                     child: Icon(
                       Icons.open_in_full_outlined,
-                      color: Colors.black87,
+                      color: Colors.white,
                       size: 15.0,
                     ),
                     shape: CircleBorder(),
                     elevation: 2.0,
-                    fillColor: Colors.white,
+                    fillColor: campusChat,
                     padding: const EdgeInsets.all(12.0),
                   ),
                 )
@@ -456,7 +456,7 @@ class _VideoCallState extends State<VideoCall> {
           Icons.videocam_off,
           size: 120,
           color: DESIGN_TYPE == Themetype.whatsapp
-              ? fiberchatWhite.withOpacity(0.38)
+              ? fiberchatBlack//.withOpacity(0.38)
               : fiberchatBlack.withOpacity(0.38),
         )),
       );
@@ -546,7 +546,7 @@ class _VideoCallState extends State<VideoCall> {
                           horizontal: 15,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: campusChat,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
@@ -557,8 +557,8 @@ class _VideoCallState extends State<VideoCall> {
                                   : 'calling'),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Colors.black87),
+                              fontSize: 18,
+                              color: Colors.white),
                         )),
                   )
                 : SizedBox(
@@ -597,7 +597,7 @@ class _VideoCallState extends State<VideoCall> {
                         ),
                         decoration: BoxDecoration(
                           color: DESIGN_TYPE == Themetype.whatsapp
-                              ? fiberchatWhite
+                              ? Colors.black
                               : Colors.red,
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -607,7 +607,7 @@ class _VideoCallState extends State<VideoCall> {
                               fontWeight: FontWeight.bold,
                               fontSize: 13,
                               color: DESIGN_TYPE == Themetype.whatsapp
-                                  ? Colors.red
+                                  ? Colors.white
                                   : fiberchatWhite),
                         )),
                   )

@@ -23,6 +23,7 @@ class tab_bar extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 4),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
       height: 80,
+
       //decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50) , bottomRight: Radius.circular(40))),
 
       child: TabBar(
@@ -31,16 +32,18 @@ class tab_bar extends StatelessWidget {
         ),
         labelStyle: TextStyle(
           fontWeight: FontWeight.bold,
+          fontSize: 25
         ),
         unselectedLabelStyle: TextStyle(
           fontWeight: FontWeight.bold,
+          fontSize: 18
         ),
         labelColor: DESIGN_TYPE == Themetype.whatsapp
             ? fiberchatWhite
             : fiberchatBlack,
         unselectedLabelColor:
         DESIGN_TYPE == Themetype.whatsapp
-            ? fiberchatWhite.withOpacity(0.6)
+            ? fiberchatBlack//.withOpacity(0.6)
             : fiberchatBlack.withOpacity(0.6),
         indicatorWeight: 3,
         indicatorSize: TabBarIndicatorSize.tab,

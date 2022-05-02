@@ -84,3 +84,4 @@ const FONTFAMILY_NAME = 'assets/fonts/Ubuntu-Medium.ttf';
 //--WARNING----- PLEASE DONT EDIT THE BELOW LINES UNLESS YOU ARE A DEVELOPER -------
 const SplashPath = 'assets/images/splashscreen.gif';
 const AppLogoPath = 'assets/images/applogo.png';
+const loginIcon = 'assets/images/appicon.png';

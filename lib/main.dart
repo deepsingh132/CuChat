@@ -166,20 +166,6 @@ class _FiberchatWrapperState extends State<FiberchatWrapper> {
                                 prefs: snapshot.data!,
                                 currentUserNo:
                                     snapshot.data!.getString(Dbkeys.phone),
-                                isSecuritySetupDone: snapshot.data!.getString(
-                                            Dbkeys.isSecuritySetupDone) ==
-                                        null
-                                    ? false
-                                    : ((snapshot.data!
-                                                .getString(Dbkeys.phone) ==
-                                            null)
-                                        ? false
-                                        : (snapshot.data!.getString(Dbkeys
-                                                    .isSecuritySetupDone) ==
-                                                snapshot.data!
-                                                    .getString(Dbkeys.phone))
-                                            ? true
-                                            : false),
                               ),
 
                               // ignore: todo

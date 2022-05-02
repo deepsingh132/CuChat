@@ -23,12 +23,10 @@ class Contacts extends StatefulWidget {
   const Contacts({
     required this.currentUserNo,
     required this.model,
-    required this.biometricEnabled,
     required this.prefs,
   });
   final String? currentUserNo;
   final DataModel? model;
-  final bool biometricEnabled;
   final SharedPreferences prefs;
   @override
   _ContactsState createState() => new _ContactsState();
@@ -128,7 +126,7 @@ class _ContactsState extends State<Contacts>
 
     completer.future.then((c) {
       c.removeWhere((key, val) => _isHidden(key));
-      if (mounted) {
+       {
         setState(() {
           this.contacts = this._filtered = c;
         });
@@ -367,10 +365,7 @@ class _ContactsState extends State<Contacts>
                                                 prefs: widget.prefs,
                                                 shouldPop: false,
                                                 state: Navigator.of(context),
-                                                type: CuChat
-                                                    .getAuthenticationType(
-                                                        widget.biometricEnabled,
-                                                        model), onSuccess: () {
+                                                 onSuccess: () {
                                               Navigator.pushAndRemoveUntil(
                                                   context,
                                                   new MaterialPageRoute(

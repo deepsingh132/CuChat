@@ -51,7 +51,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
   }
 
   void setStateIfMounted(f) {
-    if (mounted) setState(f);
+     setState(f);
   }
 
   setInitial(BuildContext context) {
@@ -146,7 +146,6 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                 prefs: widget.prefs,
                                 model: widget.model,
                                 currentUserNo: widget.currentUserNo,
-                                biometricEnabled: widget.biometricEnabled,
                               );
                             }));
                           },
@@ -338,11 +337,7 @@ class _SmartContactsPageState extends State<SmartContactsPage> {
                                                                 state: Navigator
                                                                     .of(
                                                                         context),
-                                                                type: CuChat
-                                                                    .getAuthenticationType(
-                                                                        widget
-                                                                            .biometricEnabled,
-                                                                        model),
+
                                                                 onSuccess: () {
                                                               Navigator.pushAndRemoveUntil(
                                                                   context,

@@ -141,8 +141,7 @@ class SearchChatsState extends State<SearchChats> {
                               getTranslated(context, 'auth_neededchat'),
                               state: state,
                               shouldPop: false,
-                              type: CuChat.getAuthenticationType(
-                                  biometricEnabled, _cachedModel),
+
                               prefs: widget.prefs, onSuccess: () {
                             state.pushReplacement(new MaterialPageRoute(
                                 builder: (context) => new ChatScreen(

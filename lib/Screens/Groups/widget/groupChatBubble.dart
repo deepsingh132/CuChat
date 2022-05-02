@@ -45,11 +45,11 @@ class GroupChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bg = isMe ? campusChatLight2 : fiberchatWhite;
+    final bg = isMe ? campusChat: campusChatLight2;
     final align = isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start;
-    dynamic icon = Icons.done;
+    dynamic icon = Icons.check_circle;
     final color = isMe
-        ? fiberchatBlack.withOpacity(0.5)
+        ? fiberchatWhite//.withOpacity(1)
         : fiberchatWhite.withOpacity(1);
     icon = Icon(icon, size: 14.0, color: color);
     if (delivered is Future) {
@@ -167,14 +167,15 @@ class GroupChatBubble extends StatelessWidget {
                                                         .width /
                                                     3,
                                                 child: Text(
-                                                  '~' +
+                                                  '♠ ' +
                                                       '${snapshot.data[Dbkeys.nickname]}',
                                                   textAlign: TextAlign.end,
                                                   maxLines: 1,
+
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: TextStyle(
-                                                      color: fiberchatGrey,
+                                                      color: Colors.white,
                                                       fontSize: 12.5),
                                                 ),
                                               )
@@ -215,10 +216,10 @@ class GroupChatBubble extends StatelessWidget {
                                             height: 10,
                                           ),
                                           Text(
-                                            '~' + postedbyname,
+                                            '♠ ' + postedbyname,
                                             textAlign: TextAlign.end,
                                             style: TextStyle(
-                                                color: fiberchatGrey,
+                                                color: Colors.white,
                                                 fontSize: 12.5),
                                           ),
                                         ],
@@ -274,8 +275,10 @@ class GroupChatBubble extends StatelessWidget {
                               ', ',
                           style: TextStyle(
                             color: color,
+                            letterSpacing: -0.6,
                             fontSize: 11.0,
-                          )),
+                          )
+                      ),
                       Text(
                           ' ' +
                               humanReadableTime().toString() +
@@ -337,7 +340,7 @@ class GroupChatBubble extends StatelessWidget {
 
       default:
         {
-          return Colors.blue;
+          return Colors.white;
         }
     }
   }

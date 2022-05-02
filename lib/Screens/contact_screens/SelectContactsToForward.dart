@@ -50,7 +50,7 @@ class _SelectContactsToForwardState extends State<SelectContactsToForward>
   bool get wantKeepAlive => true;
 
   void setStateIfMounted(f) {
-    if (mounted) setState(f);
+     setState(f);
   }
 
   @override

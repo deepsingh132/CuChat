@@ -1,4 +1,5 @@
 
+import 'package:CuChat/Configs/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './countries.dart';
@@ -292,6 +293,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           child: TextFormField(
             initialValue: widget.initialValue,
             readOnly: widget.readOnly,
+            cursorColor: campusChat,
             obscureText: widget.obscureText,
             textAlign: widget.textAlign,
             onTap: () {
@@ -299,10 +301,20 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             },
             controller: widget.controller,
             focusNode: widget.focusNode,
+
+
             onFieldSubmitted: (s) {
               if (widget.onSubmitted != null) widget.onSubmitted!(s);
             },
             decoration: widget.decoration,
+            /*decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: campusChat, width: 1.5),
+                ),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black))
+
+            ),*/
             style: widget.style,
             onSaved: (value) {
               if (widget.onSaved != null)

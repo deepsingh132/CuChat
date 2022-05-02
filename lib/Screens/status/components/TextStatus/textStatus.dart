@@ -89,7 +89,7 @@ class _TextStatusState extends State<TextStatus> {
                     } else {
                       colorIndex++;
                     }
-                    if (mounted) setState(() {});
+                     setState(() {});
                   },
                   icon: Icon(Icons.palette_rounded,
                       size: 30, color: Colors.white),

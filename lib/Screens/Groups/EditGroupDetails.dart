@@ -241,6 +241,9 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
                               Row(
                                 children: [
                                   Radio<String>(
+                                    activeColor: campusChat,
+                                    focusColor: campusChat,
+                                    hoverColor: campusChat,
                                     value: 'Both User & Admin Messages Allowed',
                                     groupValue: groupType,
                                     onChanged: (v) {
@@ -263,6 +266,10 @@ class EditGroupDetailsState extends State<EditGroupDetails> {
                               Row(
                                 children: [
                                   Radio<String>(
+
+                                    activeColor: campusChat,
+                                    focusColor: campusChat,
+                                    hoverColor: campusChat,
                                     value: 'Only Admin Messages Allowed',
                                     groupValue: groupType,
                                     onChanged: (v) {

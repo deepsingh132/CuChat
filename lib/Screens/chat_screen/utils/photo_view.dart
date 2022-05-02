@@ -52,7 +52,7 @@ class PhotoViewWrapper extends StatelessWidget {
           backgroundColor: Colors.transparent,
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: campusChatLight2,
+          backgroundColor: campusChat,
           onPressed: Platform.isIOS
               ? () {
                   launch(message!);
@@ -81,6 +81,7 @@ class PhotoViewWrapper extends StatelessWidget {
                 },
           child: Icon(
             Icons.file_download,
+            color: Colors.white,
           ),
         ),
         body: Container(

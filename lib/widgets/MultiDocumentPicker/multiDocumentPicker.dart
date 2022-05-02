@@ -115,7 +115,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
         children: [
           Icon(
             Icons.insert_drive_file,
-            color: Colors.yellow[900],
+            color: campusChat,
             size: 74,
           ),
           Padding(
@@ -207,7 +207,7 @@ class _MultiDocumentPickerState extends State<MultiDocumentPicker> {
                       children: [
                         Icon(
                           Icons.insert_drive_file,
-                          color: Colors.yellow[900],
+                          color: campusChat,
                           size: 44,
                         ),
                         Padding(

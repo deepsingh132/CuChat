@@ -58,12 +58,10 @@ class Homepage extends StatefulWidget {
 
   Homepage(
       {required this.currentUserNo,
-      required this.isSecuritySetupDone,
       required this.prefs,
       key})
       : super(key: key);
   final String? currentUserNo;
-  final bool isSecuritySetupDone;
   final SharedPreferences prefs;
   @override
   State createState() => new HomepageState(currentUserNo: this.currentUserNo);
@@ -195,7 +193,7 @@ class HomepageState extends State<Homepage>
         Locale _locale = await setLocale('ja');
         FiberchatWrapper.setLocale(context, _locale);
         //setState(() {});
-        if (mounted) {
+         {
           setState(() => {});
         }
       }
@@ -809,8 +807,7 @@ class HomepageState extends State<Homepage>
                   );
 
                   if (currentUserNo == null ||
-                      currentUserNo!.isEmpty ||
-                      widget.isSecuritySetupDone == false) {
+                      currentUserNo!.isEmpty) {
                     await unsubscribeToNotification(widget.currentUserNo);
                     unawaited(Navigator.pushReplacement(
                         context,
@@ -823,8 +820,6 @@ class HomepageState extends State<Homepage>
                                       isApprovalNeededbyAdminForNewUser,
                                   isblocknewlogins: isblockNewlogins,
                                   title: getTranslated(context, 'signin'),
-                                  issecutitysetupdone:
-                                      widget.isSecuritySetupDone,
                                 ))));
                   } else {
                     await FirebaseFirestore.instance
@@ -983,10 +978,7 @@ class HomepageState extends State<Homepage>
             );
           } else {
             if (currentUserNo == null ||
-                currentUserNo!.isEmpty ||
-                widget.isSecuritySetupDone == false ||
-                // ignore: unnecessary_null_comparison
-                widget.isSecuritySetupDone == null)
+                currentUserNo!.isEmpty )
               unawaited(Navigator.pushReplacement(
                   context,
                   new MaterialPageRoute(
@@ -996,8 +988,7 @@ class HomepageState extends State<Homepage>
                             isaccountapprovalbyadminneeded:
                                 isApprovalNeededbyAdminForNewUser,
                             isblocknewlogins: isblockNewlogins,
-                            title: getTranslated(context, 'signin'),
-                            issecutitysetupdone: widget.isSecuritySetupDone,
+                            title: getTranslated(context, 'signin')
                           ))));
             else {
               await FirebaseFirestore.instance
@@ -1069,10 +1060,14 @@ class HomepageState extends State<Homepage>
     }
   }
 
+ late AnimationController _animationController;
+  bool isPlaying = false;
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     final observer = Provider.of<Observer>(context, listen: true);
+    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 450));
     //final ScrollController controller;
 
     return isNotAllowEmulator == true
@@ -1095,14 +1090,15 @@ class HomepageState extends State<Homepage>
                                         ? campusChat
                                         : fiberchatWhite,
                                 centerTitle: true,
+
                                 title: Text(
                                   Appname,
                                   style: TextStyle(
                                     color: DESIGN_TYPE == Themetype.whatsapp
-                                        ? fiberchatWhite
+                                        ? fiberchatBlack
                                         : fiberchatBlack,
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontSize: 35.0,
+                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
                                 elevation: 0,
@@ -1112,13 +1108,12 @@ class HomepageState extends State<Homepage>
                                       icon: Padding(
                                         padding:
                                             const EdgeInsets.only(right: 1),
-                                        child: Icon(
-                                          Icons.more_vert_outlined,
-                                          color:
-                                              DESIGN_TYPE == Themetype.whatsapp
-                                                  ? fiberchatWhite
-                                                  : fiberchatBlack,
-                                        ),
+                                          child: AnimatedIcon(
+                                            icon: AnimatedIcons.menu_arrow,
+                                            progress: _animationController,
+                                            color: Colors.black,
+                                            semanticLabel: 'Show menu',
+                                          ),
                                       ),
                                       color: fiberchatWhite,
                                       onSelected: (dynamic val) async {
@@ -1189,42 +1184,19 @@ class HomepageState extends State<Homepage>
                                                                 await logout(
                                                                     context);
                                                               },
-                                                              onTapEditProfile:
+                                                                onTapEditProfile:
                                                                   () {
-                                                                ChatController.authenticate(
-                                                                    _cachedModel!,
-                                                                    getTranslated(
-                                                                        context,
-                                                                        'auth_needed'),
-                                                                    state: Navigator.of(
-                                                                        context),
-                                                                    shouldPop:
-                                                                        false,
-                                                                    type: CuChat.getAuthenticationType(
-                                                                        biometricEnabled,
-                                                                        _cachedModel),
-                                                                    prefs: widget
-                                                                        .prefs,
-                                                                    onSuccess:
-                                                                        () {
                                                                   Navigator.pushReplacement(
                                                                       context,
                                                                       new MaterialPageRoute(
                                                                           builder: (context) => ProfileSetting(
                                                                                 prefs: widget.prefs,
-                                                                                biometricEnabled: biometricEnabled,
-                                                                                type: CuChat.getAuthenticationType(biometricEnabled, _cachedModel),
+                                                                                biometricEnabled: biometricEnabled
                                                                               )));
-                                                                });
                                                               },
                                                               currentUserNo:
                                                                   currentUserNo!,
-                                                              biometricEnabled:
-                                                                  biometricEnabled,
-                                                              type: CuChat
-                                                                  .getAuthenticationType(
-                                                                      biometricEnabled,
-                                                                      _cachedModel),
+
                                                             )));
 
                                             break;
@@ -1268,9 +1240,15 @@ class HomepageState extends State<Homepage>
                                           <PopupMenuItem<String>>[
                                             PopupMenuItem<String>(
                                                 value: 'group',
-                                                child: Text(
-                                                  getTranslated(
-                                                      context, 'newgroup'),
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Icon(Icons.people, color: campusChat),
+                                                    SizedBox(width: 7),
+                                                    Text(
+                                                      getTranslated(
+                                                          context, 'newgroup'),
+                                                    ),
+                                                  ],
                                                 )),
                                             /*PopupMenuItem<String>(
                                               value: 'tutorials',
@@ -1281,9 +1259,15 @@ class HomepageState extends State<Homepage>
                                             ),*/
                                             PopupMenuItem<String>(
                                                 value: 'settings',
-                                                child: Text(
-                                                  getTranslated(context,
-                                                      'settingsoption'),
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Icon(Icons.settings, color: campusChat),
+                                                    SizedBox(width: 7),
+                                                    Text(
+                                                      getTranslated(context,
+                                                          'settingsoption'),
+                                                    ),
+                                                  ],
                                                 )),
                                           ]),
                                 ],
@@ -1365,11 +1349,10 @@ class HomepageState extends State<Homepage>
                             backgroundColor: campusChat,
 
                             body:
-
-
                             Column(
                               children: [
                                 tab_bar(observer: observer, controllerIfcallallowed: controllerIfcallallowed, controllerIfcallNotallowed: controllerIfcallNotallowed),
+
 
 
 
@@ -1381,7 +1364,7 @@ class HomepageState extends State<Homepage>
                                     child: Container(
 
                                       child: TabBarView(
-                                        physics: NeverScrollableScrollPhysics(),
+                                        physics: RangeMaintainingScrollPhysics(),//NeverScrollableScrollPhysics(),
 
                                           controller:
                                               observer.isCallFeatureTotallyHide == false
@@ -1409,9 +1392,7 @@ class HomepageState extends State<Homepage>
 
                                             RecentChats(
                                                 prefs: widget.prefs,
-                                                currentUserNo: widget.currentUserNo,
-                                                isSecuritySetupDone:
-                                                widget.isSecuritySetupDone, controller: controller,),
+                                                currentUserNo: widget.currentUserNo,controller: controller,),
 
                                                   CallHistory(
                                                     userphone: widget.currentUserNo,
@@ -1453,8 +1434,22 @@ class HomepageState extends State<Homepage>
 
                         ),
                       )));
+
   }
+
+  void _handleOnPressed() {
+    setState(() {
+      isPlaying = !isPlaying;
+      isPlaying
+          ? _animationController.forward()
+          : _animationController.reverse();
+    });
+  }
+
+
 }
+
+
 
 
 
@@ -1587,7 +1582,7 @@ Widget errorScreen(String? title, String? subtitle) {
             Icon(
               Icons.error_outline_outlined,
               size: 60,
-              color: Colors.yellowAccent,
+              color: Colors.black,
             ),
             SizedBox(
               height: 30,
@@ -1597,7 +1592,7 @@ Widget errorScreen(String? title, String? subtitle) {
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 20,
-                  color: fiberchatWhite,
+                  color: Colors.black,
                   fontWeight: FontWeight.w700),
             ),
             SizedBox(
@@ -1608,8 +1603,8 @@ Widget errorScreen(String? title, String? subtitle) {
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 17,
-                  color: fiberchatWhite.withOpacity(0.7),
-                  fontWeight: FontWeight.w400),
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600),
             )
           ],
         ),

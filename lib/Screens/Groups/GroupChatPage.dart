@@ -298,7 +298,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   }
 
   void setStateIfMounted(f) {
-    if (mounted) setState(f);
+     setState(f);
   }
 
   setLastSeen(bool iswillpop, isemojikeyboardopen) {
@@ -1533,7 +1533,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                         color: replyDoc![Dbkeys.groupmsgSENDBY] ==
                                 widget.currentUserno
                             ? campusChat
-                            : Colors.purple,
+                            : Colors.black,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(0),
                             bottomRight: Radius.circular(0),
@@ -1565,7 +1565,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                   color: replyDoc![Dbkeys.groupmsgSENDBY] ==
                                           widget.currentUserno
                                       ? campusChat
-                                      : Colors.purple),
+                                      : Colors.black),
                             ),
                           ),
                           SizedBox(
@@ -1575,6 +1575,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                   MessageType.text.index
                               ? Text(
                                   replyDoc![Dbkeys.content],
+
+                            style: TextStyle(color: campusChat),
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                 )
@@ -1787,10 +1789,10 @@ class _GroupChatPageState extends State<GroupChatPage>
                                           color: replyDoc![
                                                       Dbkeys.messageType] ==
                                                   MessageType.doc.index
-                                              ? Colors.yellow[00]
+                                              ? Colors.white
                                               : replyDoc![Dbkeys.messageType] ==
                                                       MessageType.audio.index
-                                                  ? Colors.blue[400]
+                                                  ? Colors.white
                                                   : replyDoc![Dbkeys
                                                               .messageType] ==
                                                           MessageType
@@ -1800,8 +1802,8 @@ class _GroupChatPageState extends State<GroupChatPage>
                                                                   .messageType] ==
                                                               MessageType
                                                                   .contact.index
-                                                          ? Colors.blue[400]
-                                                          : Colors.cyan[700],
+                                                          ? Colors.white
+                                                          : Colors.white,
                                           height: 84,
                                           width: 84,
                                           child: Icon(
@@ -1864,7 +1866,7 @@ class _GroupChatPageState extends State<GroupChatPage>
     if (doc[Dbkeys.groupmsgTYPE] == Dbkeys.groupmsgTYPEnotificationAddedUser) {
       return Center(
           child: Chip(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           doc[Dbkeys.groupmsgLISToptional].contains(widget.currentUserno) &&
                   doc[Dbkeys.groupmsgLISToptional].length > 1
@@ -1893,26 +1895,26 @@ class _GroupChatPageState extends State<GroupChatPage>
                               groupData.docmap[Dbkeys.groupCREATEDBY]
                           ? '${getTranslated(this.context, 'adminahasadded')} ${doc[Dbkeys.groupmsgLISToptional].length} ${getTranslated(this.context, 'users')}'
                           : '${doc[Dbkeys.groupmsgSENDBY]} ${getTranslated(this.context, 'added')} ${doc[Dbkeys.groupmsgLISToptional].length} ${getTranslated(this.context, 'users')}',
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 13, color: Colors.white),
         ),
       ));
     } else if (doc[Dbkeys.groupmsgTYPE] ==
         Dbkeys.groupmsgTYPEnotificationCreatedGroup) {
       return Center(
           child: Chip(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           groupData.docmap[Dbkeys.groupCREATEDBY].contains(widget.currentUserno)
               ? getTranslated(this.context, 'youcreatedthisgroup')
               : '${groupData.docmap[Dbkeys.groupCREATEDBY]} ${getTranslated(this.context, 'hascreatedthisgroup')}',
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 13, color: Colors.white),
         ),
       ));
     } else if (doc[Dbkeys.groupmsgTYPE] ==
         Dbkeys.groupmsgTYPEnotificationUpdatedGroupDetails) {
       return Center(
           child: Chip(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           doc[Dbkeys.groupmsgSENDBY] == widget.currentUserno
               ? getTranslated(this.context, 'uhvupdatedgrpdetails')
@@ -1920,66 +1922,66 @@ class _GroupChatPageState extends State<GroupChatPage>
                       .contains(groupData.docmap[Dbkeys.groupCREATEDBY])
                   ? getTranslated(this.context, 'grpdetailsupdatebyadmin')
                   : '${doc[Dbkeys.groupmsgSENDBY]} ${getTranslated(this.context, 'hasupdatedgrpdetails')}',
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 13,color: Colors.white),
         ),
       ));
     } else if (doc[Dbkeys.groupmsgTYPE] ==
         Dbkeys.groupmsgTYPEnotificationUserSetAsAdmin) {
       return Center(
           child: Chip(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           doc[Dbkeys.groupmsgSENDBY] == widget.currentUserno
               ? '${doc[Dbkeys.groupmsgLISToptional][0]} ${getTranslated(this.context, 'hasbeensetasadminbyu')}'
               : doc[Dbkeys.groupmsgLISToptional][0] == widget.currentUserno
                   ? '${doc[Dbkeys.groupmsgSENDBY]} ${getTranslated(this.context, 'hvsetuasadmin')}'
                   : '${doc[Dbkeys.groupmsgSENDBY]} ${getTranslated(this.context, 'set')} ${doc[Dbkeys.groupmsgLISToptional][0]} ${getTranslated(this.context, 'asadmin')}',
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 13, color: Colors.white),
         ),
       ));
     } else if (doc[Dbkeys.groupmsgTYPE] ==
         Dbkeys.groupmsgTYPEnotificationUserRemovedAsAdmin) {
       return Center(
           child: Chip(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           doc[Dbkeys.groupmsgSENDBY] == widget.currentUserno
               ? '${getTranslated(this.context, 'youhaveremoved')} ${doc[Dbkeys.groupmsgLISToptional][0]} ${getTranslated(this.context, 'fromadmin')}'
               : doc[Dbkeys.groupmsgLISToptional][0] == widget.currentUserno
                   ? '${doc[Dbkeys.groupmsgSENDBY]} ${getTranslated(this.context, 'theyremoveduasadmin')}'
                   : '${doc[Dbkeys.groupmsgSENDBY]} ${getTranslated(this.context, 'hasremoved')} ${doc[Dbkeys.groupmsgLISToptional][0]} ${getTranslated(this.context, 'fromadmin')}',
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 13, color: Colors.white),
         ),
       ));
     } else if (doc[Dbkeys.groupmsgTYPE] ==
         Dbkeys.groupmsgTYPEnotificationUpdatedGroupicon) {
       return Center(
           child: Chip(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           doc[Dbkeys.groupmsgSENDBY] == widget.currentUserno
               ? getTranslated(this.context, 'youupdatedgrpicon')
               : '${doc[Dbkeys.groupmsgSENDBY]} ${getTranslated(this.context, 'hasupdatedgrpicon')}',
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 13, color: Colors.white),
         ),
       ));
     } else if (doc[Dbkeys.groupmsgTYPE] ==
         Dbkeys.groupmsgTYPEnotificationDeletedGroupicon) {
       return Center(
           child: Chip(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           doc[Dbkeys.groupmsgSENDBY] == widget.currentUserno
               ? getTranslated(this.context, 'youremovedgrpicon')
               : '${doc[Dbkeys.groupmsgSENDBY]} ${getTranslated(this.context, 'hasremovedgrpicon')}',
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 13, color: Colors.white),
         ),
       ));
     } else if (doc[Dbkeys.groupmsgTYPE] ==
         Dbkeys.groupmsgTYPEnotificationRemovedUser) {
       return Center(
           child: Chip(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           doc[Dbkeys.groupmsgCONTENT].contains('by ' + widget.currentUserno)
               ? '${getTranslated(this.context, 'youhaveremoved')} ${doc[Dbkeys.groupmsgLISToptional][0]}'
@@ -1987,19 +1989,19 @@ class _GroupChatPageState extends State<GroupChatPage>
                       groupData.docmap[Dbkeys.groupCREATEDBY]
                   ? '${doc[Dbkeys.groupmsgLISToptional][0]} ${getTranslated(this.context, 'removedbyadmin')}'
                   : '${doc[Dbkeys.groupmsgSENDBY]} ${getTranslated(this.context, 'hasremoved')} ${doc[Dbkeys.groupmsgLISToptional][0]}',
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 13, color: Colors.white),
         ),
       ));
     } else if (doc[Dbkeys.groupmsgTYPE] ==
         Dbkeys.groupmsgTYPEnotificationUserLeft) {
       return Center(
           child: Chip(
-        backgroundColor: Colors.blueGrey[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           doc[Dbkeys.groupmsgCONTENT].contains(widget.currentUserno)
               ? getTranslated(this.context, 'youleftthegroup')
               : '${doc[Dbkeys.groupmsgCONTENT]}',
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 13, color: Colors.white),
         ),
       ));
     } else if (doc[Dbkeys.groupmsgTYPE] == MessageType.image.index ||
@@ -2393,7 +2395,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                     ? Text(
                         getTranslated(context, 'msgdeleted'),
                         style: TextStyle(
-                            color: fiberchatBlack.withOpacity(0.6),
+                            color: Colors.grey,
                             fontSize: 15,
                             fontStyle: FontStyle.italic),
                       )
@@ -2548,37 +2550,39 @@ class _GroupChatPageState extends State<GroupChatPage>
       {bool saved = false}) {
     final bool isMe = doc[Dbkeys.groupmsgSENDBY] == widget.currentUserno;
     return SizedBox(
-      width: 210,
-      height: 100,
+      // width: 210,
+      // height: 70,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           doc.containsKey(Dbkeys.isForward) == true
               ? doc[Dbkeys.isForward] == true
-                  ? Container(
-                      margin: EdgeInsets.only(bottom: 10),
-                      child: Row(
-                          mainAxisAlignment: isMe == true
-                              ? MainAxisAlignment.start
-                              : MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.share,
-                              size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(getTranslated(this.context, 'forwarded'),
-                                maxLines: 1,
-                                style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
-                                    fontStyle: FontStyle.italic,
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 13))
-                          ]))
+                  ? Expanded(
+                    child: Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: Row(
+                            mainAxisAlignment: isMe == true
+                                ? MainAxisAlignment.start
+                                : MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.share,
+                                size: 12,
+                                color: fiberchatGrey.withOpacity(0.5),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(getTranslated(this.context, 'forwarded'),
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      color: fiberchatGrey.withOpacity(0.7),
+                                      fontStyle: FontStyle.italic,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 13))
+                            ])),
+                  )
                   : SizedBox(height: 0, width: 0)
               : SizedBox(height: 0, width: 0),
           ListTile(
@@ -2591,7 +2595,7 @@ class _GroupChatPageState extends State<GroupChatPage>
               style: TextStyle(
                   height: 1.4,
                   fontWeight: FontWeight.w700,
-                  color: Colors.blue[400]),
+                  color: Colors.white),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 3),
@@ -2600,7 +2604,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                 style: TextStyle(
                     height: 1.4,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black87),
+                    color: Colors.white),
               ),
             ),
           ),
@@ -2646,7 +2650,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 Icon(
                                   FontAwesomeIcons.share,
                                   size: 12,
-                                  color: fiberchatGrey.withOpacity(0.5),
+                                  color: Colors.white,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -2654,7 +2658,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 Text(getTranslated(this.context, 'forwarded'),
                                     maxLines: 1,
                                     style: TextStyle(
-                                        color: fiberchatGrey.withOpacity(0.7),
+                                        color: Colors.white,
                                         fontStyle: FontStyle.italic,
                                         overflow: TextOverflow.ellipsis,
                                         fontSize: 13))
@@ -2811,30 +2815,32 @@ class _GroupChatPageState extends State<GroupChatPage>
         children: [
           doc.containsKey(Dbkeys.isForward) == true
               ? doc[Dbkeys.isForward] == true
-                  ? Container(
-                      margin: EdgeInsets.only(bottom: 10),
-                      child: Row(
-                          mainAxisAlignment: isMe == true
-                              ? MainAxisAlignment.start
-                              : MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.share,
-                              size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(getTranslated(this.context, 'forwarded'),
-                                maxLines: 1,
-                                style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
-                                    fontStyle: FontStyle.italic,
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 13))
-                          ]))
+                  ? Expanded(
+                    child: Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: Row(
+                            mainAxisAlignment: isMe == true
+                                ? MainAxisAlignment.start
+                                : MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.share,
+                                size: 12,
+                                color: fiberchatGrey.withOpacity(0.8),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(getTranslated(this.context, 'forwarded'),
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      color: fiberchatGrey.withOpacity(0.9),
+                                      fontStyle: FontStyle.italic,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 13))
+                            ])),
+                  )
                   : SizedBox(height: 0, width: 0)
               : SizedBox(height: 0, width: 0),
           ListTile(
@@ -2842,14 +2848,14 @@ class _GroupChatPageState extends State<GroupChatPage>
             isThreeLine: false,
             leading: Container(
               decoration: BoxDecoration(
-                color: Colors.yellow[800],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(7.0),
               ),
               padding: EdgeInsets.all(12),
               child: Icon(
                 Icons.insert_drive_file,
                 size: 25,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             title: Text(
@@ -2859,11 +2865,13 @@ class _GroupChatPageState extends State<GroupChatPage>
               style: TextStyle(
                   height: 1.4,
                   fontWeight: FontWeight.w700,
-                  color: Colors.black87),
+                  color: Colors.white),
             ),
           ),
           Divider(
             height: 3,
+            thickness: 1.5,
+            color: Colors.white,
           ),
           message.split('-BREAK-')[1].endsWith('.pdf')
               ? Row(
@@ -2885,7 +2893,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                         child: Text(getTranslated(context, 'preview'),
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                color: Colors.blue[400]))),
+                                color: Colors.white))),
                     // ignore: deprecated_member_use
                     FlatButton(
                         onPressed: Platform.isIOS
@@ -2904,7 +2912,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                         child: Text(getTranslated(context, 'download'),
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                color: Colors.blue[400]))),
+                                color: Colors.white))),
                   ],
                 )
               // ignore: deprecated_member_use
@@ -2925,7 +2933,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                   child: Text(getTranslated(context, 'download'),
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          color: Colors.blue[400]))),
+                          color: Colors.white))),
         ],
       ),
     );
@@ -3357,11 +3365,11 @@ class _GroupChatPageState extends State<GroupChatPage>
                                               child: Container(
                                                   color: doc[Dbkeys.messageType] ==
                                                           MessageType.doc.index
-                                                      ? Colors.yellow[800]
+                                                      ? Colors.white
                                                       : doc[Dbkeys.messageType] ==
                                                               MessageType
                                                                   .audio.index
-                                                          ? Colors.blue[400]
+                                                          ? Colors.white
                                                           : doc[Dbkeys.messageType] ==
                                                                   MessageType
                                                                       .location
@@ -3501,6 +3509,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   shareMedia(BuildContext context) {
     showModalBottomSheet(
         context: context,
+        backgroundColor: campusChat,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
         ),
@@ -3517,6 +3526,114 @@ class _GroupChatPageState extends State<GroupChatPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 3.27,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        RawMaterialButton(
+                          disabledElevation: 0,
+                          onPressed: () {
+                            hidekeyboard(context);
+
+                            Navigator.of(context).pop();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AudioRecord(
+                                      title: getTranslated(
+                                          this.context, 'record'),
+                                      callback: getFileData,
+                                    ))).then((url) {
+                              if (url != null) {
+                                onSendMessage(
+                                  context: this.context,
+                                  content: url +
+                                      '-BREAK-' +
+                                      uploadTimestamp.toString(),
+                                  type: MessageType.audio,
+                                );
+                              } else {}
+                            });
+                          },
+                          elevation: .5,
+                          fillColor: Colors.black,
+                          child: Icon(
+                            Icons.mic_rounded,
+                            size: 25.0,
+                            color: Colors.white,
+                          ),
+                          padding: EdgeInsets.all(15.0),
+                          shape: CircleBorder(),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          getTranslated(this.context, 'audio'),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: Colors.black),
+                        )
+                      ],
+                    ),
+                  ),
+
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 3.27,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        RawMaterialButton(
+                          disabledElevation: 0,
+                          onPressed: () async {
+                            hidekeyboard(context);
+                            Navigator.of(context).pop();
+                            await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ContactsSelect(
+                                        currentUserNo: widget.currentUserno,
+                                        model: widget.model,
+                                        biometricEnabled: false,
+                                        prefs: widget.prefs,
+                                        onSelect: (name, phone) {
+                                          onSendMessage(
+                                            context: context,
+                                            content: '$name-BREAK-$phone',
+                                            type: MessageType.contact,
+                                          );
+                                        })));
+                          },
+                          elevation: .5,
+                          fillColor: Colors.black,
+                          child: Icon(
+                            Icons.perm_contact_calendar,
+                            size: 25.0,
+                            color: Colors.white,
+                          ),
+                          padding: EdgeInsets.all(15.0),
+                          shape: CircleBorder(),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          getTranslated(this.context, 'contact'),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: Colors.black),
+                        )
+                      ],
+                    ),
+                  ),
+
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 3.27,
                     child: Column(
@@ -3552,9 +3669,9 @@ class _GroupChatPageState extends State<GroupChatPage>
                                         )));
                           },
                           elevation: .5,
-                          fillColor: Colors.indigo,
+                          fillColor: Colors.black,
                           child: Icon(
-                            Icons.file_copy,
+                            Icons.picture_as_pdf,
                             size: 25.0,
                             color: Colors.white,
                           ),
@@ -3570,73 +3687,21 @@ class _GroupChatPageState extends State<GroupChatPage>
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style:
-                              TextStyle(color: Colors.grey[700], fontSize: 14),
+                              TextStyle(color: Colors.black, fontSize: 14),
                         )
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 3.27,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        RawMaterialButton(
-                          disabledElevation: 0,
-                          onPressed: () {
-                            hidekeyboard(context);
-                            Navigator.of(context).pop();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HybridVideoPicker(
-                                          title: getTranslated(
-                                              this.context, 'pickvideo'),
-                                          callback: getFileData,
-                                        ))).then((url) async {
-                              if (url != null) {
-                                CuChat.toast(
-                                  getTranslated(this.context, 'plswait'),
-                                );
-                                String thumbnailurl = await getThumbnail(url);
-                                onSendMessage(
-                                  context: this.context,
-                                  content: url +
-                                      '-BREAK-' +
-                                      thumbnailurl +
-                                      '-BREAK-' +
-                                      videometadata,
-                                  type: MessageType.video,
-                                );
-                                CuChat.toast(
-                                    getTranslated(this.context, 'sent'));
-                              } else {}
-                            });
-                          },
-                          elevation: .5,
-                          fillColor: Colors.pink[600],
-                          child: Icon(
-                            Icons.video_collection_sharp,
-                            size: 25.0,
-                            color: Colors.white,
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          getTranslated(this.context, 'video'),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style:
-                              TextStyle(color: Colors.grey[700], fontSize: 14),
-                        )
-                      ],
-                    ),
-                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 3.27,
                     child: Column(
@@ -3652,25 +3717,25 @@ class _GroupChatPageState extends State<GroupChatPage>
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => MultiImagePicker(
-                                          title: getTranslated(
-                                              this.context, 'pickimage'),
-                                          callback: getFileData,
-                                          writeMessage:
-                                              (String? url, int time) async {
-                                            if (url != null) {
-                                              onSendMessage(
-                                                  context: this.context,
-                                                  content: url,
-                                                  type: MessageType.image,
-                                                  timestamp: time);
-                                            }
-                                          },
-                                        )));
+                                      title: getTranslated(
+                                          this.context, 'pickimage'),
+                                      callback: getFileData,
+                                      writeMessage:
+                                          (String? url, int time) async {
+                                        if (url != null) {
+                                          onSendMessage(
+                                              context: this.context,
+                                              content: url,
+                                              type: MessageType.image,
+                                              timestamp: time);
+                                        }
+                                      },
+                                    )));
                           },
                           elevation: .5,
-                          fillColor: Colors.purple,
+                          fillColor: Colors.black,
                           child: Icon(
-                            Icons.image_rounded,
+                            Icons.landscape,
                             size: 25.0,
                             color: Colors.white,
                           ),
@@ -3686,74 +3751,12 @@ class _GroupChatPageState extends State<GroupChatPage>
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style:
-                              TextStyle(color: Colors.grey[700], fontSize: 14),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 3.27,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        RawMaterialButton(
-                          disabledElevation: 0,
-                          onPressed: () {
-                            hidekeyboard(context);
-
-                            Navigator.of(context).pop();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AudioRecord(
-                                          title: getTranslated(
-                                              this.context, 'record'),
-                                          callback: getFileData,
-                                        ))).then((url) {
-                              if (url != null) {
-                                onSendMessage(
-                                  context: this.context,
-                                  content: url +
-                                      '-BREAK-' +
-                                      uploadTimestamp.toString(),
-                                  type: MessageType.audio,
-                                );
-                              } else {}
-                            });
-                          },
-                          elevation: .5,
-                          fillColor: Colors.yellow[900],
-                          child: Icon(
-                            Icons.mic_rounded,
-                            size: 25.0,
-                            color: Colors.white,
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          getTranslated(this.context, 'audio'),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.grey[700]),
+                          TextStyle(color: Colors.black, fontSize: 14),
                         )
                       ],
                     ),
                   ),
+
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 3.27,
                     child: Column(
@@ -3782,9 +3785,9 @@ class _GroupChatPageState extends State<GroupChatPage>
                             );
                           },
                           elevation: .5,
-                          fillColor: Colors.cyan[700],
+                          fillColor: Colors.black,
                           child: Icon(
-                            Icons.location_on,
+                            Icons.near_me,
                             size: 25.0,
                             color: Colors.white,
                           ),
@@ -3799,7 +3802,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: Colors.black),
                         )
                       ],
                     ),
@@ -3812,29 +3815,40 @@ class _GroupChatPageState extends State<GroupChatPage>
                       children: [
                         RawMaterialButton(
                           disabledElevation: 0,
-                          onPressed: () async {
+                          onPressed: () {
                             hidekeyboard(context);
                             Navigator.of(context).pop();
-                            await Navigator.push(
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ContactsSelect(
-                                        currentUserNo: widget.currentUserno,
-                                        model: widget.model,
-                                        biometricEnabled: false,
-                                        prefs: widget.prefs,
-                                        onSelect: (name, phone) {
-                                          onSendMessage(
-                                            context: context,
-                                            content: '$name-BREAK-$phone',
-                                            type: MessageType.contact,
-                                          );
-                                        })));
+                                    builder: (context) => HybridVideoPicker(
+                                      title: getTranslated(
+                                          this.context, 'pickvideo'),
+                                      callback: getFileData,
+                                    ))).then((url) async {
+                              if (url != null) {
+                                CuChat.toast(
+                                  getTranslated(this.context, 'plswait'),
+                                );
+                                String thumbnailurl = await getThumbnail(url);
+                                onSendMessage(
+                                  context: this.context,
+                                  content: url +
+                                      '-BREAK-' +
+                                      thumbnailurl +
+                                      '-BREAK-' +
+                                      videometadata,
+                                  type: MessageType.video,
+                                );
+                                CuChat.toast(
+                                    getTranslated(this.context, 'sent'));
+                              } else {}
+                            });
                           },
                           elevation: .5,
-                          fillColor: Colors.blue[800],
+                          fillColor: Colors.black,
                           child: Icon(
-                            Icons.person,
+                            Icons.movie_filter,
                             size: 25.0,
                             color: Colors.white,
                           ),
@@ -3845,15 +3859,16 @@ class _GroupChatPageState extends State<GroupChatPage>
                           height: 8,
                         ),
                         Text(
-                          getTranslated(this.context, 'contact'),
+                          getTranslated(this.context, 'video'),
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.grey[700]),
+                          style:
+                          TextStyle(color: Colors.black, fontSize: 14),
                         )
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ]),

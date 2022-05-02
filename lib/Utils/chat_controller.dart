@@ -102,7 +102,7 @@ class ChatController {
     // Fiberchat.toast('Chat is visible.');
   }
 
-  static lockChat(currentUserNo, peerNo) {
+  /*static lockChat(currentUserNo, peerNo) {
     FirebaseFirestore.instance
         .collection(DbPaths.collectionusers)
         .doc(currentUserNo)
@@ -110,7 +110,7 @@ class ChatController {
       Dbkeys.locked: FieldValue.arrayUnion([peerNo])
     }, SetOptions(merge: true));
     // Fiberchat.toast('Chat locked.');
-  }
+  }*/
 
   static unlockChat(currentUserNo, peerNo) {
     FirebaseFirestore.instance
@@ -124,7 +124,6 @@ class ChatController {
 
   static void authenticate(DataModel model, String caption,
       {required NavigatorState state,
-      AuthenticationType type = AuthenticationType.passcode,
       required SharedPreferences prefs,
       required Function onSuccess,
       required bool shouldPop}) {
@@ -135,7 +134,6 @@ class ChatController {
           builder: (context) => Authenticate(
               shouldPop: shouldPop,
               caption: caption,
-              type: type,
               model: model,
               state: state,
               answer: user[Dbkeys.answer],

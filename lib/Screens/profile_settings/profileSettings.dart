@@ -22,9 +22,8 @@ import 'package:CuChat/Configs/Enum.dart';
 
 class ProfileSetting extends StatefulWidget {
   final bool? biometricEnabled;
-  final AuthenticationType? type;
   final SharedPreferences prefs;
-  ProfileSetting({this.biometricEnabled, this.type, required this.prefs});
+  ProfileSetting({this.biometricEnabled, required this.prefs});
   @override
   State createState() => new ProfileSettingState();
 }
@@ -44,7 +43,6 @@ class ProfileSettingState extends State<ProfileSetting> {
 
   final FocusNode focusNodeNickname = new FocusNode();
   final FocusNode focusNodeAboutMe = new FocusNode();
-  AuthenticationType? _type;
   final BannerAd myBanner = BannerAd(
     adUnitId: getBannerAdUnitId()!,
     size: AdSize.mediumRectangle,
@@ -57,7 +55,6 @@ class ProfileSettingState extends State<ProfileSetting> {
     super.initState();
     CuChat.internetLookUp();
     readLocal();
-    _type = widget.type;
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       final observer = Provider.of<Observer>(this.context, listen: false);
       if (IsBannerAdShow == true && observer.isadmobshow == true) {
@@ -114,7 +111,6 @@ class ProfileSettingState extends State<ProfileSetting> {
         .update({
       Dbkeys.nickname: nickname,
       Dbkeys.aboutMe: aboutMe,
-      Dbkeys.authenticationType: _type!.index,
       Dbkeys.searchKey: nickname.trim().substring(0, 1).toUpperCase(),
     }).then((data) {
       widget.prefs.setString(Dbkeys.nickname, nickname);
@@ -323,7 +319,7 @@ class ProfileSettingState extends State<ProfileSetting> {
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(6),
                             labelStyle: TextStyle(height: 0.8),
-                            labelText: getTranslated(this.context, 'status')),
+                            labelText: getTranslated(this.context, 'about')),
                       )),
                       SizedBox(
                         height: 15,

@@ -42,14 +42,14 @@ class Bubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool seen = getSeenStatus(SeenProvider.of(context).value);
-    final bg = isMe ? campusChatLight2 : bubbleReply;
+    final bg = isMe ?  bubbleReply: campusChatLight2;
     final align = isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     dynamic icon = delivered is bool && delivered
         ? (seen ? Icons.done_all : Icons.done)
         : Icons.access_time;
     final color = isMe
-        ? fiberchatBlack.withOpacity(1)
-        : fiberchatBlack.withOpacity(1);
+        ? fiberchatWhite
+        : fiberchatWhite;
     icon = Icon(icon, size: 14.0, color: seen ? Colors.white : color);
     if (delivered is Future) {
       icon = FutureBuilder(
@@ -69,19 +69,17 @@ class Bubble extends StatelessWidget {
           });
     }
     dynamic radius = isMe
-        ? BorderRadius.only(
-            topLeft: Radius.circular(5.0),
-            bottomLeft: Radius.circular(5.0),
-            bottomRight: Radius.circular(10.0),
+        ? BorderRadius.all(Radius.circular(10.0)
           )
-        : BorderRadius.only(
-            topRight: Radius.circular(5.0),
-            bottomLeft: Radius.circular(10.0),
-            bottomRight: Radius.circular(5.0),
-          );
+    : BorderRadius.all(Radius.circular(10.0));
+        // : BorderRadius.only(
+        //     topRight: Radius.circular(5.0),
+        //     bottomLeft: Radius.circular(10.0),
+        //     bottomRight: Radius.circular(5.0),
+        //   );
     dynamic margin = const EdgeInsets.only(top: 20.0, bottom: 1.5);
     if (isContinuing) {
-      radius = BorderRadius.all(Radius.circular(5.0));
+      radius = BorderRadius.all(Radius.circular(10.0));
       margin = const EdgeInsets.all(1.9);
     }
 
