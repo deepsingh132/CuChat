@@ -1,22 +1,24 @@
 
 import 'dart:math';
+import 'package:CuChat/Configs/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class CircularBorder extends StatelessWidget {
   final Color color;
   final double size;
   final double width;
+  final Color borderColor;
   final Widget icon;
   final int totalitems;
   final int totalseen;
   const CircularBorder({
     Key? key,
-    this.color = Colors.blue,
+    this.color = Colors.black,
     this.size = 70,
     this.width = 7.0,
     required this.icon,
     required this.totalitems,
-    required this.totalseen,
+    required this.totalseen, required this.borderColor,
   }) : super(key: key);
 
   @override
@@ -35,7 +37,7 @@ class CircularBorder extends StatelessWidget {
                 completeColor: color,
                 width: width,
                 totalitems: totalitems,
-                totalseen: totalseen),
+                totalseen: totalseen, borderColor: borderColor),
           ),
         ],
       ),
@@ -48,11 +50,13 @@ class MyPainter extends CustomPainter {
   Color completeColor;
   double width;
   int totalitems;
+  Color borderColor;
   int totalseen;
   MyPainter(
       {required this.completeColor,
       required this.width,
       required this.totalitems,
+      required this.borderColor,
       required this.totalseen});
   @override
   void paint(Canvas canvas, Size size) {
@@ -130,7 +134,7 @@ class MyPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = width;
     Paint unseen = new Paint()
-      ..color = Colors.teal.withOpacity(0.8)
+      ..color = borderColor
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = width;

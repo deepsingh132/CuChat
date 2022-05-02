@@ -12,7 +12,7 @@ const int StatusDeleteAfterInHours =
 const IsLogoutButtonShowInSettingsPage =
     true; // This is just the initial default value.  Once the database is written, It can only be changed from Admin App OR directly inside Firestore database - appsettings/userapp document.
 const FeedbackEmail =
-    ''; // This is just the initial default value.  Once the database is written, It can only be changed from Admin App OR directly inside Firestore database - appsettings/userapp document.
+    'mandeeparora132@gmail.com'; // This is just the initial default value.  Once the database is written, It can only be changed from Admin App OR directly inside Firestore database - appsettings/userapp document.
 const IsAllowCreatingGroups =
     true; // This is just the initial default value.  Once the database is written, It can only be changed from Admin App OR directly inside Firestore database - appsettings/userapp document.
 const IsAllowCreatingBroadcasts =
@@ -36,9 +36,9 @@ const dynamic RateAppUrlAndroid =
 const dynamic RateAppUrlIOS =
     null; // Once the database is written, It can only be changed from Admin App OR directly inside Firestore database - appsettings/userapp document.
 const TERMS_CONDITION_URL =
-    'YOUR_TNC'; // Once the database is written, It can only be changed from Admin App OR directly inside Firestore database - appsettings/userapp document.
+    'https://deepsingh132.github.io/CuChat/'; // Once the database is written, It can only be changed from Admin App OR directly inside Firestore database - appsettings/userapp document.
 const PRIVACY_POLICY_URL =
-    'YOUR_PRIVACY_POLICY'; // Once the database is written, It can only be changed from Admin App OR directly inside Firestore database - appsettings/userapp document.
+    'https://deepsingh132.github.io/CuChat/'; // Once the database is written, It can only be changed from Admin App OR directly inside Firestore database - appsettings/userapp document.
 //--
 int maxChatMessageDocsLoadAtOnceForGroupChatAndBroadcastLazyLoading =
     20; //Minimum Value should be 15.

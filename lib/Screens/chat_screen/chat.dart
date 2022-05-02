@@ -161,7 +161,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
   bool isMuted = false;
   void setStateIfMounted(f) {
-    if (mounted) setState(f);
+     setState(f);
   }
 
   InterstitialAd? _interstitialAd;
@@ -702,7 +702,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
       // accessing the position and request users of the
       // App to enable the location services.
       CuChat.toast(
-          'Location permissions are pdenied. Please go to settings & allow location tracking permission.');
+          'Location permissions denied. Please go to settings to allow location permission and enable gps.');
       return Future.error('Location services are disabled.');
     }
 
@@ -1677,6 +1677,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   Widget selectablelinkify(String? text, double? fontsize) {
     return SelectableLinkify(
       style: TextStyle(fontSize: fontsize, color: Colors.white),
+      linkStyle: TextStyle(color: Colors.yellow[300]),
       text: text ?? "",
       onOpen: (link) async {
         if (await canLaunch(link.url)) {
@@ -1727,7 +1728,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 Icon(
                                   FontAwesomeIcons.share,
                                   size: 12,
-                                  color: fiberchatGrey.withOpacity(0.5),
+                                  color: Colors.white,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -1735,7 +1736,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 Text(getTranslated(this.context, 'forwarded'),
                                     maxLines: 1,
                                     style: TextStyle(
-                                        color: fiberchatGrey.withOpacity(0.7),
+                                        color: Colors.white,
                                         fontStyle: FontStyle.italic,
                                         overflow: TextOverflow.ellipsis,
                                         fontSize: 13))
@@ -1978,14 +1979,14 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             isThreeLine: false,
             leading: Container(
               decoration: BoxDecoration(
-                color: Colors.yellow[800],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(7.0),
               ),
               padding: EdgeInsets.all(12),
               child: Icon(
                 Icons.insert_drive_file,
                 size: 25,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             title: Text(
@@ -1995,11 +1996,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               style: TextStyle(
                   height: 1.4,
                   fontWeight: FontWeight.w700,
-                  color: Colors.black87),
+                  color: Colors.white),
             ),
           ),
           Divider(
             height: 3,
+            thickness: 1.5,
+            color: Colors.white,
           ),
           message.split('-BREAK-')[1].endsWith('.pdf')
               ? Row(
@@ -2021,7 +2024,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                         child: Text(getTranslated(this.context, 'preview'),
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                color: Colors.blue[400]))),
+                                color: Colors.white))),
                     // ignore: deprecated_member_use
                     FlatButton(
                         onPressed: Platform.isIOS
@@ -2040,7 +2043,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                         child: Text(getTranslated(this.context, 'download'),
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                color: Colors.blue[400]))),
+                                color: Colors.white))),
                   ],
                 )
               //ignore: deprecated_member_use
@@ -2061,7 +2064,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   child: Text(getTranslated(this.context, 'download'),
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          color: Colors.blue[400]))),
+                          color: Colors.white))),
         ],
       ),
     );
@@ -2286,38 +2289,40 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
       {bool saved = false}) {
     final bool isMe = doc[Dbkeys.from] == currentUserNo;
     return SizedBox(
-      width: 250,
-      height: 130,
+      // width: 250,
+      // height: 130,
       child: Column(
         crossAxisAlignment:
             isMe == true ? CrossAxisAlignment.start : CrossAxisAlignment.end,
         children: [
           doc.containsKey(Dbkeys.isForward) == true
               ? doc[Dbkeys.isForward] == true
-                  ? Container(
-                      margin: EdgeInsets.only(bottom: 10),
-                      child: Row(
-                          mainAxisAlignment: isMe == true
-                              ? MainAxisAlignment.start
-                              : MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.share,
-                              size: 12,
-                              color: fiberchatGrey.withOpacity(0.5),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(getTranslated(this.context, 'forwarded'),
-                                maxLines: 1,
-                                style: TextStyle(
-                                    color: fiberchatGrey.withOpacity(0.7),
-                                    fontStyle: FontStyle.italic,
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 13))
-                          ]))
+                  ? Expanded(
+                    child: Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: Row(
+                            mainAxisAlignment: isMe == true
+                                ? MainAxisAlignment.start
+                                : MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.share,
+                                size: 12,
+                                color: fiberchatGrey.withOpacity(0.5),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(getTranslated(this.context, 'forwarded'),
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      color: fiberchatGrey.withOpacity(0.7),
+                                      fontStyle: FontStyle.italic,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 13))
+                            ])),
+                  )
                   : SizedBox(height: 0, width: 0)
               : SizedBox(height: 0, width: 0),
           ListTile(
@@ -2330,7 +2335,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               style: TextStyle(
                   height: 1.4,
                   fontWeight: FontWeight.w700,
-                  color: Colors.blue[400]),
+                  color: Colors.white),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 3),
@@ -2339,7 +2344,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 style: TextStyle(
                     height: 1.4,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black87),
+                    color: Colors.white),
               ),
             ),
           ),
@@ -2471,7 +2476,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
               },
               child: Text(getTranslated(this.context, 'msg'),
                   style: TextStyle(
-                      fontWeight: FontWeight.w700, color: Colors.blue[400])))
+                      fontWeight: FontWeight.w700, color: Colors.white)))
         ],
       ),
     );
@@ -2600,8 +2605,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                     Container(
                       decoration: BoxDecoration(
                         color: doc[Dbkeys.from] == currentUserNo
-                            ? campusChat
-                            : Colors.purple,
+                            ? Colors.black
+                            : campusChat,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(0),
                             bottomRight: Radius.circular(0),
@@ -2630,8 +2635,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: doc[Dbkeys.from] == currentUserNo
-                                      ? campusChat
-                                      : Colors.purple),
+                                      ? Colors.black
+                                      : campusChat),
                             ),
                           ),
                           SizedBox(
@@ -2842,10 +2847,10 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                       child: Container(
                                           color: doc[Dbkeys.messageType] ==
                                                   MessageType.doc.index
-                                              ? Colors.yellow[800]
+                                              ? Colors.white
                                               : doc[Dbkeys.messageType] ==
                                                       MessageType.audio.index
-                                                  ? Colors.blue[400]
+                                                  ? Colors.white
                                                   : doc[Dbkeys.messageType] ==
                                                           MessageType
                                                               .location.index
@@ -2853,7 +2858,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                       : doc[Dbkeys.messageType] ==
                                                               MessageType
                                                                   .contact.index
-                                                          ? Colors.blue[400]
+                                                          ? Colors.white
                                                           : Colors.cyan[700],
                                           height: 74,
                                           width: 74,
@@ -2906,7 +2911,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                       decoration: BoxDecoration(
                         color: replyDoc![Dbkeys.from] == currentUserNo
                             ? campusChat
-                            : Colors.purple,
+                            : Colors.black,
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(0),
                             bottomRight: Radius.circular(0),
@@ -2936,7 +2941,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                   fontWeight: FontWeight.bold,
                                   color: replyDoc![Dbkeys.from] == currentUserNo
                                       ? campusChat
-                                      : Colors.purple),
+                                      : Colors.black),
                             ),
                           ),
                           SizedBox(
@@ -3159,10 +3164,10 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                           color: replyDoc![
                                                       Dbkeys.messageType] ==
                                                   MessageType.doc.index
-                                              ? Colors.yellow[800]
+                                              ? campusChat
                                               : replyDoc![Dbkeys.messageType] ==
                                                       MessageType.audio.index
-                                                  ? Colors.blue[400]
+                                                  ? campusChat
                                                   : replyDoc![Dbkeys
                                                               .messageType] ==
                                                           MessageType
@@ -3172,8 +3177,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   .messageType] ==
                                                               MessageType
                                                                   .contact.index
-                                                          ? Colors.blue[400]
-                                                          : Colors.cyan[700],
+                                                          ? campusChat
+                                                          : campusChat,
                                           height: 84,
                                           width: 84,
                                           child: Icon(
@@ -3314,6 +3319,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   shareMedia(BuildContext context) {
     showModalBottomSheet(
         context: context,
+        backgroundColor: campusChat,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
         ),
@@ -3330,186 +3336,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 3.27,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        RawMaterialButton(
-                          disabledElevation: 0,
-                          onPressed: () {
-                            hidekeyboard(context);
-                            Navigator.of(context).pop();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MultiDocumentPicker(
-                                          title: getTranslated(
-                                              this.context, 'pickdoc'),
-                                          callback: getFileData,
-                                          writeMessage:
-                                              (String? url, int time) async {
-                                            if (url != null) {
-                                              String finalUrl = url +
-                                                  '-BREAK-' +
-                                                  basename(pickedFile!.path)
-                                                      .toString();
-                                              onSendMessage(
-                                                  this.context,
-                                                  finalUrl,
-                                                  MessageType.doc,
-                                                  time);
-                                            }
-                                          },
-                                        )));
-                          },
-                          elevation: .5,
-                          fillColor: Colors.indigo,
-                          child: Icon(
-                            Icons.file_copy,
-                            size: 25.0,
-                            color: Colors.white,
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          getTranslated(this.context, 'doc'),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style:
-                              TextStyle(color: Colors.grey[700], fontSize: 14),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 3.27,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        RawMaterialButton(
-                          disabledElevation: 0,
-                          onPressed: () {
-                            hidekeyboard(context);
-                            Navigator.of(context).pop();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HybridVideoPicker(
-                                          title: getTranslated(
-                                              this.context, 'pickvideo'),
-                                          callback: getFileData,
-                                        ))).then((url) async {
-                              if (url != null) {
-                                CuChat.toast(
-                                  getTranslated(this.context, 'plswait'),
-                                );
-                                String thumbnailurl = await getThumbnail(url);
-                                onSendMessage(
-                                    context,
-                                    url +
-                                        '-BREAK-' +
-                                        thumbnailurl +
-                                        '-BREAK-' +
-                                        videometadata,
-                                    MessageType.video,
-                                    thumnailtimestamp);
-                                CuChat.toast(
-                                    getTranslated(this.context, 'sent'));
-                              } else {}
-                            });
-                          },
-                          elevation: .5,
-                          fillColor: Colors.pink[600],
-                          child: Icon(
-                            Icons.video_collection_sharp,
-                            size: 25.0,
-                            color: Colors.white,
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          getTranslated(this.context, 'video'),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style:
-                              TextStyle(color: Colors.grey[700], fontSize: 14),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 3.27,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        RawMaterialButton(
-                          disabledElevation: 0,
-                          onPressed: () {
-                            hidekeyboard(context);
-                            Navigator.of(context).pop();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MultiImagePicker(
-                                          title: getTranslated(
-                                              this.context, 'pickimage'),
-                                          callback: getFileData,
-                                          writeMessage:
-                                              (String? url, int time) async {
-                                            if (url != null) {
-                                              onSendMessage(this.context, url,
-                                                  MessageType.image, time);
-                                            }
-                                          },
-                                        )));
-                          },
-                          elevation: .5,
-                          fillColor: Colors.purple,
-                          child: Icon(
-                            Icons.image_rounded,
-                            size: 25.0,
-                            color: Colors.white,
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          getTranslated(this.context, 'image'),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style:
-                              TextStyle(color: Colors.grey[700], fontSize: 14),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+
+
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 3.27,
                     child: Column(
@@ -3526,10 +3354,10 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => AudioRecord(
-                                          title: getTranslated(
-                                              this.context, 'record'),
-                                          callback: getFileData,
-                                        ))).then((url) {
+                                      title: getTranslated(
+                                          this.context, 'record'),
+                                      callback: getFileData,
+                                    ))).then((url) {
                               if (url != null) {
                                 onSendMessage(
                                     context,
@@ -3542,7 +3370,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             });
                           },
                           elevation: .5,
-                          fillColor: Colors.yellow[900],
+                          fillColor: Colors.black,
                           child: Icon(
                             Icons.mic_rounded,
                             size: 25.0,
@@ -3559,61 +3387,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: Colors.black),
                         )
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 3.27,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        RawMaterialButton(
-                          disabledElevation: 0,
-                          onPressed: () async {
-                            hidekeyboard(context);
-                            Navigator.of(context).pop();
-                            await _determinePosition().then(
-                              (location) async {
-                                var locationstring =
-                                    'https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}';
-                                onSendMessage(
-                                    context,
-                                    locationstring,
-                                    MessageType.location,
-                                    DateTime.now().millisecondsSinceEpoch);
-                                setStateIfMounted(() {});
-                                CuChat.toast(
-                                  getTranslated(this.context, 'sent'),
-                                );
-                              },
-                            );
-                          },
-                          elevation: .5,
-                          fillColor: Colors.cyan[700],
-                          child: Icon(
-                            Icons.location_on,
-                            size: 25.0,
-                            color: Colors.white,
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          getTranslated(this.context, 'location'),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.grey[700]),
-                        )
-                      ],
-                    ),
-                  ),
+
+
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 3.27,
                     child: Column(
@@ -3643,9 +3423,9 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         })));
                           },
                           elevation: .5,
-                          fillColor: Colors.blue[800],
+                          fillColor: Colors.black,
                           child: Icon(
-                            Icons.person,
+                            Icons.perm_contact_calendar,
                             size: 25.0,
                             color: Colors.white,
                           ),
@@ -3660,11 +3440,249 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: Colors.black
+                          ),
                         )
                       ],
                     ),
-                  )
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 3.27,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        RawMaterialButton(
+
+                          disabledElevation: 0,
+                          onPressed: () {
+                            hidekeyboard(context);
+                            Navigator.of(context).pop();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MultiDocumentPicker(
+                                          title: getTranslated(
+                                              this.context, 'pickdoc'),
+                                          callback: getFileData,
+                                          writeMessage:
+                                              (String? url, int time) async {
+                                            if (url != null) {
+                                              String finalUrl = url +
+                                                  '-BREAK-' +
+                                                  basename(pickedFile!.path)
+                                                      .toString();
+                                              onSendMessage(
+                                                  this.context,
+                                                  finalUrl,
+                                                  MessageType.doc,
+                                                  time);
+                                            }
+                                          },
+                                        )));
+                          },
+                          elevation: .5,
+                          fillColor: Colors.black,
+                          child: Icon(
+                            Icons.picture_as_pdf,
+                            size: 25.0,
+                            color: Colors.white,
+                          ),
+                          padding: EdgeInsets.all(15.0),
+                          shape: CircleBorder(),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          getTranslated(this.context, 'doc'),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 14),
+                        )
+                      ],
+                    ),
+                   ),
+
+
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 3.27,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        RawMaterialButton(
+                          disabledElevation: 0,
+                          onPressed: () {
+                            hidekeyboard(context);
+                            Navigator.of(context).pop();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MultiImagePicker(
+                                      title: getTranslated(
+                                          this.context, 'pickimage'),
+                                      callback: getFileData,
+                                      writeMessage:
+                                          (String? url, int time) async {
+                                        if (url != null) {
+                                          onSendMessage(this.context, url,
+                                              MessageType.image, time);
+                                        }
+                                      },
+                                    )));
+                          },
+                          elevation: .5,
+                          fillColor: Colors.black,
+                          child: Icon(
+                            Icons.landscape,
+                            size: 25.0,
+                            color: Colors.white,
+                          ),
+                          padding: EdgeInsets.all(15.0),
+                          shape: CircleBorder(),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          getTranslated(this.context, 'image'),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                          TextStyle(color: Colors.black, fontSize: 14),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 3.27,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        RawMaterialButton(
+                          disabledElevation: 0,
+                          onPressed: () async {
+                            hidekeyboard(context);
+                            Navigator.of(context).pop();
+                            await _determinePosition().then(
+                                  (location) async {
+                                var locationstring =
+                                    'https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}';
+                                onSendMessage(
+                                    context,
+                                    locationstring,
+                                    MessageType.location,
+                                    DateTime.now().millisecondsSinceEpoch);
+                                setStateIfMounted(() {});
+                                CuChat.toast(
+                                  getTranslated(this.context, 'sent'),
+                                );
+                              },
+                            );
+                          },
+                          elevation: .5,
+                          fillColor: Colors.black,
+                          child: Icon(
+                            Icons.near_me,
+                            size: 25.0,
+                            color: Colors.white,
+                          ),
+                          padding: EdgeInsets.all(15.0),
+                          shape: CircleBorder(),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          getTranslated(this.context, 'location'),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: Colors.black),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 3.27,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        RawMaterialButton(
+                          disabledElevation: 0,
+                          onPressed: () {
+                            hidekeyboard(context);
+                            Navigator.of(context).pop();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HybridVideoPicker(
+                                      title: getTranslated(
+                                          this.context, 'pickvideo'),
+                                      callback: getFileData,
+                                    ))).then((url) async {
+                              if (url != null) {
+                                CuChat.toast(
+                                  getTranslated(this.context, 'plswait'),
+                                );
+                                String thumbnailurl = await getThumbnail(url);
+                                onSendMessage(
+                                    context,
+                                    url +
+                                        '-BREAK-' +
+                                        thumbnailurl +
+                                        '-BREAK-' +
+                                        videometadata,
+                                    MessageType.video,
+                                    thumnailtimestamp);
+                                CuChat.toast(
+                                    getTranslated(this.context, 'sent'));
+                              } else {}
+                            });
+                          },
+                          elevation: .5,
+                          fillColor: Colors.black,
+                          child: Icon(
+                            Icons.movie_filter,
+                            size: 25.0,
+                            color: Colors.white,
+                          ),
+                          padding: EdgeInsets.all(15.0),
+                          shape: CircleBorder(),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          getTranslated(this.context, 'video'),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                          TextStyle(color: Colors.black, fontSize: 14),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ]),
@@ -3738,7 +3756,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             },
                             icon: Icon(
                               Icons.emoji_emotions,
-                              color: fiberchatGrey,
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -3796,7 +3814,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         child: IconButton(
                                           icon: new Icon(
                                             Icons.attachment_outlined,
-                                            color: fiberchatGrey,
+                                            color: Colors.black,
                                           ),
                                           padding: EdgeInsets.all(0.0),
                                           onPressed: observer
@@ -3838,7 +3856,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                             icon: Icon(
                                               Icons.gif_rounded,
                                               size: 40,
-                                              color: fiberchatGrey,
+                                              color: Colors.black,
                                             ),
                                             onPressed: observer
                                                         .ismediamessagingallowed ==
@@ -3978,7 +3996,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                             indicatorColor: campusChat,
                             iconColor: Colors.grey,
                             iconColorSelected: campusChat,
-                            progressIndicatorColor: Colors.blue,
+                            progressIndicatorColor: campusChat,
                             backspaceColor: campusChat,
                             showRecentsTab: true,
                             recentsLimit: 28,
@@ -4293,7 +4311,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           // print('All message loaded..........');
         });
       }
-      if (mounted) {
+       {
         setStateIfMounted(() {
           messages = List.from(messages);
         });
@@ -4457,7 +4475,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                   ));
             }
           });
-          if (mounted) {
+           {
             setStateIfMounted(() {
               messages = List.from(messages);
             });
@@ -4666,10 +4684,10 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     }).forEach((when, _actualMessages) {
       _groupedMessages.add(Center(
           child: Chip(
-        backgroundColor: Colors.blue[50],
+        backgroundColor: fiberchatGrey,
         label: Text(
           when,
-          style: TextStyle(color: Colors.black54, fontSize: 14),
+          style: TextStyle(color: Colors.white, fontSize: 14),
         ),
       )));
       _actualMessages.forEach((msg) {
@@ -4677,7 +4695,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         if (unread != 0 && (messages.length - count) == unread! - 1) {
           _groupedMessages.add(Center(
               child: Chip(
-            backgroundColor: Colors.blueGrey[50],
+            backgroundColor: Colors.white,
             label: Text('$unread' + getTranslated(this.context, 'unread')),
           )));
           unread = 0; // reset
@@ -4712,19 +4730,19 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   ) {
     if (chatStatus == ChatStatus.blocked.index) {
       return AlertDialog(
-        backgroundColor: Colors.white,
+        backgroundColor: campusChat,
         elevation: 10.0,
         title: Text(
           getTranslated(this.context, 'unblock') +
               ' ${peer![Dbkeys.nickname]}?',
-          style: TextStyle(color: fiberchatBlack),
+          style: TextStyle(color: Colors.white),
         ),
         actions: <Widget>[
           myElevatedButton(
-              color: fiberchatWhite,
+              color: Colors.black,
               child: Text(
                 getTranslated(this.context, 'cancel'),
-                style: TextStyle(color: fiberchatBlack),
+                style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -4996,7 +5014,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                           width: 35,
                                           child: IconButton(
                                               icon: Icon(
-                                                Icons.video_call,
+                                                Icons.video_camera_front,
                                                 color: DESIGN_TYPE ==
                                                         Themetype.whatsapp
                                                     ? fiberchatWhite
@@ -5058,7 +5076,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                           width: 55,
                                           child: IconButton(
                                               icon: Icon(
-                                                Icons.phone,
+                                                Icons.phone_in_talk,
                                                 color: DESIGN_TYPE ==
                                                         Themetype.whatsapp
                                                     ? fiberchatWhite
@@ -5143,14 +5161,6 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               ChatController.unhideChat(
                                                   currentUserNo, peerNo);
                                               break;
-                                            case 'lock':
-                                              ChatController.lockChat(
-                                                  currentUserNo, peerNo);
-                                              break;
-                                            case 'unlock':
-                                              ChatController.unlockChat(
-                                                  currentUserNo, peerNo);
-                                              break;
                                             case 'block':
                                               ChatController.block(
                                                   currentUserNo, peerNo);
@@ -5188,19 +5198,19 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         },
                                         itemBuilder: ((context) =>
                                             <PopupMenuItem<String>>[
-                                              PopupMenuItem<String>(
-                                                value:
-                                                    hidden ? 'unhide' : 'hide',
-                                                child: Text(
-                                                  '${hidden ? getTranslated(this.context, 'unhidechat') : getTranslated(this.context, 'hidechat')}',
-                                                ),
-                                              ),
-                                              PopupMenuItem<String>(
+                                              // PopupMenuItem<String>(
+                                              //   value:
+                                              //       hidden ? 'unhide' : 'hide',
+                                              //   child: Text(
+                                              //     '${hidden ? getTranslated(this.context, 'unhidechat') : getTranslated(this.context, 'hidechat')}',
+                                              //   ),
+                                              // ),
+                                              /*PopupMenuItem<String>(
                                                 value:
                                                     locked ? 'unlock' : 'lock',
                                                 child: Text(
                                                     '${locked ? getTranslated(this.context, 'unlockchat') : getTranslated(this.context, 'lockchat')}'),
-                                              ),
+                                              ),*/
                                               PopupMenuItem<String>(
                                                 value: isBlocked()
                                                     ? 'unblock'
@@ -5219,11 +5229,11 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                       child: Text(getTranslated(
                                                           this.context,
                                                           'setwall'))),
-                                              PopupMenuItem<String>(
-                                                child: Text(getTranslated(
-                                                    this.context, 'showtutor')),
-                                                value: 'tutorial',
-                                              )
+                                              // PopupMenuItem<String>(
+                                              //   child: Text(getTranslated(
+                                              //       this.context, 'showtutor')),
+                                              //   value: 'tutorial',
+                                              // )
                                               // ignore: unnecessary_null_comparison
                                             ].toList())),
                                   ),

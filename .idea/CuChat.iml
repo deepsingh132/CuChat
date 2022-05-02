@@ -6,6 +6,13 @@
       <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/src/main/java/io/flutter/plugins" />
+      <excludeFolder url="file://$MODULE_DIR$/android/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/functions/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Runner.xcworkspace/xcuserdata" />
+      <excludeFolder url="file://$MODULE_DIR$/$APPDATA/npm/node_modules/firebase-tools/templates/init/firestore" />
+      <excludeFolder url="file://$MODULE_DIR$/$APPDATA" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

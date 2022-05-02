@@ -2,6 +2,7 @@
 import 'dart:ui';
 import 'package:CuChat/Configs/Enum.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 //*--App Colors : Replace with your own colours---
 //-**********---------- WHATSAPP Color Theme: -------------------------
@@ -62,13 +63,13 @@ const Admob_RewardedAdUnitID_Ios =
 
 //*--Agora Configurations---
 const Agora_APP_IDD =
-    'PASTE_YOUR_AGORA_APP_ID'; // Grab it from: https://www.agora.io/en/
+    'b556c2a2fc1342f49ca0982b2d488d2f'; // Grab it from: https://www.agora.io/en/
 const dynamic Agora_TOKEN =
     null; // not required until you have planned to setup high level of authentication of users in Agora.
 
 //*--Giphy Configurations---
 const GiphyAPIKey =
-    'PASTE_YOUR_GIPHY_API_KEY_HERE'; // Grab it from: https://developers.giphy.com/
+    '2IponYHvnwqMs1amB7F8wiOo8P6td0Mf'; // Grab it from: https://developers.giphy.com/
 
 //*--App Configurations---
 const Appname =
@@ -77,9 +78,10 @@ const DEFAULT_COUNTTRYCODE_ISO =
     'IN'; //default country ISO 2 letter for login screen
 const DEFAULT_COUNTTRYCODE_NUMBER =
     '+91'; //default country code number for login screen
-const FONTFAMILY_NAME =
-    null; // make sure you have registered the font in pubspec.yaml
+const FONTFAMILY_NAME = 'assets/fonts/Ubuntu-Medium.ttf';
+// make sure you have registered the font in pubspec.yaml
 
 //--WARNING----- PLEASE DONT EDIT THE BELOW LINES UNLESS YOU ARE A DEVELOPER -------
-const SplashPath = 'assets/images/splashscreen.png';
-const AppLogoPath = 'assets/images/splashscreen.png';
+const SplashPath = 'assets/images/splashscreen.gif';
+const AppLogoPath = 'assets/images/applogo.png';
+const loginIcon = 'assets/images/appicon.png';

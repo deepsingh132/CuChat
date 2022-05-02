@@ -237,6 +237,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                     height: 0,
                   ),
             body: RefreshIndicator(
+              color: campusChat,
               onRefresh: () {
                 final statusProvider =
                     Provider.of<StatusProvider>(context, listen: false);
@@ -257,7 +258,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                     builder: (context, statusProvider, _child) => Stack(
                           children: [
                             Container(
-                              color: Color(0xfff2f2f2),
+                              color: campusChat,//Color(0xfff2f2f2),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
@@ -269,7 +270,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                             ConnectionState.waiting) {
                                           return Card(
                                             color: Colors.white,
-                                            elevation: 0.0,
+                                            elevation: 10,
+                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                                             child: Padding(
                                                 padding:
                                                     const EdgeInsets.fromLTRB(
@@ -296,7 +298,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                             decoration:
                                                                 BoxDecoration(
                                                               color:
-                                                                  Colors.blue,
+                                                                  campusChat,
                                                               shape: BoxShape
                                                                   .circle,
                                                             ),
@@ -342,7 +344,8 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
 
                                           return Card(
                                             color: Colors.white,
-                                            elevation: 0.0,
+                                            elevation: 10,
+                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.fromLTRB(
@@ -391,9 +394,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                               .statusITEMSLIST]
                                                                           .length >
                                                                       0
-                                                                  ? Colors.teal
-                                                                      .withOpacity(
-                                                                          0.8)
+                                                                  ? Colors.black
                                                                   : Colors.grey
                                                                       .withOpacity(
                                                                           0.8)
@@ -424,14 +425,16 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                                 Colors.white54),
                                                                         decoration:
                                                                             BoxDecoration(
-                                                                          color: Color(int.parse(
+                                                                          color:
+                                                                              Color(int.parse(
                                                                               snapshot.data[Dbkeys.statusITEMSLIST][snapshot.data[Dbkeys.statusITEMSLIST].length - 1][Dbkeys.statusItemBGCOLOR],
                                                                               radix: 16)),
                                                                           shape:
                                                                               BoxShape.circle,
                                                                         ),
                                                                       )
-                                                                    : snapshot.data[Dbkeys.statusITEMSLIST][snapshot.data[Dbkeys.statusITEMSLIST].length -
+                                                                    :
+                                                                snapshot.data[Dbkeys.statusITEMSLIST][snapshot.data[Dbkeys.statusITEMSLIST].length -
                                                                                 1][Dbkeys.statusItemTYPE] ==
                                                                             Dbkeys.statustypeVIDEO
                                                                         ? Container(
@@ -478,7 +481,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                               ),
                                                                             ),
                                                                           ),
-                                                          ),
+                                                          ), borderColor: Colors.black,
                                                         ),
                                                       ),
                                                     ),
@@ -538,7 +541,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Colors.blue,
+                                                            color: campusChat,
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -664,12 +667,15 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                             !snapshot.data.exists) {
                                           return Card(
                                             color: Colors.white,
-                                            elevation: 0.0,
+                                            elevation: 10,
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                                             child: Padding(
                                                 padding:
                                                     const EdgeInsets.fromLTRB(
-                                                        0, 8, 8, 8),
+                                                        0, 8, 0, 8),
                                                 child: InkWell(
+                                                  splashColor: Colors.transparent,
+                                                  borderRadius: BorderRadius.circular(25),
                                                   onTap:
                                                       observer.isAllowCreatingStatus ==
                                                               false
@@ -714,6 +720,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                   });
                                                             },
                                                   child: ListTile(
+                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                                                     leading: Stack(
                                                       children: <Widget>[
                                                         customCircleAvatar(
@@ -733,7 +740,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                             decoration:
                                                                 BoxDecoration(
                                                               color:
-                                                                  Colors.redAccent,
+                                                                  campusChat,
                                                               shape: BoxShape
                                                                   .circle,
                                                             ),
@@ -785,7 +792,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                           ),
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: Colors.blue,
+                                                            color: campusChat,
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -818,12 +825,15 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                         Text(
                                           getTranslated(context, 'rcntupdates'),
                                           style: TextStyle(
-                                              color: Colors.grey,
+                                              color: Colors.black,
+                                              fontSize: 18,
+                                              letterSpacing: 2,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         SizedBox(
                                           width: 13,
                                         ),
+                                        SizedBox(height: 10),
                                         statusProvider
                                                     .searchingcontactsstatus ==
                                                 true
@@ -845,18 +855,19 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                   ),
                                                 ),
                                                 color: Colors.transparent)
-                                            : SizedBox()
+                                            : SizedBox(height: 23)
                                       ],
                                     ),
                                   ),
                                   statusProvider.searchingcontactsstatus == true
                                       ? Expanded(
-                                          child: Container(color: Colors.white),
+                                          child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)), color: Colors.white)),
                                         )
                                       : statusProvider.contactsStatus.length ==
                                               0
                                           ? Expanded(
                                               child: Container(
+                                                decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)), color: Colors.white),
                                                   child: Center(
                                                     child: Padding(
                                                         padding:
@@ -880,14 +891,14 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                       .w400),
                                                         )),
                                                   ),
-                                                  color: Colors.white),
+                                                  ),
                                             )
                                           : Expanded(
                                               child: Container(
+                                                  decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(18), topRight: Radius.circular(18)), color: Colors.white),
                                                   padding:
                                                       const EdgeInsets.fromLTRB(
                                                           0, 8, 8, 8),
-                                                  color: Colors.white,
                                                   child: ListView.builder(
                                                     padding: EdgeInsets.all(10),
                                                     itemCount: statusProvider
@@ -990,7 +1001,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                               size: 65,
                                                                               color: statusProvider.contactsStatus[idx].data().containsKey(widget.currentUserNo)
                                                                                   ? statusProvider.contactsStatus[idx][Dbkeys.statusITEMSLIST].length > 0
-                                                                                      ? Colors.teal.withOpacity(0.8)
+                                                                                      ? Colors.grey.withOpacity(0.8)
                                                                                       : Colors.grey.withOpacity(0.8)
                                                                                   : Colors.grey.withOpacity(0.8),
                                                                               icon: Padding(
@@ -1022,6 +1033,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                                               height: 50.0,
                                                                                               decoration: BoxDecoration(
                                                                                                 shape: BoxShape.circle,
+                                                                                                //color: campusChat,
                                                                                                 image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
                                                                                               ),
                                                                                             ),
@@ -1042,7 +1054,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                                               ),
                                                                                             ),
                                                                                           ),
-                                                                              ),
+                                                                              ), borderColor: campusChat,
                                                                             ),
                                                                           ),
                                                                           title:
@@ -1112,7 +1124,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                                 65,
                                                                             color: statusProvider.contactsStatus[idx].data().containsKey(widget.currentUserNo)
                                                                                 ? statusProvider.contactsStatus[idx][Dbkeys.statusITEMSLIST].length > 0
-                                                                                    ? Colors.teal.withOpacity(0.8)
+                                                                                    ? Colors.grey.withOpacity(0.8)
                                                                                     : Colors.grey.withOpacity(0.8)
                                                                                 : Colors.grey.withOpacity(0.8),
                                                                             icon:
@@ -1124,7 +1136,9 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                                       height: 50.0,
                                                                                       child: Icon(Icons.text_fields, color: Colors.white54),
                                                                                       decoration: BoxDecoration(
-                                                                                        color: Color(int.parse(statusProvider.contactsStatus[idx][Dbkeys.statusITEMSLIST][statusProvider.contactsStatus[idx][Dbkeys.statusITEMSLIST].length - 1][Dbkeys.statusItemBGCOLOR], radix: 16)),
+                                                                                        color: //campusChat,
+                                                                                        Color(int.parse(statusProvider.contactsStatus[idx][Dbkeys.statusITEMSLIST][statusProvider.contactsStatus[idx][Dbkeys.statusITEMSLIST].length - 1][Dbkeys.statusItemBGCOLOR], radix: 16)),
+                                                                                        //
                                                                                         shape: BoxShape.circle,
                                                                                       ),
                                                                                     )
@@ -1145,6 +1159,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                                             height: 50.0,
                                                                                             decoration: BoxDecoration(
                                                                                               shape: BoxShape.circle,
+                                                                                              color: campusChat,
                                                                                               image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
                                                                                             ),
                                                                                           ),
@@ -1165,7 +1180,7 @@ class _StatusState extends State<Status> with AutomaticKeepAliveClientMixin {
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                            ),
+                                                                            ), borderColor: campusChat,
                                                                           ),
                                                                         ),
                                                                         title:

@@ -80,7 +80,7 @@ class _StatusImageEditorState extends State<StatusImageEditor> {
     return CuChat.getNTPWrappedWidget(WillPopScope(
       child: Scaffold(
         backgroundColor:
-            DESIGN_TYPE == Themetype.whatsapp ? Colors.black : fiberchatWhite,
+            DESIGN_TYPE == Themetype.whatsapp ? fiberchatBlack : fiberchatWhite,
         appBar: new AppBar(
             leading: IconButton(
               onPressed: () {
@@ -104,7 +104,7 @@ class _StatusImageEditorState extends State<StatusImageEditor> {
               ),
             ),
             backgroundColor: DESIGN_TYPE == Themetype.whatsapp
-                ? Colors.black
+                ? fiberchatBlack
                 : fiberchatWhite,
             actions: _imageFile != null
                 ? <Widget>[
@@ -139,7 +139,7 @@ class _StatusImageEditorState extends State<StatusImageEditor> {
                     padding: EdgeInsets.all(12),
                     height: 80,
                     width: MediaQuery.of(context).size.width,
-                    color: Colors.black,
+                    color: fiberchatBlack,
                     child: Row(children: [
                       Flexible(
                         child: TextField(
@@ -244,7 +244,7 @@ class _StatusImageEditorState extends State<StatusImageEditor> {
           child: Icon(icon, size: 30.0),
           shape: new RoundedRectangleBorder(),
           color:
-              DESIGN_TYPE == Themetype.whatsapp ? Colors.black : campusChat,
+              DESIGN_TYPE == Themetype.whatsapp ? campusChat : campusChat,
           textColor: fiberchatWhite,
           onPressed: onPressed as void Function()?),
     );

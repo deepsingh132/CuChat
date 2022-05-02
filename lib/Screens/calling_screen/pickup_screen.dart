@@ -42,240 +42,251 @@ class PickupScreen extends StatelessWidget {
                 backgroundColor: campusChat,
                 body: Container(
                   alignment: Alignment.center,
-                  child: Expanded(child:
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(
-                            top: MediaQuery.of(context).padding.top),
-                        color: DESIGN_TYPE == Themetype.messenger
-                            ? campusChat
-                            : campusChat,
-                        height: h / 4,
-                        width: w,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              height: 7,
-                            ),
+                  child: Column(
+                    children: [ Expanded(child:
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
 
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  call.isvideocall == true
-                                      ? Icons.videocam
-                                      : Icons.mic_rounded,
-                                  size: 40,
-                                  color: DESIGN_TYPE == Themetype.whatsapp
-                                      ? campusChatLight2
-                                      : Colors.white.withOpacity(0.5),
-                                ),
-                                SizedBox(
-                                  width: 7,
-                                ),
-                                Text(
-                                  call.isvideocall == true
-                                      ? getTranslated(context, 'incomingvideo')
-                                      : getTranslated(context, 'incomingaudio'),
-                                  style: TextStyle(
-                                      fontSize: 18.0,
-                                      color: DESIGN_TYPE == Themetype.whatsapp
-                                          ? campusChatLight2
-                                          : Colors.white.withOpacity(0.5),
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: h / 9,
-                              child: Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(
+                              top: MediaQuery.of(context).padding.top),
+                          color: DESIGN_TYPE == Themetype.messenger
+                              ? campusChat
+                              : campusChat,
+                          height: h / 4,
+                          width: w,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                height: 7,
+                              ),
+
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(height: 7),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.1,
-                                    child: Text(
-                                      call.callerName!,
-                                      maxLines: 1,
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        color: DESIGN_TYPE == Themetype.whatsapp
-                                            ? fiberchatWhite
-                                            : fiberchatWhite,
-                                        fontSize: 27,
-                                      ),
-                                    ),
+                                  Icon(
+                                    call.isvideocall == true
+                                        ? Icons.videocam
+                                        : Icons.mic_rounded,
+                                    size: 40,
+                                    color: DESIGN_TYPE == Themetype.whatsapp
+                                        ? campusChatLight2
+                                        : Colors.white.withOpacity(0.5),
                                   ),
-                                  SizedBox(height: 7),
+                                  SizedBox(
+                                    width: 7,
+                                  ),
                                   Text(
-                                    call.callerId!,
+                                    call.isvideocall == true
+                                        ? getTranslated(context, 'incomingvideo')
+                                        : getTranslated(context, 'incomingaudio'),
                                     style: TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                      color: DESIGN_TYPE == Themetype.whatsapp
-                                          ? fiberchatWhite.withOpacity(0.34)
-                                          : fiberchatWhite.withOpacity(0.34),
-                                      fontSize: 15,
-                                    ),
+                                        fontSize: 18.0,
+                                        color: DESIGN_TYPE == Themetype.whatsapp
+                                            ? campusChatLight2
+                                            : Colors.white.withOpacity(0.5),
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ],
                               ),
-                            ),
-                            // SizedBox(height: h / 25),
-
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                      call.callerPic == null || call.callerPic == ''
-                          ? Container(
-                              height: w + (w / 140),
-                              width: w,
-                              color: Colors.white12,
-                              child: Icon(
-                                Icons.person,
-                                size: 140,
-                                color: campusChat,
+                              SizedBox(
+                                height: h / 9,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(height: 7),
+                                    SizedBox(
+                                      width:
+                                          MediaQuery.of(context).size.width / 1.1,
+                                      child: Text(
+                                        call.callerName!,
+                                        maxLines: 1,
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          color: DESIGN_TYPE == Themetype.whatsapp
+                                              ? Colors.black
+                                              : Colors.white,
+                                          fontSize: 27,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 7),
+                                    Text(
+                                      call.callerId!,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: DESIGN_TYPE == Themetype.whatsapp
+                                            ? Colors.white
+                                            : Colors.white.withOpacity(0.85),
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            )
-                          : Stack(
-                              children: [
-                                Container(
-                                    height: w + (w / 140),
-                                    width: w,
-                                    color: Colors.white12,
-                                    child: CachedNetworkImage(
-                                      imageUrl: call.callerPic!,
-                                      fit: BoxFit.cover,
+                              // SizedBox(height: h / 25),
+
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                        call.callerPic == null || call.callerPic == ''
+                            ? Container(
+                                height: w + (w / 140),
+                                width: w,
+                                color: Colors.white12,
+                                child: Icon(
+                                  Icons.person,
+                                  size: 140,
+                                  color: campusChat,
+                                ),
+                              )
+                            : Stack(
+                                children: [
+                                  Container(
                                       height: w + (w / 140),
                                       width: w,
-                                      placeholder: (context, url) => Center(
-                                          child: Container(
+                                      color: Colors.white,
+                                      child: CachedNetworkImage(
+                                        imageUrl: call.callerPic!,
+                                        fit: BoxFit.cover,
                                         height: w + (w / 140),
                                         width: w,
-                                        color: Colors.white12,
-                                        child: Icon(
-                                          Icons.person,
-                                          size: 140,
-                                          color: campusChat,
+                                        placeholder: (context, url) => Center(
+                                            child: Container(
+                                          height: w + (w / 140),
+                                          width: w,
+                                          color: Colors.white12,
+                                          child: Icon(
+                                            Icons.person,
+                                            size: 140,
+                                            color: Colors.black,
+                                          ),
+                                        )),
+                                        errorWidget: (context, url, error) =>
+                                            Container(
+                                          height: w + (w / 140),
+                                          width: w,
+                                          color: Colors.white12,
+                                          child: Icon(
+                                            Icons.person,
+                                            size: 140,
+                                            color: Colors.black,
+                                          ),
                                         ),
                                       )),
-                                      errorWidget: (context, url, error) =>
-                                          Container(
-                                        height: w + (w / 140),
-                                        width: w,
-                                        color: Colors.white12,
-                                        child: Icon(
-                                          Icons.person,
-                                          size: 140,
-                                          color: campusChat,
-                                        ),
-                                      ),
-                                    )),
-                                Container(
-                                  height: w + (w / 140),
-                                  width: w,
-                                  color: Colors.black.withOpacity(0.18),
-                                ),
-                              ],
-                            ),
-                      Container(
-                        height: h / 6,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RawMaterialButton(
-                              onPressed: () async {
-                                flutterLocalNotificationsPlugin.cancelAll();
-                                await callMethods.endCall(call: call);
-                                FirebaseFirestore.instance
-                                    .collection(DbPaths.collectionusers)
-                                    .doc(call.callerId)
-                                    .collection(DbPaths.collectioncallhistory)
-                                    .doc(call.timeepoch.toString())
-                                    .set({
-                                  'STATUS': 'rejected',
-                                  'ENDED': DateTime.now(),
-                                }, SetOptions(merge: true));
-                                FirebaseFirestore.instance
-                                    .collection(DbPaths.collectionusers)
-                                    .doc(call.receiverId)
-                                    .collection(DbPaths.collectioncallhistory)
-                                    .doc(call.timeepoch.toString())
-                                    .set({
-                                  'STATUS': 'rejected',
-                                  'ENDED': DateTime.now(),
-                                }, SetOptions(merge: true));
-                                //----------
-                                await FirebaseFirestore.instance
-                                    .collection(DbPaths.collectionusers)
-                                    .doc(call.receiverId)
-                                    .collection('recent')
-                                    .doc('callended')
-                                    .set({
-                                  'id': call.receiverId,
-                                  'ENDED': DateTime.now().millisecondsSinceEpoch
-                                }, SetOptions(merge: true));
-
-                                firestoreDataProviderCALLHISTORY.fetchNextData(
-                                    'CALLHISTORY',
-                                    FirebaseFirestore.instance
-                                        .collection(DbPaths.collectionusers)
-                                        .doc(call.receiverId)
-                                        .collection(
-                                            DbPaths.collectioncallhistory)
-                                        .orderBy('TIME', descending: true)
-                                        .limit(14),
-                                    true);
-                              },
-                              child: Icon(
-                                Icons.call_end,
-                                color: Colors.white,
-                                size: 35.0,
+                                  Container(
+                                    height: w + (w / 140),
+                                    width: w,
+                                    color: Colors.transparent,
+                                  ),
+                                ],
                               ),
-                              shape: CircleBorder(),
-                              elevation: 2.0,
-                              fillColor: Colors.redAccent,
-                              padding: const EdgeInsets.all(15.0),
-                            ),
-                            SizedBox(width: 45),
-                            RawMaterialButton(
-                              onPressed: () async {
-                                flutterLocalNotificationsPlugin.cancelAll();
-                                await Permissions
-                                        .cameraAndMicrophonePermissionsGranted()
-                                    .then((isgranted) async {
-                                  if (isgranted == true) {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => call
-                                                    .isvideocall ==
-                                                true
-                                            ? VideoCall(
-                                                currentuseruid: currentuseruid,
-                                                call: call,
-                                                channelName: call.channelId,
-                                                role: _role,
-                                              )
-                                            : AudioCall(
-                                                currentuseruid: currentuseruid,
-                                                call: call,
-                                                channelName: call.channelId,
-                                                role: _role,
-                                              ),
-                                      ),
-                                    );
-                                  } else {
+                        Container(
+                          height: h / 6,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RawMaterialButton(
+                                onPressed: () async {
+                                  flutterLocalNotificationsPlugin.cancelAll();
+                                  await callMethods.endCall(call: call);
+                                  FirebaseFirestore.instance
+                                      .collection(DbPaths.collectionusers)
+                                      .doc(call.callerId)
+                                      .collection(DbPaths.collectioncallhistory)
+                                      .doc(call.timeepoch.toString())
+                                      .set({
+                                    'STATUS': 'rejected',
+                                    'ENDED': DateTime.now(),
+                                  }, SetOptions(merge: true));
+                                  FirebaseFirestore.instance
+                                      .collection(DbPaths.collectionusers)
+                                      .doc(call.receiverId)
+                                      .collection(DbPaths.collectioncallhistory)
+                                      .doc(call.timeepoch.toString())
+                                      .set({
+                                    'STATUS': 'rejected',
+                                    'ENDED': DateTime.now(),
+                                  }, SetOptions(merge: true));
+                                  //----------
+                                  await FirebaseFirestore.instance
+                                      .collection(DbPaths.collectionusers)
+                                      .doc(call.receiverId)
+                                      .collection('recent')
+                                      .doc('callended')
+                                      .set({
+                                    'id': call.receiverId,
+                                    'ENDED': DateTime.now().millisecondsSinceEpoch
+                                  }, SetOptions(merge: true));
+
+                                  firestoreDataProviderCALLHISTORY.fetchNextData(
+                                      'CALLHISTORY',
+                                      FirebaseFirestore.instance
+                                          .collection(DbPaths.collectionusers)
+                                          .doc(call.receiverId)
+                                          .collection(
+                                              DbPaths.collectioncallhistory)
+                                          .orderBy('TIME', descending: true)
+                                          .limit(14),
+                                      true);
+                                },
+                                child: Icon(
+                                  Icons.call_end,
+                                  color: campusChat,
+                                  size: 35.0,
+                                ),
+                                shape: CircleBorder(),
+                                elevation: 10,
+                                fillColor: Colors.black,
+                                padding: const EdgeInsets.all(15.0),
+                              ),
+                              SizedBox(width: 45),
+                              RawMaterialButton(
+                                onPressed: () async {
+                                  flutterLocalNotificationsPlugin.cancelAll();
+                                  await Permissions
+                                          .cameraAndMicrophonePermissionsGranted()
+                                      .then((isgranted) async {
+                                    if (isgranted == true) {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => call
+                                                      .isvideocall ==
+                                                  true
+                                              ? VideoCall(
+                                                  currentuseruid: currentuseruid,
+                                                  call: call,
+                                                  channelName: call.channelId,
+                                                  role: _role,
+                                                )
+                                              : AudioCall(
+                                                  currentuseruid: currentuseruid,
+                                                  call: call,
+                                                  channelName: call.channelId,
+                                                  role: _role,
+                                                ),
+                                        ),
+                                      );
+                                    } else {
+                                      CuChat.showRationale(
+                                          getTranslated(context, 'pmc'));
+                                      Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                              builder: (context) =>
+                                                  OpenSettings()));
+                                    }
+                                  }).catchError((onError) {
                                     CuChat.showRationale(
                                         getTranslated(context, 'pmc'));
                                     Navigator.push(
@@ -283,32 +294,24 @@ class PickupScreen extends StatelessWidget {
                                         new MaterialPageRoute(
                                             builder: (context) =>
                                                 OpenSettings()));
-                                  }
-                                }).catchError((onError) {
-                                  CuChat.showRationale(
-                                      getTranslated(context, 'pmc'));
-                                  Navigator.push(
-                                      context,
-                                      new MaterialPageRoute(
-                                          builder: (context) =>
-                                              OpenSettings()));
-                                });
-                              },
-                              child: Icon(
-                                Icons.call,
-                                color: Colors.white,
-                                size: 35.0,
-                              ),
-                              shape: CircleBorder(),
-                              elevation: 2.0,
-                              fillColor: Colors.blue[400],
-                              padding: const EdgeInsets.all(15.0),
-                            )
-                          ],
+                                  });
+                                },
+                                child: Icon(
+                                  Icons.call,
+                                  color: Colors.white,
+                                  size: 35.0,
+                                ),
+                                shape: CircleBorder(),
+                                elevation: 10,
+                                fillColor: Colors.green,
+                                padding: const EdgeInsets.all(15.0),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                    )],
                   )
                 ))
             : Scaffold(
@@ -349,7 +352,7 @@ class PickupScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 19,
                             color: DESIGN_TYPE == Themetype.whatsapp
-                                ? fiberchatWhite.withOpacity(0.54)
+                                ? Colors.black
                                 : fiberchatBlack.withOpacity(0.54),
                           ),
                         ),
@@ -422,12 +425,12 @@ class PickupScreen extends StatelessWidget {
                               },
                               child: Icon(
                                 Icons.call_end,
-                                color: Colors.white,
+                                color: campusChat,
                                 size: 35.0,
                               ),
                               shape: CircleBorder(),
-                              elevation: 2.0,
-                              fillColor: Colors.redAccent,
+                              elevation: 10,
+                              fillColor: Colors.black,
                               padding: const EdgeInsets.all(15.0),
                             ),
                             SizedBox(width: 45),
@@ -483,7 +486,7 @@ class PickupScreen extends StatelessWidget {
                                 size: 35.0,
                               ),
                               shape: CircleBorder(),
-                              elevation: 2.0,
+                              elevation: 10,
                               fillColor: campusChatLight2,
                               padding: const EdgeInsets.all(15.0),
                             )

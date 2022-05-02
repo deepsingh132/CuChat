@@ -91,6 +91,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.3
   collection: ^1.15.0-nullsafety.4
+  sliding_up_panel: ^2.0.0+1
 dependency_overrides:
   provider: ^6.0.0 # for chewie 1.2.2
 dev_dependencies:
@@ -109,12 +110,20 @@ flutter_icons:
 
 flutter:
   uses-material-design: true
+  fonts:
+  - family: ubuntu
+    fonts:
+      - asset:  assets/fonts/Ubuntu-Medium.ttf
+        weight: 100
+
 
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/mapview.jpg
     - assets/images/background.png
-    - assets/images/splashscreen.png
+    - assets/images/splashscreen.gif
+    - assets/images/applogo.png
+    - assets/images/appicon.png
     #- assets/images/splash.jpeg
     - assets/images/img_not_available.jpeg
     - assets/sounds/popsound.mp3

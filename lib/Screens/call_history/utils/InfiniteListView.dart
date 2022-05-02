@@ -70,7 +70,9 @@ class _InfiniteListViewState extends State<InfiniteListView> {
             ?
             //-----PRODUCTS
             [
-                Container(child: widget.list),
+                Container(//color: Colors.black,decoration: BoxDecoration(borderRadius: BorderRadius.vertical(top: Radius.circular(18))
+               // ),
+                    child: widget.list),
                 (widget.firestoreDataProviderCALLHISTORY!.hasNext == true)
                     ? Center(
                         child: GestureDetector(

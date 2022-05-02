@@ -51,7 +51,8 @@ class _AddContactsToGroupState extends State<AddContactsToGroup>
   final TextEditingController groupname = new TextEditingController();
   final TextEditingController groupdesc = new TextEditingController();
   void setStateIfMounted(f) {
-    if (mounted) setState(f);
+    //
+      setState(f);
   }
 
   @override
@@ -660,6 +661,7 @@ class _AddContactsToGroupState extends State<AddContactsToGroup>
                                       }),
                                 ),
                           body: RefreshIndicator(
+                              color: campusChat,
                               onRefresh: () {
                                 return contactsProvider.fetchContacts(context,
                                     model, widget.currentUserNo!, widget.prefs);

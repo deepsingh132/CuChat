@@ -24,17 +24,17 @@ class CuChat {
   static void toast(String message) {
     Fluttertoast.showToast(
         msg: message,
-        backgroundColor: fiberchatBlack.withOpacity(0.95),
-        textColor: fiberchatWhite);
+        backgroundColor: campusChat,
+        textColor: Colors.white);
   }
 
   static void internetLookUp() async {
     try {
       await InternetAddress.lookup('google.com').catchError((e) {
-        CuChat.toast('No internet connection ${e.toString()}');
+        CuChat.toast('No internet');
       });
     } catch (err) {
-      CuChat.toast('No internet connection. ${err.toString()}');
+      CuChat.toast('No internet');
     }
   }
 
@@ -154,14 +154,14 @@ class CuChat {
     return '$peerNo-$currentUserNo';
   }
 
-  static AuthenticationType getAuthenticationType(
-      bool biometricEnabled, DataModel? model) {
-    if (biometricEnabled && model?.currentUser != null) {
-      return AuthenticationType
-          .values[model!.currentUser![Dbkeys.authenticationType]];
-    }
-    return AuthenticationType.passcode;
-  }
+  // static AuthenticationType getAuthenticationType(
+  //     bool biometricEnabled, DataModel? model) {
+  //   if (biometricEnabled && model?.currentUser != null) {
+  //     return AuthenticationType
+  //         .values[model!.currentUser![Dbkeys.authenticationType]];
+  //   }
+  //   return AuthenticationType.passcode;
+  // }
 
   static ChatStatus getChatStatus(int index) => ChatStatus.values[index];
 

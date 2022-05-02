@@ -32,8 +32,8 @@ class Observer with ChangeNotifier {
   //--
   int maxNoOfFilesInMultiSharing = MaxNoOfFilesInMultiSharing;
   int maxNoOfContactsSelectForForward = MaxNoOfContactsSelectForForward;
-  String appShareMessageStringAndroid = '';
-  String appShareMessageStringiOS = '';
+  String appShareMessageStringAndroid = 'Join us on our journey to make this app the primary messaging app for the whole Chandigarh University!';
+  String appShareMessageStringiOS = 'Join us on our journey to make this app the primary messaging app for the whole Chandigarh University!';
   bool isCustomAppShareLink = false;
   setObserver({
     bool? getisshowerrorlog,
