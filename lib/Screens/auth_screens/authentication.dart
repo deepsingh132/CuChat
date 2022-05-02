@@ -18,10 +18,10 @@ class Authenticate extends StatefulWidget {
   final NavigatorState state;
   final DataModel model;
   final Function onSuccess;
-  final AuthenticationType type;
+  //final AuthenticationType type;
   final bool shouldPop;
   Authenticate(
-      {required this.type,
+      {
       required this.answer,
       required this.model,
       required this.question,
@@ -45,11 +45,11 @@ class _AuthenticateState extends State<Authenticate> {
     super.initState();
     passcodeTries = widget.prefs.getInt(Dbkeys.passcodeTries) ?? 0;
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      if (passcodeVisible()) {
-        widget.type == AuthenticationType.passcode
+      /*if (passcodeVisible()) {
+        widget.type == AuthenticationType.biometric
             ? _showLockScreen()
             : _biometricAuthentication();
-      }
+      }*/
     });
   }
 

@@ -319,12 +319,12 @@ class _AudioCallState extends State<AudioCall> {
                   onPressed: _onToggleMute,
                   child: Icon(
                     muted ? Icons.mic_off : Icons.mic,
-                    color: muted ? Colors.white : Colors.blueAccent,
+                    color: muted ? campusChat : Colors.white,
                     size: 22.0,
                   ),
                   shape: CircleBorder(),
-                  elevation: 2.0,
-                  fillColor: muted ? Colors.blueAccent : Colors.white,
+                  elevation: 10,
+                  fillColor: muted ? Colors.black : Colors.black,
                   padding: const EdgeInsets.all(12.0),
                 ),
           RawMaterialButton(
@@ -344,10 +344,10 @@ class _AudioCallState extends State<AudioCall> {
               size: 35.0,
             ),
             shape: CircleBorder(),
-            elevation: 2.0,
+            elevation: 10,
             fillColor: status == 'ended' || status == 'rejected'
                 ? Colors.black
-                : Colors.redAccent,
+                : Colors.black,
             padding: const EdgeInsets.all(15.0),
           ),
           isshowspeaker == true
@@ -357,12 +357,12 @@ class _AudioCallState extends State<AudioCall> {
                     isspeaker
                         ? Icons.volume_mute_rounded
                         : Icons.volume_off_sharp,
-                    color: isspeaker ? Colors.white : Colors.blueAccent,
+                    color: isspeaker ? Colors.white : campusChat,
                     size: 22.0,
                   ),
                   shape: CircleBorder(),
-                  elevation: 2.0,
-                  fillColor: isspeaker ? Colors.blueAccent : Colors.white,
+                  elevation: 10,
+                  fillColor: isspeaker ? Colors.black : Colors.black,
                   padding: const EdgeInsets.all(12.0),
                 )
               : SizedBox(height: 42, width: 42)
@@ -402,14 +402,14 @@ class _AudioCallState extends State<AudioCall> {
               children:
                 [
                 SizedBox(height: 9),
-                Row(
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
 
-                    Icon(
+                    /*Icon(
                       Icons.lock_rounded,
                       size: 17,
-                      color: Colors.white38,
+                      color: Colors.white,
                     ),
                     SizedBox(
                       width: 6,
@@ -417,10 +417,10 @@ class _AudioCallState extends State<AudioCall> {
                     Text(
                       getTranslated(context, 'endtoendencryption'),
                       style: TextStyle(
-                          color: Colors.white38, fontWeight: FontWeight.w400),
-                    ),
+                          color: Colors.white, fontWeight: FontWeight.w400),
+                    ),*/
                   ],
-                ),
+                ),*/
                 // SizedBox(height: h / 35),
                 SizedBox(
                   height: h / 9,
@@ -440,8 +440,8 @@ class _AudioCallState extends State<AudioCall> {
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: DESIGN_TYPE == Themetype.whatsapp
-                                ? fiberchatWhite
-                                : fiberchatWhite,
+                                ? Colors.black
+                                : Colors.black,
                             fontSize: 27,
                           ),
                         ),
@@ -454,8 +454,8 @@ class _AudioCallState extends State<AudioCall> {
                         style: TextStyle(
                           fontWeight: FontWeight.normal,
                           color: DESIGN_TYPE == Themetype.whatsapp
-                              ? fiberchatWhite.withOpacity(0.34)
-                              : fiberchatWhite.withOpacity(0.34),
+                              ? Colors.white
+                              : Colors.white,
                           fontSize: 15,
                         ),
                       ),
@@ -470,8 +470,8 @@ class _AudioCallState extends State<AudioCall> {
                         style: TextStyle(
                             fontSize: 20.0,
                             color: DESIGN_TYPE == Themetype.whatsapp
-                                ? Colors.blue[300]
-                                : Colors.blue[300],
+                                ? Colors.black
+                                : Colors.black,
                             fontWeight: FontWeight.w600),
                       )
                     : Text(
@@ -503,7 +503,7 @@ class _AudioCallState extends State<AudioCall> {
                           color: status == 'pickedup'
                               ? campusChatLight2
                               : DESIGN_TYPE == Themetype.whatsapp
-                                  ? fiberchatWhite.withOpacity(0.5)
+                                  ? Colors.white
                                   : fiberchatWhite,
                           fontSize: 18,
                         ),
@@ -524,7 +524,7 @@ class _AudioCallState extends State<AudioCall> {
                       ? Container(
                           height: w + (w / 11),
                           width: w,
-                          color: Colors.white12,
+                          color: Colors.black,
                           child: Icon(
                             status == 'ended'
                                 ? Icons.person_off
@@ -540,7 +540,7 @@ class _AudioCallState extends State<AudioCall> {
                             Container(
                                 height: w + (w / 11),
                                 width: w,
-                                color: Colors.white12,
+                                color: Colors.white,
                                 child: CachedNetworkImage(
                                   imageUrl: widget.call.callerId ==
                                           widget.currentuseruid
@@ -553,7 +553,7 @@ class _AudioCallState extends State<AudioCall> {
                                       child: Container(
                                     height: w + (w / 11),
                                     width: w,
-                                    color: Colors.white12,
+                                    color: Colors.white,
                                     child: Icon(
                                       status == 'ended'
                                           ? Icons.person_off
@@ -594,7 +594,7 @@ class _AudioCallState extends State<AudioCall> {
                       ? Container(
                           height: w + (w / 11),
                           width: w,
-                          color: Colors.white12,
+                          color: Colors.black,
                           child: Icon(
                             status == 'ended'
                                 ? Icons.person_off
@@ -612,7 +612,7 @@ class _AudioCallState extends State<AudioCall> {
                                 width: w,
                                 color: DESIGN_TYPE == Themetype.messenger
                                     ? campusChat.withOpacity(0.6)
-                                    : Colors.white12,
+                                    : Colors.black,
                                 child: CachedNetworkImage(
                                   imageUrl: widget.call.callerId ==
                                           widget.currentuseruid
@@ -625,7 +625,7 @@ class _AudioCallState extends State<AudioCall> {
                                       child: Container(
                                     height: w + (w / 11),
                                     width: w,
-                                    color: Colors.white12,
+                                    color: Colors.black,
                                     child: Icon(
                                       status == 'ended'
                                           ? Icons.person_off
@@ -640,7 +640,7 @@ class _AudioCallState extends State<AudioCall> {
                                       Container(
                                     height: w + (w / 11),
                                     width: w,
-                                    color: Colors.white12,
+                                    color: Colors.black,
                                     child: Icon(
                                       status == 'ended'
                                           ? Icons.person_off
@@ -692,11 +692,11 @@ class _AudioCallState extends State<AudioCall> {
                                   getTranslated(context, 'muted'),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w900,
                                     color: DESIGN_TYPE == Themetype.whatsapp
-                                        ? Colors.yellow
-                                        : Colors.yellow,
-                                    fontSize: 16,
+                                        ? Colors.black
+                                        : Colors.black,
+                                    fontSize: 20,
                                   ),
                                 )
                               : SizedBox(
@@ -750,7 +750,7 @@ class _AudioCallState extends State<AudioCall> {
               color: status == 'pickedup'
                   ? campusChatLight2
                   : DESIGN_TYPE == Themetype.whatsapp
-                      ? fiberchatWhite
+                      ? Colors.black
                       : fiberchatBlack,
               fontSize: 25,
             ),
@@ -765,10 +765,10 @@ class _AudioCallState extends State<AudioCall> {
                 fontWeight: FontWeight.normal,
                 color: status == 'pickedup'
                     ? DESIGN_TYPE == Themetype.whatsapp
-                        ? campusChatLight2
+                        ? Colors.white
                         : fiberchatBlack
                     : DESIGN_TYPE == Themetype.whatsapp
-                        ? campusChatLight2
+                        ? Colors.white
                         : campusChatLight,
                 fontSize: 16,
               ),
@@ -782,8 +782,8 @@ class _AudioCallState extends State<AudioCall> {
                   style: TextStyle(
                       fontSize: 24.0,
                       color: DESIGN_TYPE == Themetype.whatsapp
-                          ? Colors.cyan
-                          : Colors.pink,
+                          ? Colors.black
+                          : Colors.black,
                       fontWeight: FontWeight.w700),
                 ),
           SizedBox(height: 45),
@@ -826,7 +826,7 @@ class _AudioCallState extends State<AudioCall> {
                         : Icons.call,
                     size: w > h ? 60 : 140,
                     color: DESIGN_TYPE == Themetype.whatsapp
-                        ? fiberchatWhite.withOpacity(0.25)
+                        ? Colors.black
                         : fiberchatBlack.withOpacity(0.25),
                   ),
                 ),
@@ -838,7 +838,7 @@ class _AudioCallState extends State<AudioCall> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: DESIGN_TYPE == Themetype.whatsapp
-                  ? fiberchatWhite
+                  ? Colors.black
                   : fiberchatBlack,
               fontSize: 22,
             ),
@@ -853,8 +853,8 @@ class _AudioCallState extends State<AudioCall> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: DESIGN_TYPE == Themetype.whatsapp
-                  ? fiberchatWhite.withOpacity(0.54)
-                  : fiberchatBlack.withOpacity(0.54),
+                  ? fiberchatWhite
+                  : fiberchatBlack,
               fontSize: 19,
             ),
           ),
@@ -868,8 +868,8 @@ class _AudioCallState extends State<AudioCall> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: DESIGN_TYPE == Themetype.whatsapp
-                            ? Colors.yellow
-                            : Colors.orange,
+                            ? Colors.black
+                            : Colors.black,
                         fontSize: 19,
                       ),
                     )

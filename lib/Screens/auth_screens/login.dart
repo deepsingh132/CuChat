@@ -38,7 +38,6 @@ class LoginScreen extends StatefulWidget {
   LoginScreen(
       {Key? key,
       this.title,
-      required this.issecutitysetupdone,
       required this.isaccountapprovalbyadminneeded,
       required this.accountApprovalMessage,
       required this.prefs,
@@ -46,7 +45,6 @@ class LoginScreen extends StatefulWidget {
       : super(key: key);
 
   final String? title;
-  final bool issecutitysetupdone;
   final bool? isblocknewlogins;
   final bool? isaccountapprovalbyadminneeded;
   final String? accountApprovalMessage;
@@ -221,7 +219,8 @@ class LoginScreenState extends State<LoginScreen>
       if (err.toString().contains('return a value')) {
       } else {
         CuChat.toast(getTranslated(this.context, 'makesureotp'));
-        if (mounted)
+
+
           setState(() {
             _currentStep = 0;
             _phoneNo.clear();
@@ -258,7 +257,6 @@ class LoginScreenState extends State<LoginScreen>
           Dbkeys.id: firebaseUser.user!.uid,
           Dbkeys.phone: phoneNo,
           Dbkeys.phoneRaw: _phoneNo.text,
-          Dbkeys.authenticationType: AuthenticationType.passcode.index,
           Dbkeys.aboutMe: '',
           //---Additional fields added for Admin app compatible----
           Dbkeys.accountstatus: widget.isaccountapprovalbyadminneeded == true
@@ -346,24 +344,19 @@ class LoginScreenState extends State<LoginScreen>
         }, SetOptions(merge: true));
         unawaited(widget.prefs.setBool(Dbkeys.isTokenGenerated, true));
 
-        unawaited(Navigator.pushReplacement(
-            this.context,
-            MaterialPageRoute(
-                builder: (context) => Security(
-                      phoneNo,
-                      prefs: widget.prefs,
-                      setPasscode: true,
-                      onSuccess: () async {
+
                         unawaited(Navigator.pushReplacement(
                             this.context,
                             new MaterialPageRoute(
-                                builder: (context) => FiberchatWrapper())));
+                                builder: (context) => Homepage(currentUserNo: phoneNo,
+                                                                   prefs: widget.prefs,)
+                            )));
                         CuChat.toast(
                             getTranslated(this.context, 'welcometo') +
                                 ' $Appname');
-                      },
-                      title: getTranslated(this.context, 'authh'),
-                    ))));
+
+                      title: getTranslated(this.context, 'authh');
+
         await subscribeToNotification(documents[0][Dbkeys.phone]);
       } else {
         await storage.write(
@@ -374,8 +367,6 @@ class LoginScreenState extends State<LoginScreen>
             .update(
               !documents[0].data().containsKey(Dbkeys.deviceDetails)
                   ? {
-                      Dbkeys.authenticationType:
-                          AuthenticationType.passcode.index,
                       Dbkeys.accountstatus:
                           widget.isaccountapprovalbyadminneeded == true
                               ? Dbkeys.sTATUSpending
@@ -404,8 +395,6 @@ class LoginScreenState extends State<LoginScreen>
                       Dbkeys.searchKey:
                           _name.text.trim().substring(0, 1).toUpperCase(),
                       Dbkeys.nickname: _name.text.trim(),
-                      Dbkeys.authenticationType:
-                          AuthenticationType.passcode.index,
                       Dbkeys.lastLogin: DateTime.now().millisecondsSinceEpoch,
                       Dbkeys.deviceDetails: mapDeviceInfo,
                       Dbkeys.currentDeviceID: deviceid,
@@ -423,33 +412,37 @@ class LoginScreenState extends State<LoginScreen>
             .setString(Dbkeys.aboutMe, documents[0][Dbkeys.aboutMe] ?? '');
         await widget.prefs.setString(Dbkeys.phone, documents[0][Dbkeys.phone]);
 
-        if (widget.issecutitysetupdone == false ||
-            // ignore: unnecessary_null_comparison
-            widget.issecutitysetupdone == null) {
-          unawaited(Navigator.pushReplacement(
-              this.context,
-              MaterialPageRoute(
-                  builder: (context) => Security(
-                        phoneNo,
-                        prefs: widget.prefs,
-                        setPasscode: true,
-                        onSuccess: (newContext) async {
-                          unawaited(Navigator.pushReplacement(
-                              newContext,
-                              MaterialPageRoute(
-                                  builder: (newContext) => Homepage(
-                                        currentUserNo: phoneNo,
-                                        isSecuritySetupDone: true,
-                                        prefs: widget.prefs,
-                                      ))));
-                        },
-                        title: getTranslated(this.context, 'authh'),
-                      ))));
-        } else {
+        // if (widget.issecutitysetupdone == false ||
+        //     // ignore: unnecessary_null_comparison
+        //     widget.issecutitysetupdone == null) {
+        //   unawaited(Navigator.pushReplacement(
+        //       this.context,
+        //       MaterialPageRoute(
+        //           builder: (context) => Security(
+        //                 phoneNo,
+        //                 prefs: widget.prefs,
+        //                 setPasscode: true,
+        //                 onSuccess: (newContext) async {
+        //                   unawaited(Navigator.pushReplacement(
+        //                       newContext,
+        //                       MaterialPageRoute(
+        //                           builder: (newContext) => Homepage(
+        //                                 currentUserNo: phoneNo,
+        //                                 isSecuritySetupDone: true,
+        //                                 prefs: widget.prefs,
+        //                               ))));
+        //                 },
+        //                 title: getTranslated(this.context, 'authh'),
+        //               ))));
+        // } else
+
           unawaited(Navigator.pushReplacement(this.context,
-              new MaterialPageRoute(builder: (context) => FiberchatWrapper())));
+              new MaterialPageRoute(builder: (context) => Homepage(
+                currentUserNo: phoneNo,
+                prefs: widget.prefs,
+              ))));
           CuChat.toast(getTranslated(this.context, 'welcomeback'));
-        }
+
         await subscribeToNotification(documents[0][Dbkeys.phone]);
       }
     } else {
@@ -481,7 +474,7 @@ class LoginScreenState extends State<LoginScreen>
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: Platform.isIOS ? 0 : 10,
+              height: Platform.isIOS ? 0 : 5,
             ),
             Padding(
               padding: const EdgeInsets.only(right: 10, left: 20),
@@ -491,15 +484,15 @@ class LoginScreenState extends State<LoginScreen>
               ),
             ),
             SizedBox(
-              height: w > h ? 0 : 15,
+              height: w > h ? 0 : 0,
             ),
             w < h
                 ? Image.asset(
-                    AppLogoPath,
+                    loginIcon,
                     width: w / 1.3,
                   )
                 : Image.asset(
-                    AppLogoPath,
+                    loginIcon,
                     height: h / 6,
                   ),
             SizedBox(
@@ -574,7 +567,7 @@ class LoginScreenState extends State<LoginScreen>
                                       getTranslated(this.context, 'name_hint'),
                                   prefixIconbutton: Icon(
                                     Icons.person,
-                                    color: Colors.grey.withOpacity(0.5),
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -760,8 +753,7 @@ class LoginScreenState extends State<LoginScreen>
                                           style: TextStyle(
                                               color: DESIGN_TYPE ==
                                                       Themetype.whatsapp
-                                                  ? fiberchatWhite
-                                                      .withOpacity(0.8)
+                                                  ? Colors.white
                                                   : fiberchatBlack
                                                       .withOpacity(0.8),
                                               fontWeight: FontWeight.w400,
@@ -1115,73 +1107,113 @@ class MobileInputWithOutline extends StatefulWidget {
 }
 
 class _MobileInputWithOutlineState extends State<MobileInputWithOutline> {
+
+  static bool? tapped;
+
   BoxDecoration boxDecoration(
       {double radius = 5,
       Color bgColor = Colors.white,
-      var showShadow = false}) {
+      var showShadow = false})
+  {
+
     return BoxDecoration(
         color: bgColor,
         boxShadow: showShadow
             ? [
                 BoxShadow(
-                    color: campusChat, blurRadius: 10, spreadRadius: 2)
+                    color: Colors.black, blurRadius: 10, spreadRadius: 2)
               ]
             : [BoxShadow(color: Colors.transparent)],
         border:
-            Border.all(color: widget.borderColor ?? Colors.grey, width: 1.5),
-        borderRadius: BorderRadius.all(Radius.circular(radius)));
+            Border.all(color: Colors.black , width: 1.5),
+        borderRadius: BorderRadius.all(Radius.circular(radius))
+    );
+
+
+  }
+
+  BoxDecoration boxDecorationRed({
+    double radius = 5,
+    Color bgColor = Colors.white,
+    var showShadow = false
+  })
+{
+  return BoxDecoration(
+      color: bgColor,
+      boxShadow: showShadow
+          ? [
+        BoxShadow(
+            color: Colors.black, blurRadius: 10, spreadRadius: 2)
+      ]
+          : [BoxShadow(color: Colors.transparent)],
+      border:
+      Border.all(color: campusChat , width: 1.5),
+      borderRadius: BorderRadius.all(Radius.circular(radius))
+  );
+}
+  BoxDecoration checkifTapped(bool bool){
+    print(bool);
+    if (bool)
+      return boxDecorationRed();
+    else
+      return boxDecoration();
   }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          padding: EdgeInsetsDirectional.only(bottom: 7, top: 5),
-          height: widget.height ?? 50,
-          width: widget.width ?? MediaQuery.of(this.context).size.width,
-          decoration: boxDecoration(),
-          child: IntlPhoneField(
-              dropDownArrowColor:
-                  widget.buttonhintTextColor ?? Colors.grey[300],
-              textAlign: TextAlign.left,
-              initialCountryCode: widget.initialCountryCode,
-              controller: widget.controller,
-              style: TextStyle(
-                  height: 1.35,
-                  letterSpacing: 1,
-                  fontSize: 16.0,
-                  color: widget.buttonTextColor ?? Colors.black87,
-                  fontWeight: FontWeight.bold),
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              decoration: InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(3, 15, 8, 0),
-                  hintText: widget.hintText ??
-                      getTranslated(this.context, 'enter_mobilenumber'),
-                  hintStyle: widget.hintStyle ??
-                      TextStyle(
-                          letterSpacing: 1,
-                          height: 0.0,
-                          fontSize: 15.5,
-                          fontWeight: FontWeight.w400,
-                          color: widget.buttonhintTextColor ?? fiberchatGrey),
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: new OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
-                    borderSide: BorderSide.none,
-                  )),
-              onChanged: (phone) {
-                widget.onSaved!(phone);
-              },
-              validator: (v) {
-                return null;
-              },
-              onSaved: widget.onSaved),
+        GestureDetector(
+          onTap: (){
+            tapped=true;
+          },
+          child: Container(
+            padding: EdgeInsetsDirectional.only(bottom: 7, top: 5),
+            height: widget.height ?? 50,
+            width: widget.width ?? MediaQuery.of(this.context).size.width,
+            decoration: boxDecoration(),//checkifTapped(tapped!), //boxDecoration(),
+            child: IntlPhoneField(
+                dropDownArrowColor:
+                    widget.buttonhintTextColor ?? Colors.grey[300],
+                textAlign: TextAlign.left,
+                initialCountryCode: widget.initialCountryCode,
+                controller: widget.controller,
+                style: TextStyle(
+                    height: 1.35,
+                    letterSpacing: 1,
+                    fontSize: 16.0,
+                    color: widget.buttonTextColor ?? Colors.black87,
+                    fontWeight: FontWeight.bold),
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.fromLTRB(3, 15, 8, 0),
+                    hintText: widget.hintText ??
+                        getTranslated(this.context, 'enter_mobilenumber'),
+                    hintStyle: widget.hintStyle ??
+                        TextStyle(
+                            letterSpacing: 1,
+                            height: 0.0,
+                            fontSize: 15.5,
+                            fontWeight: FontWeight.w400,
+                            color: widget.buttonhintTextColor ?? fiberchatGrey),
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: new OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                      borderSide: BorderSide.none,
+                    )),
+                onChanged: (phone) {
+                  widget.onSaved!(phone);
+                },
+                validator: (v) {
+                  return null;
+                },
+                onSaved: widget.onSaved),
+          ),
         ),
         // Positioned(
         //     left: 110,
@@ -1283,6 +1315,7 @@ class _InpuTextBoxState extends State<InpuTextBox> {
 
   @override
   Widget build(BuildContext context) {
+    _MobileInputWithOutlineState.tapped=false;
     double w = MediaQuery.of(this.context).size.width;
     return Align(
       child: Container(
@@ -1311,6 +1344,7 @@ class _InpuTextBoxState extends State<InpuTextBox> {
                 obscureText: isobscuretext,
                 onSaved: widget.onSaved ?? (val) {},
                 readOnly: widget.disabled ?? false,
+                cursorColor: campusChat,
                 onChanged: widget.onchanged ?? (val) {},
                 maxLength: widget.maxcharacters ?? null,
                 validator:
@@ -1341,7 +1375,7 @@ class _InpuTextBoxState extends State<InpuTextBox> {
                                     width: widget.boxborderwidth ?? 1.5,
                                     color: widget.showIconboundary == true ||
                                             widget.showIconboundary == null
-                                        ? Colors.grey.withOpacity(0.3)
+                                        ? Colors.black
                                         : Colors.transparent),
                               ),
                               // color: Colors.white,
@@ -1364,7 +1398,7 @@ class _InpuTextBoxState extends State<InpuTextBox> {
                                     width: widget.boxborderwidth ?? 1.5,
                                     color: widget.showIconboundary == true ||
                                             widget.showIconboundary == null
-                                        ? Colors.grey.withOpacity(0.3)
+                                        ? Colors.black
                                         : Colors.transparent),
                               ),
                               // color: Colors.white,
@@ -1396,26 +1430,26 @@ class _InpuTextBoxState extends State<InpuTextBox> {
                           BorderRadius.circular(widget.boxcornerradius ?? 1),
                       borderSide: BorderSide(
                           color: widget.boxbordercolor ??
-                              Colors.grey.withOpacity(0.2),
+                              Colors.black,
                           width: 1.5),
                     ),
                     focusedBorder: OutlineInputBorder(
                       // width: 0.0 produces a thin "hairline" border
                       borderRadius:
                           BorderRadius.circular(widget.boxcornerradius ?? 1),
-                      borderSide: BorderSide(color: campusChat, width: 1.5),
+                      borderSide: BorderSide(color: Colors.black, width: 1.5),
                     ),
                     border: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.circular(widget.boxcornerradius ?? 1),
-                        borderSide: BorderSide(color: Colors.grey)),
+                        borderSide: BorderSide(color: Colors.black)),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                     // labelText: 'Password',
                     hintText: widget.hinttext ?? '',
                     // fillColor: widget.boxbcgcolor ?? Colors.white,
 
                     hintStyle: TextStyle(
-                        letterSpacing: widget.letterspacing ?? 1.5,
+                        letterSpacing: widget.letterspacing ?? 1,
                         color: fiberchatGrey,
                         fontSize: 15.5,
                         fontWeight: FontWeight.w400)),

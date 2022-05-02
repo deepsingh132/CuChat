@@ -83,7 +83,7 @@ class _CallHistoryState extends State<CallHistory> {
     return Consumer<FirestoreDataProviderCALLHISTORY>(
       builder: (context, firestoreDataProvider, _) => Scaffold(
         key: _scaffold,
-        backgroundColor: fiberchatWhite,
+        backgroundColor: campusChat,
         bottomSheet: IsBannerAdShow == true &&
                 observer.isadmobshow == true &&
                 adWidget != null
@@ -105,11 +105,11 @@ class _CallHistoryState extends State<CallHistory> {
                             ? 60
                             : 0),
                 child: FloatingActionButton(
-                    backgroundColor: fiberchatWhite,
+                    backgroundColor: campusChat,
                     child: Icon(
                       Icons.delete,
                       size: 30.0,
-                      color: Colors.red,
+                      color: Colors.black,
                     ),
                     onPressed: () {
                       showDialog(
@@ -164,411 +164,428 @@ class _CallHistoryState extends State<CallHistory> {
                       );
                     }),
               ),
+
         body: Consumer<AvailableContactsProvider>(
-          builder: (context, contactsProvider, _child) => InfiniteListView(
-            firestoreDataProviderCALLHISTORY: firestoreDataProvider,
-            datatype: 'CALLHISTORY',
-            refdata: FirebaseFirestore.instance
-                .collection(DbPaths.collectionusers)
-                .doc(widget.userphone)
-                .collection(DbPaths.collectioncallhistory)
-                .orderBy('TIME', descending: true)
-                .limit(14),
-            list: ListView.builder(
-                padding: EdgeInsets.only(bottom: 150),
-                physics: ScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: firestoreDataProvider.recievedDocs.length,
-                itemBuilder: (BuildContext context, int i) {
-                  var dc = firestoreDataProvider.recievedDocs[i];
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        // padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                        margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                        // height: 40,
-                        child: FutureBuilder(
-                            future: contactsProvider.getUserDoc(dc['PEER']),
-                            builder:
-                                (BuildContext context, AsyncSnapshot snapshot) {
-                              if (snapshot.hasData) {
-                                var user = snapshot.data!.data();
-                                return ListTile(
-                                  onLongPress: () {
-                                    List<Widget> tiles = List.from(<Widget>[]);
+          builder: (context, contactsProvider, _child) => Column(
+            children: [
+              SizedBox(height: 30),
+              Icon(Icons.call,size: 50, color: Colors.black),
+              SizedBox(height: 58),
+              Expanded(
+                child:
+                  Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.vertical(top: Radius.circular(18)), color: Colors.white,
 
-                                    tiles.add(ListTile(
-                                        dense: true,
-                                        leading: Icon(Icons.delete),
-                                        title: Text(
-                                          getTranslated(context, 'delete'),
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        onTap: () async {
-                                          Navigator.of(context).pop();
+                    ),
+                    child: InfiniteListView(
+                      firestoreDataProviderCALLHISTORY: firestoreDataProvider,
+                      datatype: 'CALLHISTORY',
+                      refdata: FirebaseFirestore.instance
+                          .collection(DbPaths.collectionusers)
+                          .doc(widget.userphone)
+                          .collection(DbPaths.collectioncallhistory)
+                          .orderBy('TIME', descending: true)
+                          .limit(14),
+                      list: ListView.builder(
+                          padding: EdgeInsets.only(bottom: 150),
+                          physics: ScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: firestoreDataProvider.recievedDocs.length,
+                          itemBuilder: (BuildContext context, int i) {
+                            var dc = firestoreDataProvider.recievedDocs[i];
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  //decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                                  alignment: Alignment.center,
+                                  // padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                  margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  // height: 40,
+                                  child: FutureBuilder(
+                                      future: contactsProvider.getUserDoc(dc['PEER']),
+                                      builder:
+                                          (BuildContext context, AsyncSnapshot snapshot) {
+                                        if (snapshot.hasData) {
+                                          var user = snapshot.data!.data();
+                                          return ListTile(
+                                            onLongPress: () {
+                                              List<Widget> tiles = List.from(<Widget>[]);
 
-                                          FirebaseFirestore.instance
-                                              .collection(
-                                                  DbPaths.collectionusers)
-                                              .doc(widget.userphone)
-                                              .collection(
-                                                  DbPaths.collectioncallhistory)
-                                              .doc(dc['TIME'].toString())
-                                              .delete();
-                                          CuChat.toast('Deleted!');
-                                          firestoreDataProvider
-                                              .deleteSingle(dc);
-                                        }));
+                                              tiles.add(ListTile(
+                                                  dense: true,
+                                                  leading: Icon(Icons.delete),
+                                                  title: Text(
+                                                    getTranslated(context, 'delete'),
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  onTap: () async {
+                                                    Navigator.of(context).pop();
 
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return SimpleDialog(children: tiles);
-                                        });
-                                  },
-                                  isThreeLine: false,
-                                  leading: Stack(
-                                    children: [
-                                      customCircleAvatar(
-                                          url: user['photoUrl'], radius: 22),
-                                      dc['STARTED'] == null ||
-                                              dc['ENDED'] == null
-                                          ? SizedBox(
-                                              height: 0,
-                                              width: 0,
-                                            )
-                                          : Positioned(
-                                              bottom: 0,
-                                              right: 0,
-                                              child: Container(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    6, 2, 6, 2),
-                                                decoration: BoxDecoration(
-                                                    color: campusChatLight2,
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                20))),
-                                                child: Text(
-                                                  dc['ENDED']
-                                                              .toDate()
-                                                              .difference(
-                                                                  dc['STARTED']
-                                                                      .toDate())
-                                                              .inMinutes <
-                                                          1
-                                                      ? dc['ENDED']
-                                                              .toDate()
-                                                              .difference(
-                                                                  dc['STARTED']
-                                                                      .toDate())
-                                                              .inSeconds
-                                                              .toString() +
-                                                          's'
-                                                      : dc['ENDED']
-                                                              .toDate()
-                                                              .difference(
-                                                                  dc['STARTED']
-                                                                      .toDate())
-                                                              .inMinutes
-                                                              .toString() +
-                                                          'm',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 10),
-                                                ),
-                                              ))
-                                    ],
-                                  ),
-                                  title: Text(
-                                    user['nickname'],
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                        height: 1.4,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  subtitle: Padding(
-                                    padding: const EdgeInsets.only(top: 3),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Icon(
-                                          dc['TYPE'] == 'INCOMING'
-                                              ? (dc['STARTED'] == null
-                                                  ? Icons.call_missed
-                                                  : Icons.call_received)
-                                              : (dc['STARTED'] == null
-                                                  ? Icons.call_made_rounded
-                                                  : Icons.call_made_rounded),
-                                          size: 15,
-                                          color: dc['TYPE'] == 'INCOMING'
-                                              ? (dc['STARTED'] == null
-                                                  ? Colors.redAccent
-                                                  : campusChatLight2)
-                                              : (dc['STARTED'] == null
-                                                  ? Colors.redAccent
-                                                  : campusChatLight2),
-                                        ),
-                                        SizedBox(
-                                          width: 7,
-                                        ),
-                                        Text(Jiffy(DateTime
-                                                    .fromMillisecondsSinceEpoch(
-                                                        dc["TIME"]))
-                                                .MMMMd
-                                                .toString() +
-                                            ', ' +
-                                            Jiffy(DateTime
-                                                    .fromMillisecondsSinceEpoch(
-                                                        dc["TIME"]))
-                                                .Hm
-                                                .toString()),
-                                        // Text(time)
-                                      ],
-                                    ),
-                                  ),
-                                  trailing: IconButton(
-                                      icon: Icon(
-                                          dc['ISVIDEOCALL'] == true
-                                              ? Icons.video_call
-                                              : Icons.call,
-                                          color: campusChat,
-                                          size: 24),
-                                      onPressed: observer.iscallsallowed ==
-                                              false
-                                          ? () {
-                                              CuChat.showRationale(
-                                                  getTranslated(this.context,
-                                                      'callnotallowed'));
-                                            }
-                                          : () async {
-                                              if (dc['ISVIDEOCALL'] == true) {
-                                                //---Make a video call
-                                                await Permissions
-                                                        .cameraAndMicrophonePermissionsGranted()
-                                                    .then((isgranted) {
-                                                  if (isgranted == true) {
-                                                    call(context, true, user);
-                                                  } else {
-                                                    CuChat.showRationale(
-                                                      getTranslated(
-                                                          context, 'pmc'),
-                                                    );
-                                                    Navigator.push(
-                                                        context,
-                                                        new MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                OpenSettings()));
-                                                  }
-                                                }).catchError((onError) {
-                                                  CuChat.showRationale(
-                                                    getTranslated(
-                                                        context, 'pmc'),
-                                                  );
-                                                  Navigator.push(
-                                                      context,
-                                                      new MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              OpenSettings()));
-                                                });
-                                              } else if (dc['ISVIDEOCALL'] ==
-                                                  false) {
-                                                //---Make a audio call
-                                                await Permissions
-                                                        .cameraAndMicrophonePermissionsGranted()
-                                                    .then((isgranted) {
-                                                  if (isgranted == true) {
-                                                    call(context, false, user);
-                                                  } else {
-                                                    CuChat.showRationale(
-                                                      getTranslated(
-                                                          context, 'pmc'),
-                                                    );
-                                                    Navigator.push(
-                                                        context,
-                                                        new MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                OpenSettings()));
-                                                  }
-                                                }).catchError((onError) {
-                                                  CuChat.showRationale(
-                                                    getTranslated(
-                                                        context, 'pmc'),
-                                                  );
-                                                  Navigator.push(
-                                                      context,
-                                                      new MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              OpenSettings()));
-                                                });
-                                              }
-                                            }),
-                                );
-                              }
-                              return ListTile(
-                                onLongPress: () {
-                                  List<Widget> tiles = List.from(<Widget>[]);
+                                                    FirebaseFirestore.instance
+                                                        .collection(
+                                                            DbPaths.collectionusers)
+                                                        .doc(widget.userphone)
+                                                        .collection(
+                                                            DbPaths.collectioncallhistory)
+                                                        .doc(dc['TIME'].toString())
+                                                        .delete();
+                                                    CuChat.toast('Deleted!');
+                                                    firestoreDataProvider
+                                                        .deleteSingle(dc);
+                                                  }));
 
-                                  tiles.add(ListTile(
-                                      dense: true,
-                                      leading: Icon(Icons.delete),
-                                      title: Text(
-                                        getTranslated(context, 'delete'),
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      onTap: () async {
-                                        Navigator.of(context).pop();
-                                        CuChat.toast(
-                                            getTranslated(context, 'plswait'));
-                                        FirebaseFirestore.instance
-                                            .collection(DbPaths.collectionusers)
-                                            .doc(widget.userphone)
-                                            .collection(
-                                                DbPaths.collectioncallhistory)
-                                            .doc(dc['TIME'].toString())
-                                            .delete();
-                                        CuChat.toast('Deleted!');
-                                        firestoreDataProvider.deleteSingle(dc);
-                                      }));
-
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return SimpleDialog(children: tiles);
-                                      });
-                                },
-                                isThreeLine: false,
-                                leading: Stack(
-                                  children: [
-                                    customCircleAvatar(radius: 22),
-                                    dc['STARTED'] == null || dc['ENDED'] == null
-                                        ? SizedBox(
-                                            height: 0,
-                                            width: 0,
-                                          )
-                                        : Positioned(
-                                            bottom: 0,
-                                            right: 0,
-                                            child: Container(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  6, 2, 6, 2),
-                                              decoration: BoxDecoration(
-                                                  color: campusChatLight2,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(20))),
-                                              child: Text(
-                                                dc['ENDED']
-                                                            .toDate()
-                                                            .difference(
-                                                                dc['STARTED']
-                                                                    .toDate())
-                                                            .inMinutes <
-                                                        1
-                                                    ? dc['ENDED']
-                                                            .toDate()
-                                                            .difference(
-                                                                dc['STARTED']
-                                                                    .toDate())
-                                                            .inSeconds
-                                                            .toString() +
-                                                        's'
-                                                    : dc['ENDED']
-                                                            .toDate()
-                                                            .difference(
-                                                                dc['STARTED']
-                                                                    .toDate())
-                                                            .inMinutes
-                                                            .toString() +
-                                                        'm',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 10),
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return SimpleDialog(children: tiles);
+                                                  });
+                                            },
+                                            isThreeLine: false,
+                                            leading: Stack(
+                                              children: [
+                                                customCircleAvatar(
+                                                    url: user['photoUrl'], radius: 22),
+                                                dc['STARTED'] == null ||
+                                                        dc['ENDED'] == null
+                                                    ? SizedBox(
+                                                        height: 0,
+                                                        width: 0,
+                                                      )
+                                                    : Positioned(
+                                                        bottom: 0,
+                                                        right: 0,
+                                                        child: Container(
+                                                          padding: EdgeInsets.fromLTRB(
+                                                              6, 2, 6, 2),
+                                                          decoration: BoxDecoration(
+                                                              color: campusChatLight2,
+                                                              borderRadius:
+                                                                  BorderRadius.all(
+                                                                      Radius.circular(
+                                                                          20))),
+                                                          child: Text(
+                                                            dc['ENDED']
+                                                                        .toDate()
+                                                                        .difference(
+                                                                            dc['STARTED']
+                                                                                .toDate())
+                                                                        .inMinutes <
+                                                                    1
+                                                                ? dc['ENDED']
+                                                                        .toDate()
+                                                                        .difference(
+                                                                            dc['STARTED']
+                                                                                .toDate())
+                                                                        .inSeconds
+                                                                        .toString() +
+                                                                    's'
+                                                                : dc['ENDED']
+                                                                        .toDate()
+                                                                        .difference(
+                                                                            dc['STARTED']
+                                                                                .toDate())
+                                                                        .inMinutes
+                                                                        .toString() +
+                                                                    'm',
+                                                            style: TextStyle(
+                                                                color: Colors.white,
+                                                                fontSize: 10),
+                                                          ),
+                                                        ))
+                                              ],
+                                            ),
+                                            title: Text(
+                                              user['nickname'],
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  height: 1.4,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            subtitle: Padding(
+                                              padding: const EdgeInsets.only(top: 3),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Icon(
+                                                    dc['TYPE'] == 'INCOMING'
+                                                        ? (dc['STARTED'] == null
+                                                            ? Icons.call_missed
+                                                            : Icons.call_received)
+                                                        : (dc['STARTED'] == null
+                                                            ? Icons.call_made_rounded
+                                                            : Icons.call_made_rounded),
+                                                    size: 15,
+                                                    color: dc['TYPE'] == 'INCOMING'
+                                                        ? (dc['STARTED'] == null
+                                                            ? Colors.redAccent
+                                                            : campusChatLight2)
+                                                        : (dc['STARTED'] == null
+                                                            ? Colors.redAccent
+                                                            : campusChatLight2),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 7,
+                                                  ),
+                                                  Text(Jiffy(DateTime
+                                                              .fromMillisecondsSinceEpoch(
+                                                                  dc["TIME"]))
+                                                          .MMMMd
+                                                          .toString() +
+                                                      ', ' +
+                                                      Jiffy(DateTime
+                                                              .fromMillisecondsSinceEpoch(
+                                                                  dc["TIME"]))
+                                                          .Hm
+                                                          .toString()),
+                                                  // Text(time)
+                                                ],
                                               ),
-                                            ))
-                                  ],
+                                            ),
+                                            trailing: IconButton(
+                                                icon: Icon(
+                                                    dc['ISVIDEOCALL'] == true
+                                                        ? Icons.video_call
+                                                        : Icons.call,
+                                                    color: campusChat,
+                                                    size: 24),
+                                                onPressed: observer.iscallsallowed ==
+                                                        false
+                                                    ? () {
+                                                        CuChat.showRationale(
+                                                            getTranslated(this.context,
+                                                                'callnotallowed'));
+                                                      }
+                                                    : () async {
+                                                        if (dc['ISVIDEOCALL'] == true) {
+                                                          //---Make a video call
+                                                          await Permissions
+                                                                  .cameraAndMicrophonePermissionsGranted()
+                                                              .then((isgranted) {
+                                                            if (isgranted == true) {
+                                                              call(context, true, user);
+                                                            } else {
+                                                              CuChat.showRationale(
+                                                                getTranslated(
+                                                                    context, 'pmc'),
+                                                              );
+                                                              Navigator.push(
+                                                                  context,
+                                                                  new MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          OpenSettings()));
+                                                            }
+                                                          }).catchError((onError) {
+                                                            CuChat.showRationale(
+                                                              getTranslated(
+                                                                  context, 'pmc'),
+                                                            );
+                                                            Navigator.push(
+                                                                context,
+                                                                new MaterialPageRoute(
+                                                                    builder: (context) =>
+                                                                        OpenSettings()));
+                                                          });
+                                                        } else if (dc['ISVIDEOCALL'] ==
+                                                            false) {
+                                                          //---Make a audio call
+                                                          await Permissions
+                                                                  .cameraAndMicrophonePermissionsGranted()
+                                                              .then((isgranted) {
+                                                            if (isgranted == true) {
+                                                              call(context, false, user);
+                                                            } else {
+                                                              CuChat.showRationale(
+                                                                getTranslated(
+                                                                    context, 'pmc'),
+                                                              );
+                                                              Navigator.push(
+                                                                  context,
+                                                                  new MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          OpenSettings()));
+                                                            }
+                                                          }).catchError((onError) {
+                                                            CuChat.showRationale(
+                                                              getTranslated(
+                                                                  context, 'pmc'),
+                                                            );
+                                                            Navigator.push(
+                                                                context,
+                                                                new MaterialPageRoute(
+                                                                    builder: (context) =>
+                                                                        OpenSettings()));
+                                                          });
+                                                        }
+                                                      }),
+                                          );
+                                        }
+                                        return ListTile(
+                                          onLongPress: () {
+                                            List<Widget> tiles = List.from(<Widget>[]);
+
+                                            tiles.add(ListTile(
+                                                dense: true,
+                                                leading: Icon(Icons.delete,color: Colors.black),
+                                                title: Text(
+                                                  getTranslated(context, 'delete'),
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold),
+                                                ),
+                                                onTap: () async {
+                                                  Navigator.of(context).pop();
+                                                  CuChat.toast(
+                                                      getTranslated(context, 'plswait'));
+                                                  FirebaseFirestore.instance
+                                                      .collection(DbPaths.collectionusers)
+                                                      .doc(widget.userphone)
+                                                      .collection(
+                                                          DbPaths.collectioncallhistory)
+                                                      .doc(dc['TIME'].toString())
+                                                      .delete();
+                                                  CuChat.toast('Deleted!');
+                                                  firestoreDataProvider.deleteSingle(dc);
+                                                }));
+
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return SimpleDialog(children: tiles);
+                                                });
+                                          },
+                                          isThreeLine: false,
+                                          leading: Stack(
+                                            children: [
+                                              customCircleAvatar(radius: 22),
+                                              dc['STARTED'] == null || dc['ENDED'] == null
+                                                  ? SizedBox(
+                                                      height: 0,
+                                                      width: 0,
+                                                    )
+                                                  : Positioned(
+                                                      bottom: 0,
+                                                      right: 0,
+                                                      child: Container(
+                                                        padding: EdgeInsets.fromLTRB(
+                                                            6, 2, 6, 2),
+                                                        decoration: BoxDecoration(
+                                                            color: campusChatLight2,
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(20))),
+                                                        child: Text(
+                                                          dc['ENDED']
+                                                                      .toDate()
+                                                                      .difference(
+                                                                          dc['STARTED']
+                                                                              .toDate())
+                                                                      .inMinutes <
+                                                                  1
+                                                              ? dc['ENDED']
+                                                                      .toDate()
+                                                                      .difference(
+                                                                          dc['STARTED']
+                                                                              .toDate())
+                                                                      .inSeconds
+                                                                      .toString() +
+                                                                  's'
+                                                              : dc['ENDED']
+                                                                      .toDate()
+                                                                      .difference(
+                                                                          dc['STARTED']
+                                                                              .toDate())
+                                                                      .inMinutes
+                                                                      .toString() +
+                                                                  'm',
+                                                          style: TextStyle(
+                                                              color: Colors.white,
+                                                              fontSize: 10),
+                                                        ),
+                                                      ))
+                                            ],
+                                          ),
+                                          title: Text(
+                                            contactsProvider.filtered!.entries
+                                                        .toList()
+                                                        .indexWhere((element) =>
+                                                            element.key == dc['PEER']) >=
+                                                    0
+                                                ? contactsProvider.filtered!.entries
+                                                    .toList()[contactsProvider
+                                                        .filtered!.entries
+                                                        .toList()
+                                                        .indexWhere((element) =>
+                                                            element.key == dc['PEER'])]
+                                                    .value
+                                                : dc['PEER'],
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                                height: 1.4, fontWeight: FontWeight.w500),
+                                          ),
+                                          subtitle: Padding(
+                                            padding: const EdgeInsets.only(top: 3),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Icon(
+                                                  dc['TYPE'] == 'INCOMING'
+                                                      ? (dc['STARTED'] == null
+                                                          ? Icons.call_missed
+                                                          : Icons.call_received)
+                                                      : (dc['STARTED'] == null
+                                                          ? Icons.call_made_rounded
+                                                          : Icons.call_made_rounded),
+                                                  size: 15,
+                                                  color: dc['TYPE'] == 'INCOMING'
+                                                      ? (dc['STARTED'] == null
+                                                          ? Colors.redAccent
+                                                          : campusChatLight2)
+                                                      : (dc['STARTED'] == null
+                                                          ? Colors.redAccent
+                                                          : campusChatLight2),
+                                                ),
+                                                SizedBox(
+                                                  width: 7,
+                                                ),
+                                                Text(Jiffy(DateTime
+                                                            .fromMillisecondsSinceEpoch(
+                                                                dc["TIME"]))
+                                                        .MMMMd
+                                                        .toString() +
+                                                    ', ' +
+                                                    Jiffy(DateTime
+                                                            .fromMillisecondsSinceEpoch(
+                                                                dc["TIME"]))
+                                                        .Hm
+                                                        .toString()),
+                                                // Text(time)
+                                              ],
+                                            ),
+                                          ),
+                                          trailing: IconButton(
+                                              icon: Icon(
+                                                  dc['ISVIDEOCALL'] == true
+                                                      ? Icons.video_call
+                                                      : Icons.call,
+                                                  color: campusChat,
+                                                  size: 24),
+                                              onPressed: null),
+                                        );
+                                      }),
                                 ),
-                                title: Text(
-                                  contactsProvider.filtered!.entries
-                                              .toList()
-                                              .indexWhere((element) =>
-                                                  element.key == dc['PEER']) >=
-                                          0
-                                      ? contactsProvider.filtered!.entries
-                                          .toList()[contactsProvider
-                                              .filtered!.entries
-                                              .toList()
-                                              .indexWhere((element) =>
-                                                  element.key == dc['PEER'])]
-                                          .value
-                                      : dc['PEER'],
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                      height: 1.4, fontWeight: FontWeight.w500),
+                                Divider(
+                                  height: 0,
                                 ),
-                                subtitle: Padding(
-                                  padding: const EdgeInsets.only(top: 3),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Icon(
-                                        dc['TYPE'] == 'INCOMING'
-                                            ? (dc['STARTED'] == null
-                                                ? Icons.call_missed
-                                                : Icons.call_received)
-                                            : (dc['STARTED'] == null
-                                                ? Icons.call_made_rounded
-                                                : Icons.call_made_rounded),
-                                        size: 15,
-                                        color: dc['TYPE'] == 'INCOMING'
-                                            ? (dc['STARTED'] == null
-                                                ? Colors.redAccent
-                                                : campusChatLight2)
-                                            : (dc['STARTED'] == null
-                                                ? Colors.redAccent
-                                                : campusChatLight2),
-                                      ),
-                                      SizedBox(
-                                        width: 7,
-                                      ),
-                                      Text(Jiffy(DateTime
-                                                  .fromMillisecondsSinceEpoch(
-                                                      dc["TIME"]))
-                                              .MMMMd
-                                              .toString() +
-                                          ', ' +
-                                          Jiffy(DateTime
-                                                  .fromMillisecondsSinceEpoch(
-                                                      dc["TIME"]))
-                                              .Hm
-                                              .toString()),
-                                      // Text(time)
-                                    ],
-                                  ),
-                                ),
-                                trailing: IconButton(
-                                    icon: Icon(
-                                        dc['ISVIDEOCALL'] == true
-                                            ? Icons.video_call
-                                            : Icons.call,
-                                        color: campusChat,
-                                        size: 24),
-                                    onPressed: null),
-                              );
-                            }),
-                      ),
-                      Divider(
-                        height: 0,
-                      ),
-                    ],
-                  );
-                }),
+                              ],
+                            );
+                          }),
+                    ),
+                  ),
+              ),
+            ],
           ),
         ),
       ),
@@ -629,6 +646,7 @@ Widget customCircleAvatarGroup({String? url, double? radius}) {
         imageBuilder: (context, imageProvider) => CircleAvatar(
               backgroundColor: Color(0xffE6E6E6),
               radius: radius ?? 30,
+
               backgroundImage: NetworkImage('$url'),
             ),
         placeholder: (context, url) => CircleAvatar(

@@ -110,8 +110,8 @@ class PickupScreen extends StatelessWidget {
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: DESIGN_TYPE == Themetype.whatsapp
-                                              ? fiberchatWhite
-                                              : fiberchatWhite,
+                                              ? Colors.black
+                                              : Colors.white,
                                           fontSize: 27,
                                         ),
                                       ),
@@ -120,11 +120,11 @@ class PickupScreen extends StatelessWidget {
                                     Text(
                                       call.callerId!,
                                       style: TextStyle(
-                                        fontWeight: FontWeight.normal,
+                                        fontWeight: FontWeight.bold,
                                         color: DESIGN_TYPE == Themetype.whatsapp
-                                            ? fiberchatWhite.withOpacity(0.34)
-                                            : fiberchatWhite.withOpacity(0.34),
-                                        fontSize: 15,
+                                            ? Colors.white
+                                            : Colors.white.withOpacity(0.85),
+                                        fontSize: 20,
                                       ),
                                     ),
                                   ],
@@ -154,7 +154,7 @@ class PickupScreen extends StatelessWidget {
                                   Container(
                                       height: w + (w / 140),
                                       width: w,
-                                      color: Colors.white12,
+                                      color: Colors.white,
                                       child: CachedNetworkImage(
                                         imageUrl: call.callerPic!,
                                         fit: BoxFit.cover,
@@ -168,7 +168,7 @@ class PickupScreen extends StatelessWidget {
                                           child: Icon(
                                             Icons.person,
                                             size: 140,
-                                            color: campusChat,
+                                            color: Colors.black,
                                           ),
                                         )),
                                         errorWidget: (context, url, error) =>
@@ -179,14 +179,14 @@ class PickupScreen extends StatelessWidget {
                                           child: Icon(
                                             Icons.person,
                                             size: 140,
-                                            color: campusChat,
+                                            color: Colors.black,
                                           ),
                                         ),
                                       )),
                                   Container(
                                     height: w + (w / 140),
                                     width: w,
-                                    color: Colors.black.withOpacity(0.18),
+                                    color: Colors.transparent,
                                   ),
                                 ],
                               ),
@@ -241,12 +241,12 @@ class PickupScreen extends StatelessWidget {
                                 },
                                 child: Icon(
                                   Icons.call_end,
-                                  color: Colors.white,
+                                  color: campusChat,
                                   size: 35.0,
                                 ),
                                 shape: CircleBorder(),
-                                elevation: 2.0,
-                                fillColor: Colors.redAccent,
+                                elevation: 10,
+                                fillColor: Colors.black,
                                 padding: const EdgeInsets.all(15.0),
                               ),
                               SizedBox(width: 45),
@@ -302,8 +302,8 @@ class PickupScreen extends StatelessWidget {
                                   size: 35.0,
                                 ),
                                 shape: CircleBorder(),
-                                elevation: 2.0,
-                                fillColor: Colors.blue[400],
+                                elevation: 10,
+                                fillColor: Colors.green,
                                 padding: const EdgeInsets.all(15.0),
                               )
                             ],
@@ -352,7 +352,7 @@ class PickupScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 19,
                             color: DESIGN_TYPE == Themetype.whatsapp
-                                ? fiberchatWhite.withOpacity(0.54)
+                                ? Colors.black
                                 : fiberchatBlack.withOpacity(0.54),
                           ),
                         ),
@@ -425,12 +425,12 @@ class PickupScreen extends StatelessWidget {
                               },
                               child: Icon(
                                 Icons.call_end,
-                                color: Colors.white,
+                                color: campusChat,
                                 size: 35.0,
                               ),
                               shape: CircleBorder(),
-                              elevation: 2.0,
-                              fillColor: Colors.redAccent,
+                              elevation: 10,
+                              fillColor: Colors.black,
                               padding: const EdgeInsets.all(15.0),
                             ),
                             SizedBox(width: 45),
@@ -486,7 +486,7 @@ class PickupScreen extends StatelessWidget {
                                 size: 35.0,
                               ),
                               shape: CircleBorder(),
-                              elevation: 2.0,
+                              elevation: 10,
                               fillColor: campusChatLight2,
                               padding: const EdgeInsets.all(15.0),
                             )

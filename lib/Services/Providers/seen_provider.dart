@@ -26,7 +26,7 @@ class _SeenProviderState extends State<SeenProvider> {
   }
 
   didValueChange() {
-    if (mounted) this.setState(() {});
+     this.setState(() {});
   }
 
   @override

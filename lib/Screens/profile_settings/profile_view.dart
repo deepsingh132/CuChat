@@ -228,7 +228,7 @@ class _ProfileViewState extends State<ProfileView> {
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       fontWeight: FontWeight.normal,
-                      color: fiberchatGrey,
+                      color: Colors.grey,
                       fontSize: 13.3),
                 ),
                 SizedBox(
@@ -313,7 +313,7 @@ class _ProfileViewState extends State<ProfileView> {
                                           });
                                         },
                                   icon: Icon(
-                                    Icons.phone,
+                                    Icons.phone_in_talk,
                                     color: campusChat,
                                   )),
                           observer.isCallFeatureTotallyHide == true
@@ -351,7 +351,7 @@ class _ProfileViewState extends State<ProfileView> {
                                           });
                                         },
                                   icon: Icon(
-                                    Icons.videocam_rounded,
+                                    Icons.video_camera_front,
                                     size: 26,
                                     color: campusChat,
                                   )),
@@ -375,7 +375,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     (Route r) => r.isFirst);
                               },
                               icon: Icon(
-                                Icons.message,
+                                Icons.forum,
                                 color: campusChat,
                               )),
                         ],
@@ -406,7 +406,7 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               dense: false,
               subtitle: Text(
-                getTranslated(context, 'encryptionshort'),
+                getTranslated(context, 'chatencryption'),
                 style:
                     TextStyle(color: fiberchatGrey, height: 1.3, fontSize: 15),
               ),

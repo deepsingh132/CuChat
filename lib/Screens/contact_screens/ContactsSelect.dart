@@ -101,7 +101,7 @@ class _ContactsSelectState extends State<ContactsSelect>
 
     completer.future.then((c) {
       c.removeWhere((key, val) => _isHidden(key));
-      if (mounted) {
+       {
         setState(() {
           this.contacts = this._filtered = c;
         });
@@ -198,6 +198,7 @@ class _ContactsSelectState extends State<ContactsSelect>
                   body: contacts == null
                       ? loading()
                       : RefreshIndicator(
+                    color: campusChat,
                           onRefresh: () {
                             return getContacts(refresh: true);
                           },

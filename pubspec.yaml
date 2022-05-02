@@ -121,9 +121,9 @@ flutter:
   assets:
     - assets/images/mapview.jpg
     - assets/images/background.png
-    - assets/images/splashscreen.png
     - assets/images/splashscreen.gif
     - assets/images/applogo.png
+    - assets/images/appicon.png
     #- assets/images/splash.jpeg
     - assets/images/img_not_available.jpeg
     - assets/sounds/popsound.mp3

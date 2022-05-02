@@ -98,7 +98,7 @@ class _GroupDetailsState extends State<GroupDetails> {
   }
 
   void setStateIfMounted(f) {
-    if (mounted) setState(f);
+     setState(f);
   }
 
   userAction(value, String targetPhone, bool targetPhoneIsAdmin,
@@ -1615,8 +1615,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 color: adminlist[i] ==
                                                         groupDoc[Dbkeys
                                                             .groupCREATEDBY]
-                                                    ? Colors.red[400]!
-                                                    : Colors.blue[400]!,
+                                                    ? campusChat: Colors.black,
                                                 width: 1.0),
                                             borderRadius:
                                                 new BorderRadius.circular(5.0),
@@ -1629,8 +1628,8 @@ class _GroupDetailsState extends State<GroupDetails> {
                                                 color: adminlist[i] ==
                                                         groupDoc[Dbkeys
                                                             .groupCREATEDBY]
-                                                    ? Colors.red[400]
-                                                    : Colors.blue[400],
+                                                    ? campusChat
+                                                    : Colors.black,
                                               ),
                                             ),
                                           ),

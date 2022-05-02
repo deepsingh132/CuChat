@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:core';
 import 'dart:io';
+import 'package:CuChat/Screens/homepage/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:CuChat/Configs/Dbkeys.dart';
 import 'package:CuChat/Configs/Dbpaths.dart';
@@ -34,7 +35,6 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 class RecentChats extends StatefulWidget {
   RecentChats(
       {required this.currentUserNo,
-      required this.isSecuritySetupDone,
       required this.prefs,
       key, required this.controller, })
       : super(key: key);
@@ -52,7 +52,6 @@ class RecentChats extends StatefulWidget {
 
   final String? currentUserNo;
   final SharedPreferences prefs;
-  final bool isSecuritySetupDone;
   final ScrollController controller;
 
   @override
@@ -186,9 +185,8 @@ with WidgetsBindingObserver
                               getTranslated(context, 'auth_neededchat'),
                               state: state,
                               shouldPop: false,
-                              type: CuChat.getAuthenticationType(
-                                  biometricEnabled, _cachedModel),
-                              prefs: widget.prefs, onSuccess: () {
+                              prefs: widget.prefs,
+                               onSuccess: () {
                             state.pushReplacement(new MaterialPageRoute(
                                 builder: (context) => new ChatScreen(
                                     isSharingIntentForwarded: false,
@@ -222,8 +220,8 @@ with WidgetsBindingObserver
                               decoration: new BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: user[Dbkeys.lastSeen] == true
-                                    ? Colors.blue[400]
-                                    : Colors.blue[400],
+                                    ? campusChat
+                                    : campusChat,
                               ),
                             )
                           : user[Dbkeys.lastSeen] == true
@@ -232,7 +230,7 @@ with WidgetsBindingObserver
                                   padding: const EdgeInsets.all(7.0),
                                   decoration: new BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Colors.blue[400]),
+                                      color: campusChat),
                                 )
                               : SizedBox(
                                   height: 0,
@@ -283,11 +281,14 @@ with WidgetsBindingObserver
 
   List<Map<String, dynamic>> streamdocsnap = [];
 
+
+
   _chats(Map<String?, Map<String, dynamic>?> _userData,
-      Map<String, dynamic>? currentUser) {
+      Map<String, dynamic>? currentUser, ScrollController controller) {
     return Consumer<List<GroupModel>>(
         builder: (context, groupList, _child) => Consumer<List<BroadcastModel>>(
                 builder: (context, broadcastList, _child) {
+                  controller: controller;
               streamdocsnap = Map.from(_userData)
                   .values
                   .where((_user) => _user.keys.contains(Dbkeys.chatStatus))
@@ -508,7 +509,7 @@ with WidgetsBindingObserver
                                                     shape:
                                                     BoxShape.circle,
                                                     color:
-                                                    Colors.blue[400],
+                                                    campusChat,
                                                   ),
                                                 );
                                               }
@@ -592,7 +593,7 @@ with WidgetsBindingObserver
   Widget build(BuildContext context) {
     final observer = Provider.of<Observer>(context, listen: true);
     //final observer = Provider.of<Observer>(this.context, listen: false);
-    final panelHeightClosed = MediaQuery.of(context).size.height*0.9;
+    final panelHeightClosed = MediaQuery.of(context).size.height*0.6;
     final panelHeightOpen = MediaQuery.of(context).size.height*0.9;
     return CuChat.getNTPWrappedWidget(ScopedModel<DataModel>(
       model: getModel()!,
@@ -623,6 +624,7 @@ with WidgetsBindingObserver
                 child: Icon(
                   Icons.chat,
                   size: 30.0,
+                  color: Colors.black,
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -658,8 +660,8 @@ with WidgetsBindingObserver
           body:
 
 
-
           RefreshIndicator(
+            color: campusChat,
             onRefresh: () {
               isAuthenticating = !isAuthenticating;
               if(mounted)
@@ -670,6 +672,7 @@ with WidgetsBindingObserver
             },
 
             child:
+
             SlidingUpPanel(
                 controller: panelController,
                 minHeight: panelHeightClosed,
@@ -680,18 +683,40 @@ with WidgetsBindingObserver
                 body: //_chats(_model.userData, _model.currentUser)
 
 
-    Container(
-        alignment: Alignment.center,
-        color: campusChat,
-        height: 0,
-        width: double.infinity,
-        child: Text("CuChat",style: TextStyle(color: Colors.white, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold, fontSize: 0))),
 
-              panelBuilder: (controller) => _chats(_model.userData, _model.currentUser)
+
+    Container(
+        /*alignment: Alignment.center,
+        color: campusChat,
+        decoration: BoxDecoration(color: campusChat),
+        height: 0,
+        width: double.infinity,*/
+        color: campusChat,
+        child:
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+
+          children: [
+            Icon(Icons.chat,size: 60,color: Colors.black),
+            //Text("CuChat", style: TextStyle(fontSize: 10))
+          ],
+        ),
+        padding: EdgeInsets.only(top: 30),
+
+        //alignment: Alignment.bottomCenter,
+        //child: Text("CuChat",textAlign: TextAlign.center,style: TextStyle(color: Colors.black, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold, fontSize: 35))
+    ),
+
+              panelBuilder: (controller) => _chats(_model.userData, _model.currentUser,controller),
+
+
               ),
           ),
         );
       }),
     ));
   }
+
+
 }

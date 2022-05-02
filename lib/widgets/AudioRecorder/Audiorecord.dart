@@ -59,7 +59,8 @@ class _AudioRecordState extends State<AudioRecord> {
   }
 
   void setStateIfMounted(f) {
-    if (mounted) setState(f);
+    //
+      setState(f);
   }
 
   @override

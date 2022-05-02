@@ -47,7 +47,7 @@ class _SelectContactToShareState extends State<SelectContactToShare>
   bool get wantKeepAlive => true;
 
   void setStateIfMounted(f) {
-    if (mounted) setState(f);
+     setState(f);
   }
 
   @override

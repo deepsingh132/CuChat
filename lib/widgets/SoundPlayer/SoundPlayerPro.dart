@@ -165,8 +165,8 @@ class _MultiPlaybackState extends State<MultiPlayback> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(9),
             color: !widget.isMe!
-                ? Colors.grey.withOpacity(0.05)
-                : Colors.white.withOpacity(0.55),
+                ? campusChat
+                : Colors.black,
             border: Border.all(
               color: Colors.blueGrey.withOpacity(0.3),
               width: 0.5,
@@ -196,28 +196,26 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                           ? Icons.play_circle_outline_outlined
                           : Icons.stop_circle_outlined,
                       size: 40,
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                     ),
                   ),
             SizedBox(
               width: 2,
             ),
-            IconButton(
+            /*IconButton(
               onPressed: getPauseResumeFn1(),
               icon: Icon(
-                _mPlayer1!.isPaused
-                    ? Icons.play_circle_filled_sharp
-                    : Icons.pause_circle_filled,
+                     Icons.play_circle_filled_sharp,
                 size: 40,
                 color: getPauseResumeFn1() == null
                     ? widget.isMe!
                         ? DESIGN_TYPE == Themetype.whatsapp
-                            ? Colors.blue[100]
-                            : Colors.blueGrey[100]
-                        : Colors.blueGrey[100]
-                    : Colors.blueGrey[800],
+                            ? Colors.white
+                            : Colors.white
+                        : Colors.white
+                    : Colors.white,
               ),
-            ),
+            ),*/
             SizedBox(
               width: 11,
             ),
@@ -232,18 +230,18 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                           },
                           icon: Icon(
                             Icons.mic_rounded,
-                            color: Colors.blue[400],
+                            color: Colors.white,
                             size: 30,
                           ),
                         ),
-                        Positioned(
+                        /*Positioned(
                             bottom: 6,
                             right: 0,
                             child: Icon(
                               Icons.download,
                               size: 16,
-                              color: Colors.blue[200],
-                            ))
+                              color: Colors.white,
+                            ))*/
                       ],
                     ),
                   )
@@ -252,7 +250,7 @@ class _MultiPlaybackState extends State<MultiPlayback> {
                     style: TextStyle(
                       height: 1.76,
                       fontWeight: FontWeight.w500,
-                      color: Colors.blueGrey[500],
+                      color: Colors.white,
                     ),
                   ),
           ]),

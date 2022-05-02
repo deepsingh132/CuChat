@@ -15,22 +15,21 @@ import 'package:CuChat/Services/localization/language_constants.dart';
 import 'package:CuChat/Utils/utils.dart';
 import 'package:CuChat/widgets/MyElevatedButton/MyElevatedButton.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsOption extends StatefulWidget {
-  final bool biometricEnabled;
-  final AuthenticationType type;
+
   final String currentUserNo;
   final Function onTapEditProfile;
   final Function onTapLogout;
   const SettingsOption(
       {Key? key,
-      required this.biometricEnabled,
       required this.currentUserNo,
       required this.onTapEditProfile,
-      required this.onTapLogout,
-      required this.type})
+      required this.onTapLogout})
       : super(key: key);
 
   @override
@@ -254,7 +253,7 @@ class _SettingsOptionState extends State<SettingsOption> {
             leading: Padding(
               padding: const EdgeInsets.only(top: 3),
               child: Icon(
-                Icons.notifications_none,
+                Icons.mark_email_unread_outlined,
                 color: campusChat.withOpacity(0.75),
                 size: 29,
               ),
@@ -305,7 +304,7 @@ class _SettingsOptionState extends State<SettingsOption> {
             leading: Padding(
               padding: const EdgeInsets.only(top: 6),
               child: Icon(
-                Icons.help_outline,
+                Icons.article_outlined,
                 color: campusChat.withOpacity(0.75),
                 size: 26,
               ),
@@ -356,7 +355,7 @@ class _SettingsOptionState extends State<SettingsOption> {
             leading: Padding(
               padding: const EdgeInsets.only(top: 6),
               child: Icon(
-                Icons.lock_outline_rounded,
+                Icons.privacy_tip_outlined,
                 color: campusChat.withOpacity(0.75),
                 size: 26,
               ),
@@ -384,7 +383,7 @@ class _SettingsOptionState extends State<SettingsOption> {
             },
             contentPadding: EdgeInsets.fromLTRB(30, 3, 10, 3),
             leading: Icon(
-              Icons.people_rounded,
+              Icons.emoji_people_outlined,
               color: campusChat.withOpacity(0.75),
               size: 26,
             ),
@@ -504,6 +503,9 @@ class _SettingsOptionState extends State<SettingsOption> {
                                 ? observer
                                     .userAppSettingsDoc[Dbkeys.newapplinkios]
                                 : RateAppUrlIOS);
+
+                        //CuChat.toast("Thanks for rating our app!");
+                          Fluttertoast.showToast(msg: 'Thanks for rating our app!',backgroundColor: campusChat,textColor: Colors.black);
                       }))
             ],
           );
