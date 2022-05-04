@@ -48,6 +48,27 @@ flutter run
 ```
 
 
+<div align="center"> 
+
+  ## Screenshots 
+
+</div>
+
+<div align="center">
+  
+|   Registration/Login  | Homepage 
+|:---------:|:------------:|
+| <img src= "Screenshots/login.png" width = "391" height= "841" /> |   <img src= "Screenshots/homepage.png" width = "391" height= "841"/>
+| Story | Calls |  
+| <img src= "Screenshots/story.png" width = "391" height= "841" /> |   <img src= "Screenshots/calls.png" width = "391" height= "841"/>
+|   Chat  | Group Chat |                     
+| <img src= "Screenshots/chat.jpg" width = "391" height= "841" />  |   <img src= "Screenshots/grpchat.jpg" width = "391" height= "841"/>
+|   Multi-Doc Picker  | Settings |                     
+| <img src= "Screenshots/docpicker.png" width = "391" height= "841" /> |   <img src= "Screenshots/settings.png" width = "391" height= "841"/>
+
+</div>
+
+
 ## Project Features:
 
   ### Student/Faculty App
