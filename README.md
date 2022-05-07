@@ -1,15 +1,18 @@
 # CuChat 
-
+---
 ## Major Project
 
-A software project created in flutter using Firebase-Firestore and Agora Video/Audio call api. The project supports both android and ios, clone the appropriate branches mentioned below:
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+  
+A software project created in flutter using Firebase-Firestore and Agora Video/Audio call API. The project supports both android and ios, clone the appropriate branches mentioned below:
 
 * For Release build: https://github.com/deepsingh132/cuchat (stable channel)
 * For Development: https://github.com/deepsingh132/cuchat/tree/beta (beta channel)
 
 ## Getting Started
 
-This repository contains the minimal implementation required to create and test the project. The repository code is preloaded with some basic components like basic app architecture, app theme, constants and required dependencies to create the project. This will also help in reducing setup & development time by allowing you to use same code pattern and avoid re-writing from scratch.
+This repository contains the minimal implementation required to create and test the project. The repository code is preloaded with some basic components like basic app architecture, app theme, constants and required dependencies to create the project. This will also help in reducing setup & development time by allowing you to use the same code pattern and avoid re-writing from scratch.
 
 ## Setup Instructions 
 
@@ -23,7 +26,7 @@ https://github.com/deepsingh132/cuchat.git
 
 **Step 2:**
 
-Go to project root and execute the following command in console to get the required dependencies: 
+Go to the project root and execute the following command in the console to get the required dependencies: 
 
 ```
 flutter pub get 
@@ -31,42 +34,21 @@ flutter pub get
 
 **Step 3:**
 
-Make sure you have android sdk for android testing or mac os for ios, android/ios emulator, dart and flutter plugin installed for either vs code or android studio ide
+Make sure you have android SDK for android testing or mac os for ios, android/ios emulator, dart and flutter plugin installed for either vs code or android studio ide
 
 ```
 cd 'project location'
 flutter build apk --split-per-abi
-flutter-install
+flutter install
 ```
 
 **Step 4:**
 
-Go to project root and execute the following command in console to run the project: 
+Go to the project root and execute the following command in the console to run the project: 
 
 ```
 flutter run
 ```
-
-
-<div align="center"> 
-
-  ## Screenshots 
-
-</div>
-
-<div align="center">
-  
-|   Registration/Login  | Homepage 
-|:---------:|:------------:|
-| <img src= "Screenshots/login.png" width = "391" height= "841" /> |   <img src= "Screenshots/homepage.png" width = "391" height= "841"/>
-| Story | Calls |  
-| <img src= "Screenshots/story.png" width = "391" height= "841" /> |   <img src= "Screenshots/calls.png" width = "391" height= "841"/>
-|   Chat  | Group Chat |                     
-| <img src= "Screenshots/chat.jpg" width = "391" height= "841" />  |   <img src= "Screenshots/grpchat.jpg" width = "391" height= "841"/>
-|   Multi-Doc Picker  | Settings |                     
-| <img src= "Screenshots/docpicker.png" width = "391" height= "841" /> |   <img src= "Screenshots/settings.png" width = "391" height= "841"/>
-
-</div>
 
 
 ## Project Features:
@@ -107,7 +89,7 @@ flutter run
 
 #### Up-Coming Features:
 
-* Dark/Night Mode (Checkout Developmet branch for more updates)
+* Dark/Night Mode (Checkout Development branch for more updates)
 * Theme Customization options for Students/Faculty app including buttons and main UI (Take this L Whatsapp lol)
 
 ### Admin/Source Control App
@@ -115,9 +97,33 @@ flutter run
  * Advance Admin App Controls
  * Allow/block students and faculty from signing up
  * See All Joined Users
- * Check total no of messages sent from a particular user (Not the message content only count)
- * Temporarily disable app for maintenance
+ * Check the total no of messages sent from a particular user (Not the message content only counts)
+ * Temporarily disable the app for maintenance
  * Enable/disable any or all features for a specific user
+
+
+
+
+<div align="center"> 
+
+  ## Screenshots 
+
+</div>
+
+<div align="center">
+  
+|   Registration/Login  | Homepage 
+|:---------:|:------------:|
+| <img src= "Screenshots/login.png" width = "391" height= "841" /> |   <img src= "Screenshots/homepage.png" width = "391" height= "841"/>
+| Story | Calls |  
+| <img src= "Screenshots/story.png" width = "391" height= "841" /> |   <img src= "Screenshots/calls.png" width = "391" height= "841"/>
+|   Chat  | Group Chat |                     
+| <img src= "Screenshots/chat.jpg" width = "391" height= "841" />  |   <img src= "Screenshots/grpchat.jpg" width = "391" height= "841"/>
+|   Multi-Doc Picker  | Settings |                     
+| <img src= "Screenshots/docpicker.png" width = "391" height= "841" /> |   <img src= "Screenshots/settings.png" width = "391" height= "841"/>
+
+</div>
+
 
 ### Libraries & Tools Used
 
@@ -160,7 +166,7 @@ lib/
 
 ### UI
 
-This directory contains all the ui for the app. Each screen is located in a separate folder making it easy to combine group of files related to that particular screen. All the screen specific widgets will be placed in `widgets` directory as shown in the example below:
+This directory contains all the UI for the app. Each screen is located in a separate folder making it easy to combine a group of files related to that particular screen. All the screen-specific widgets will be placed in the `widgets` directory as shown in the example below:
 
 ```
 Screens/
