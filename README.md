@@ -14,6 +14,8 @@ A software project created in flutter using Firebase-Firestore and Agora Video/A
 
 This repository contains the minimal implementation required to create and test the project. The repository code is preloaded with some basic components like basic app architecture, app theme, constants and required dependencies to create the project. This will also help in reducing setup & development time by allowing you to use the same code pattern and avoid re-writing from scratch.
 
+App Link: https://github.com/deepsingh132/CuChat/releases/tag/v1.1-release0
+
 ## Setup Instructions 
 
 **Step 1:**
