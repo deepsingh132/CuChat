@@ -10,6 +10,26 @@ A software project created in flutter using Firebase-Firestore and Agora Video/A
 * For Release build: https://github.com/deepsingh132/cuchat (stable channel)
 * For Development: https://github.com/deepsingh132/cuchat/tree/beta (beta channel)
 
+<div align="center"> 
+
+  ## Screenshots 
+
+</div>
+
+<div align="center">
+  
+|   Registration/Login  | Homepage 
+|:---------:|:------------:|
+| <img src= "Screenshots/login.png" width = "391" height= "841" /> |   <img src= "Screenshots/homepage.png" width = "391" height= "841"/>
+| Story | Calls |  
+| <img src= "Screenshots/story.png" width = "391" height= "841" /> |   <img src= "Screenshots/calls.png" width = "391" height= "841"/>
+|   Chat  | Group Chat |                     
+| <img src= "Screenshots/chat.jpg" width = "391" height= "841" />  |   <img src= "Screenshots/grpchat.jpg" width = "391" height= "841"/>
+|   Multi-Doc Picker  | Settings |                     
+| <img src= "Screenshots/docpicker.png" width = "391" height= "841" /> |   <img src= "Screenshots/settings.png" width = "391" height= "841"/>
+
+</div>
+
 ## Getting Started
 
 This repository contains the minimal implementation required to create and test the project. The repository code is preloaded with some basic components like basic app architecture, app theme, constants and required dependencies to create the project. This will also help in reducing setup & development time by allowing you to use the same code pattern and avoid re-writing from scratch.
@@ -106,25 +126,7 @@ flutter run
 
 
 
-<div align="center"> 
 
-  ## Screenshots 
-
-</div>
-
-<div align="center">
-  
-|   Registration/Login  | Homepage 
-|:---------:|:------------:|
-| <img src= "Screenshots/login.png" width = "391" height= "841" /> |   <img src= "Screenshots/homepage.png" width = "391" height= "841"/>
-| Story | Calls |  
-| <img src= "Screenshots/story.png" width = "391" height= "841" /> |   <img src= "Screenshots/calls.png" width = "391" height= "841"/>
-|   Chat  | Group Chat |                     
-| <img src= "Screenshots/chat.jpg" width = "391" height= "841" />  |   <img src= "Screenshots/grpchat.jpg" width = "391" height= "841"/>
-|   Multi-Doc Picker  | Settings |                     
-| <img src= "Screenshots/docpicker.png" width = "391" height= "841" /> |   <img src= "Screenshots/settings.png" width = "391" height= "841"/>
-
-</div>
 
 
 ### Libraries & Tools Used
